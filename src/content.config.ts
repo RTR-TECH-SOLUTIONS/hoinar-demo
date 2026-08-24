@@ -10,6 +10,7 @@ const colectii = defineCollection({
   schema: z.object({
     nume: bilingv,
     accent: z.string().regex(/^#[0-9a-fA-F]{6}$/),
+    culoare: z.object({ nume: bilingv, hex: z.string().regex(/^#[0-9a-fA-F]{6}$/) }),
     imagine: z.string(),
     tesatura: bilingv,
     descriere: bilingv,
@@ -23,6 +24,8 @@ const produse = defineCollection({
     tip: z.string(),
     tipNume: bilingv,
     colectie: z.string(),
+    culoare: bilingv,
+    culoareHex: z.string().regex(/^#[0-9a-fA-F]{6}$/),
     pretRon: z.number().positive(),
     /** Prețul de listă, prezent doar cât timp produsul e la reducere. */
     pretVechiRon: z.number().positive().optional(),

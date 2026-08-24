@@ -43,17 +43,14 @@ await page.goto(`${BAZA}/produs/ham-carou-bruma`, { waitUntil: 'networkidle' });
 await page.getByRole('heading', { name: 'Fă-ți setul' }).scrollIntoViewIfNeeded();
 await page.waitForTimeout(300);
 const set = page.locator('section', { hasText: 'Fă-ți setul' }).last();
-// bifam doua piese care NU sunt deja preselectate, ca sa ajungem la 3
+// adaugam doua piese care NU sunt deja in set, ca sa ajungem la 3
 {
-  const boxuri = set.locator('input[type=checkbox]');
-  const total = await boxuri.count();
-  let adaugate = 0;
-  for (let i = 0; i < total && adaugate < 2; i++) {
-    const b = boxuri.nth(i);
-    if (!(await b.isChecked())) { await b.check(); adaugate++; }
+  const butoane = set.getByRole('button', { name: /^Adaugă$/ });
+  for (let i = 0; i < 2; i++) {
+    await butoane.first().click();
+    await page.waitForTimeout(250);
   }
 }
-await page.waitForTimeout(200);
 const textSet = await set.innerText();
 verifica('constructorul arata economia la 3 piese', /Economisești/.test(textSet) && /10%/.test(textSet), textSet.match(/Economisești[^\n]*/)?.[0]);
 const totalAfisat = Number(await set.locator('[data-total-ron]').getAttribute('data-total-ron'));
@@ -218,19 +215,62 @@ await page.waitForTimeout(300);
 const dupa = await page.locator('[data-principala]').getAttribute('src');
 verifica('miniatura schimba imaginea principala', inainte !== dupa, `${String(inainte).split('/').pop()} -> ${String(dupa).split('/').pop()}`);
 
-// ---------- 14. pagina de categorie ----------
-await page.goto(`${BAZA}/categorie/ham`, { waitUntil: 'networkidle' });
-await page.waitForTimeout(700);
+// ---------- 14. pagina de categorie: filtre laterale ----------
+await page.goto(`${BAZA}/colectii`, { waitUntil: 'networkidle' });
+await page.waitForTimeout(800);
 const coloane = await page.evaluate(() => {
-  const grila = [...document.querySelectorAll('main div')].find((d) => getComputedStyle(d).display === 'grid' && d.querySelectorAll('article').length > 2);
-  return grila ? getComputedStyle(grila).gridTemplateColumns.split(' ').length : 0;
+  // grila care contine DIRECT cardurile, nu invelisul cu bara laterala
+  const art = document.querySelector('main article');
+  const grila = art?.parentElement;
+  return grila && getComputedStyle(grila).display === 'grid'
+    ? getComputedStyle(grila).gridTemplateColumns.split(' ').length
+    : 0;
 });
-verifica('grila de categorie are patru coloane', coloane === 4, `${coloane} coloane`);
-const panou = page.locator('#panou-filtre');
-verifica('panoul de filtre e inchis la inceput', await panou.isHidden());
+verifica('grila are trei coloane pe desktop', coloane === 3, `${coloane} coloane`);
+verifica('filtrele sunt vizibile lateral, fara clic', await page.locator('#panou-filtre').isVisible());
+
+const pastile = await page.locator('#panou-filtre button span[style*="background"]').count();
+verifica('filtrul de culoare are pastile', pastile === 4, `${pastile} pastile`);
+
+const inainteFiltru = await page.locator('main article').count();
+await page.locator('#panou-filtre').getByRole('button', { name: /Teracot/ }).click();
+await page.waitForTimeout(400);
+const dupaFiltru = await page.locator('main article').count();
+verifica('filtrul de culoare reduce lista', dupaFiltru < inainteFiltru && dupaFiltru === 9, `${inainteFiltru} -> ${dupaFiltru}`);
+
+await page.locator('#panou-filtre').getByRole('button', { name: 'XL', exact: true }).click();
+await page.waitForTimeout(400);
+const cuMarime = await page.locator('main article').count();
+verifica('filtrele se combina', cuMarime > 0 && cuMarime < dupaFiltru, `${dupaFiltru} -> ${cuMarime}`);
+
+await page.getByRole('button', { name: /Șterge filtrele|Sterge filtrele/ }).click();
+await page.waitForTimeout(400);
+verifica('stergerea filtrelor readuce tot', (await page.locator('main article').count()) === inainteFiltru);
+
+// pe mobil filtrele stau sub un buton
+await page.setViewportSize({ width: 390, height: 800 });
+await page.reload({ waitUntil: 'networkidle' });
+await page.waitForTimeout(700);
+verifica('pe mobil panoul e inchis', await page.locator('#panou-filtre').isHidden());
 await page.getByRole('button', { name: /Filtreaz/ }).click();
 await page.waitForTimeout(300);
-verifica('butonul Filtreaza deschide panoul', await panou.isVisible());
+verifica('pe mobil butonul deschide filtrele', await page.locator('#panou-filtre').isVisible());
+await page.setViewportSize({ width: 1440, height: 900 });
+
+// ---------- 15. constructorul de set arata a magazin ----------
+await page.goto(`${BAZA}/produs/ham-canepa-naturala`, { waitUntil: 'networkidle' });
+await page.evaluate(() => window.scrollTo(0, 1200));
+await page.waitForTimeout(900);
+const setSec = page.locator('section', { hasText: 'Fă-ți setul' }).last();
+const carduriSet = await setSec.locator('li img').count();
+verifica('setul are carduri cu poza', carduriSet >= 5, `${carduriSet} carduri`);
+const totalInainte = Number(await setSec.locator('[data-total-ron]').getAttribute('data-total-ron'));
+await setSec.getByRole('button', { name: /^Adaugă$/ }).first().click();
+await page.waitForTimeout(400);
+const totalDupa = Number(await setSec.locator('[data-total-ron]').getAttribute('data-total-ron'));
+verifica('adaugarea unei piese schimba totalul', totalDupa !== totalInainte, `${totalInainte} -> ${totalDupa}`);
+verifica('apare progresul spre pragul urmator',
+  /Mai adaug/.test(await setSec.innerText()) || /−10%/.test(await setSec.innerText()));
 
 verifica('fara erori JavaScript', eroriConsola.length === 0, eroriConsola.slice(0, 3).join(' | '));
 

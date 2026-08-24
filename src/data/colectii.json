@@ -6,6 +6,13 @@
       "en": "Frost Check"
     },
     "accent": "#8A6A45",
+    "culoare": {
+      "nume": {
+        "ro": "Camel",
+        "en": "Camel"
+      },
+      "hex": "#C08E5C"
+    },
     "imagine": "/media/colectii/carou-bruma.jpg",
     "tesatura": {
       "ro": "Bumbac țesut în carouri camel și ciocolată, 320 g/mp.",
@@ -23,6 +30,13 @@
       "en": "Cocoa Dot"
     },
     "accent": "#4A3728",
+    "culoare": {
+      "nume": {
+        "ro": "Ciocolată",
+        "en": "Chocolate"
+      },
+      "hex": "#4A3728"
+    },
     "imagine": "/media/colectii/buline-cacao.jpg",
     "tesatura": {
       "ro": "Bumbac crem cu buline ciocolată imprimate cu pigment, 300 g/mp.",
@@ -40,6 +54,13 @@
       "en": "Sinaia Stripe"
     },
     "accent": "#A15C3A",
+    "culoare": {
+      "nume": {
+        "ro": "Teracotă",
+        "en": "Terracotta"
+      },
+      "hex": "#A9563A"
+    },
     "imagine": "/media/colectii/dungi-sinaia.jpg",
     "tesatura": {
       "ro": "Bumbac cu dungi teracotă și crem, țesute nu imprimate, 340 g/mp.",
@@ -57,6 +78,13 @@
       "en": "Natural Hemp"
     },
     "accent": "#9A8A6E",
+    "culoare": {
+      "nume": {
+        "ro": "Natural",
+        "en": "Natural"
+      },
+      "hex": "#C4B69A"
+    },
     "imagine": "/media/colectii/canepa-naturala.jpg",
     "tesatura": {
       "ro": "Cânepă nevopsită cu bumbac, 380 g/mp, se înmoaie la fiecare spălare.",

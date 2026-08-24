@@ -9,6 +9,7 @@ COLECTII = [
         "id": "carou-bruma",
         "nume": {"ro": "Carou Brumă", "en": "Frost Check"},
         "accent": "#8A6A45",
+        "culoare": {"nume": {"ro": "Camel", "en": "Camel"}, "hex": "#C08E5C"},
         "imagine": "/media/colectii/carou-bruma.jpg",
         "tesatura": {
             "ro": "Bumbac țesut în carouri camel și ciocolată, 320 g/mp.",
@@ -23,6 +24,7 @@ COLECTII = [
         "id": "buline-cacao",
         "nume": {"ro": "Buline Cacao", "en": "Cocoa Dot"},
         "accent": "#4A3728",
+        "culoare": {"nume": {"ro": "Ciocolată", "en": "Chocolate"}, "hex": "#4A3728"},
         "imagine": "/media/colectii/buline-cacao.jpg",
         "tesatura": {
             "ro": "Bumbac crem cu buline ciocolată imprimate cu pigment, 300 g/mp.",
@@ -37,6 +39,7 @@ COLECTII = [
         "id": "dungi-sinaia",
         "nume": {"ro": "Dungi Sinaia", "en": "Sinaia Stripe"},
         "accent": "#A15C3A",
+        "culoare": {"nume": {"ro": "Teracotă", "en": "Terracotta"}, "hex": "#A9563A"},
         "imagine": "/media/colectii/dungi-sinaia.jpg",
         "tesatura": {
             "ro": "Bumbac cu dungi teracotă și crem, țesute nu imprimate, 340 g/mp.",
@@ -51,6 +54,7 @@ COLECTII = [
         "id": "canepa-naturala",
         "nume": {"ro": "Cânepă Naturală", "en": "Natural Hemp"},
         "accent": "#9A8A6E",
+        "culoare": {"nume": {"ro": "Natural", "en": "Natural"}, "hex": "#C4B69A"},
         "imagine": "/media/colectii/canepa-naturala.jpg",
         "tesatura": {
             "ro": "Cânepă nevopsită cu bumbac, 380 g/mp, se înmoaie la fiecare spălare.",
@@ -259,6 +263,8 @@ for col in COLECTII:
             "tip": t["id"],
             "tipNume": t["nume"],
             "colectie": col["id"],
+            "culoare": col["culoare"]["nume"],
+            "culoareHex": col["culoare"]["hex"],
             **comercial(t["id"], col["id"], t["pret"], n),
             "marimi": t["marimi"],
             "imagini": [imagine_produs(t, col), col["imagine"], LIFESTYLE[n % len(LIFESTYLE)]],
@@ -287,6 +293,8 @@ for col in COLECTII:
         "tip": "set",
         "tipNume": {"ro": "Set complet", "en": "Full Set"},
         "colectie": col["id"],
+        "culoare": col["culoare"]["nume"],
+        "culoareHex": col["culoare"]["hex"],
         "pretRon": PRET_BUNDLE,
         "pretIntregRon": intreg,
         "componente": [f"{c}-{col['id']}" for c in componente],
@@ -317,6 +325,8 @@ for col in COLECTII:
 os.makedirs("src/data", exist_ok=True)
 io.open("src/data/colectii.json", "w", encoding="utf-8").write(
     json.dumps(COLECTII, ensure_ascii=False, indent=2))
+io.open("src/data/culori.json", "w", encoding="utf-8").write(
+    json.dumps([{"id": c["id"], **c["culoare"]} for c in COLECTII], ensure_ascii=False, indent=2))
 io.open("src/data/produse.json", "w", encoding="utf-8").write(
     json.dumps(produse, ensure_ascii=False, indent=2))
 # ordinea din TIPURI e cea comerciala; o salvam explicit, altfel

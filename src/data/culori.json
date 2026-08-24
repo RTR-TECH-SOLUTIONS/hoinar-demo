@@ -1,0 +1,34 @@
+[
+  {
+    "id": "carou-bruma",
+    "nume": {
+      "ro": "Camel",
+      "en": "Camel"
+    },
+    "hex": "#C08E5C"
+  },
+  {
+    "id": "buline-cacao",
+    "nume": {
+      "ro": "Ciocolată",
+      "en": "Chocolate"
+    },
+    "hex": "#4A3728"
+  },
+  {
+    "id": "dungi-sinaia",
+    "nume": {
+      "ro": "Teracotă",
+      "en": "Terracotta"
+    },
+    "hex": "#A9563A"
+  },
+  {
+    "id": "canepa-naturala",
+    "nume": {
+      "ro": "Natural",
+      "en": "Natural"
+    },
+    "hex": "#C4B69A"
+  }
+]

@@ -16,5 +16,5 @@ export async function getStaticPaths() {
 const { colectie, produse } = Astro.props;
 ---
 <Base lang="en" titlu={`${colectie.nume} — HOINAR`} descriere={colectie.descriere}>
-  <Lista lang="en" titlu={colectie.nume} intro={colectie.descriere} produse={produse} ascunde={['colectie']} />
+  <Lista lang="en" titlu={colectie.nume} intro={colectie.descriere} produse={produse} ascunde={['culoare']} />
 </Base>

@@ -11,13 +11,14 @@ interface Props {
   titlu: string;
   intro?: string;
   produse: Produs[];
-  ascunde?: ('colectie' | 'tip')[];
+  ascunde?: ('culoare' | 'tip')[];
 }
 const { lang, titlu, intro, produse, ascunde = [] } = Astro.props;
 const t = traduceri(lang);
 const u = (c: string) => url(lang, c);
 
 const colectii = await getColectii(lang);
+const culori = colectii.map((c) => ({ slug: c.slug, nume: c.culoare, hex: c.culoareHex }));
 const tipuri = await getTipuri(lang);
 
 async function src(cale: string, w: number) {
@@ -30,6 +31,8 @@ const carduri = await Promise.all(
     nume: p.nume,
     tip: p.tip,
     colectie: p.colectie,
+    culoare: p.culoare,
+    culoareHex: p.culoareHex,
     pretRon: p.pretRon,
     pretVechiRon: p.pretVechiRon,
     reducere: p.reducere,
@@ -62,13 +65,16 @@ const marimiToate = [...new Set(produse.flatMap((p) => p.marimi))];
   <Catalog
     client:load
     produse={carduri}
-    colectii={colectii.map((c) => ({ slug: c.slug, nume: c.nume }))}
+    culori={culori}
     tipuri={tipuri.map((x) => ({ slug: x.slug, nume: x.nume }))}
     marimi={marimiToate}
     ascunde={ascunde}
     t={{
       titlu: t('filtre.titlu'),
-      colectie: t('filtre.colectie'),
+      culoare: t('filtre.culoare'),
+      pret: t('filtre.pret'),
+      sub: t('filtre.sub'),
+      peste: t('filtre.peste'),
       tip: t('filtre.tip'),
       marime: t('filtre.marime'),
       inStoc: t('filtre.inStoc'),

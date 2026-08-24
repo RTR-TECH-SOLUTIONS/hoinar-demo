@@ -13,6 +13,8 @@ export interface Produs {
   tip: string;
   tipNume: string;
   colectie: string;
+  culoare: string;
+  culoareHex: string;
   pretRon: number;
   pretVechiRon?: number;
   reducere: number;
@@ -36,6 +38,8 @@ export interface Colectie {
   slug: string;
   nume: string;
   accent: string;
+  culoare: string;
+  culoareHex: string;
   imagine: string;
   tesatura: string;
   descriere: string;
@@ -57,6 +61,7 @@ export interface Filtre {
   segment?: 'talie-mare' | 'baieti';
   /** Doar produsele cu reducere. */
   doarReduceri?: boolean;
+  culoare?: string;
 }
 
 export type Sortare = 'recomandate' | 'pret-crescator' | 'pret-descrescator';
@@ -70,6 +75,8 @@ function laProdus(entry: { id: string; data: any }, lang: Limba): Produs {
     tip: d.tip,
     tipNume: d.tipNume[lang],
     colectie: d.colectie,
+    culoare: d.culoare[lang],
+    culoareHex: d.culoareHex,
     pretRon: d.pretRon,
     pretVechiRon: d.pretVechiRon,
     reducere: d.reducere ?? 0,
@@ -96,6 +103,8 @@ export async function getColectii(lang: Limba): Promise<Colectie[]> {
     slug: e.id,
     nume: e.data.nume[lang],
     accent: e.data.accent,
+    culoare: e.data.culoare.nume[lang],
+    culoareHex: e.data.culoare.hex,
     imagine: e.data.imagine,
     tesatura: e.data.tesatura[lang],
     descriere: e.data.descriere[lang],
@@ -109,6 +118,8 @@ export async function getColectie(slug: string, lang: Limba): Promise<Colectie |
     slug: e.id,
     nume: e.data.nume[lang],
     accent: e.data.accent,
+    culoare: e.data.culoare.nume[lang],
+    culoareHex: e.data.culoare.hex,
     imagine: e.data.imagine,
     tesatura: e.data.tesatura[lang],
     descriere: e.data.descriere[lang],
@@ -142,6 +153,7 @@ export async function getProduse(
   if (filtre.doarInStoc) lista = lista.filter((p) => p.stoc > 0);
   if (filtre.segment) lista = lista.filter((p) => p.segment === filtre.segment);
   if (filtre.doarReduceri) lista = lista.filter((p) => p.reducere > 0);
+  if (filtre.culoare) lista = lista.filter((p) => p.colectie === filtre.culoare);
 
   if (sortare === 'pret-crescator') lista.sort((a, b) => a.pretRon - b.pretRon);
   else if (sortare === 'pret-descrescator') lista.sort((a, b) => b.pretRon - a.pretRon);

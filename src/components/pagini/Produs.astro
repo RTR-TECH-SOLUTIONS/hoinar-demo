@@ -40,7 +40,8 @@ const pieseSet = await Promise.all(
     nume: p.nume,
     tipNume: p.tipNume,
     pretRon: p.pretRon,
-    imagine: await src(p.imagini[0], 120),
+    pretVechiRon: p.pretVechiRon,
+    imagine: await src(p.imagini[0], 420),
     url: u(`/produs/${p.slug}`),
     marimi: p.marimi,
   })),
@@ -211,7 +212,7 @@ const intrebari = [
 </article>
 
 {!produs.esteSet && pieseSet.length > 1 && (
-  <section class="mt-[var(--sectiune)] border-y border-linie bg-nisip">
+  <section class="mt-[var(--sectiune-strans)] border-y border-linie bg-nisip">
     <div class="container-brand py-[var(--sectiune-strans)]">
       <div class="flex flex-wrap items-end justify-between gap-4">
         <div>
@@ -239,6 +240,11 @@ const intrebari = [
             piesa: t('produs.piesa'),
             piese: t('produs.piese'),
             nota: t('produs.setNota'),
+            adauga1: t('produs.setAdauga1'),
+            adaugat: t('produs.setAdaugat'),
+            sumar: t('produs.setSumar'),
+            niciuna: t('produs.setNiciuna'),
+            inca: t('produs.setInca'),
           }}
         />
       </div>
