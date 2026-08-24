@@ -42,15 +42,16 @@ export async function getMeniu(lang: Limba): Promise<ItemMeniu[]> {
     })),
   ];
 
-  const promoColoana: ColoanaMeniu = {
-    imagine: '/media/produse/bandana-carou-bruma.jpg',
-    titlu: ro ? 'Reduceri' : 'Sale',
+  /** Coloana de reduceri arată un produs redus DIN meniul respectiv. */
+  const promo = (imagine: string): ColoanaMeniu => ({
+    imagine,
+    titlu: ro ? 'La reducere' : 'On sale',
     linkuri: [
       { eticheta: ro ? 'Toate reducerile' : 'All reduced', href: u('/reduceri') },
       { eticheta: ro ? 'Seturi complete' : 'Full sets', href: u('/colectii?tip=set') },
       { eticheta: ro ? 'Ghid de mărimi' : 'Size guide', href: u('/ghid-marimi') },
     ],
-  };
+  });
 
   return [
     {
@@ -69,7 +70,7 @@ export async function getMeniu(lang: Limba): Promise<ItemMeniu[]> {
           linkuri: peTesaturi('ham-explore'),
         },
         {
-          imagine: '/media/lifestyle/05.jpg',
+          imagine: '/media/produse/ham-explore-canepa-naturala.jpg',
           titlu: ro ? 'După talie' : 'By size',
           linkuri: [
             { eticheta: ro ? 'Câini mici (XS-S)' : 'Small dogs (XS-S)', href: u('/categorie/ham?marime=S') },
@@ -84,7 +85,8 @@ export async function getMeniu(lang: Limba): Promise<ItemMeniu[]> {
           titlu: ro ? 'Țesături' : 'Cloths',
           linkuri: colectii.map((c) => ({ eticheta: c.nume, href: u(`/colectie/${c.slug}`) })),
         },
-        promoColoana,
+        // ham reglabil Buline Cacao e la −25%
+        promo('/media/produse/ham-buline-cacao.jpg'),
       ],
     },
     {
@@ -104,7 +106,7 @@ export async function getMeniu(lang: Limba): Promise<ItemMeniu[]> {
           ],
         },
         {
-          imagine: '/media/lifestyle/06.jpg',
+          imagine: '/media/produse/lesa-canepa-naturala.jpg',
           titlu: ro ? 'Lungimi' : 'Lengths',
           linkuri: [
             { eticheta: ro ? 'Lesă 120 cm' : 'Lead 120 cm', href: u('/categorie/lesa?marime=120 cm') },
@@ -112,7 +114,8 @@ export async function getMeniu(lang: Limba): Promise<ItemMeniu[]> {
             { eticheta: ro ? 'Seturi complete' : 'Full sets', href: u('/colectii?tip=set') },
           ],
         },
-        promoColoana,
+        // lesa Dungi Sinaia e la −20%
+        promo('/media/produse/lesa-dungi-sinaia.jpg'),
       ],
     },
     {
@@ -122,12 +125,12 @@ export async function getMeniu(lang: Limba): Promise<ItemMeniu[]> {
       coloane: [
         { imagine: '/media/produse/geanta-carou-bruma.jpg', titlu: numeTip('geanta'), linkuri: peTesaturi('geanta') },
         {
-          imagine: '/media/banner/atelier.jpg',
+          imagine: '/media/produse/geanta-dungi-sinaia.jpg',
           titlu: ro ? 'Seturi' : 'Sets',
           linkuri: colectii.map((c) => ({ eticheta: `${ro ? 'Set' : 'Set'} ${c.nume}`, href: u(`/produs/set-${c.slug}`) })),
         },
         {
-          imagine: '/media/ugc/02.jpg',
+          imagine: '/media/produse/bandana-dungi-sinaia.jpg',
           titlu: ro ? 'Pentru plimbare' : 'For the walk',
           linkuri: [
             { eticheta: ro ? 'Bandane' : 'Bandanas', href: u('/categorie/bandana') },
@@ -140,7 +143,8 @@ export async function getMeniu(lang: Limba): Promise<ItemMeniu[]> {
           titlu: ro ? 'Țesături' : 'Cloths',
           linkuri: colectii.map((c) => ({ eticheta: c.nume, href: u(`/colectie/${c.slug}`) })),
         },
-        promoColoana,
+        // geanta Cânepă Naturală e la −30%
+        promo('/media/produse/geanta-canepa-naturala.jpg'),
       ],
     },
     {
@@ -151,7 +155,7 @@ export async function getMeniu(lang: Limba): Promise<ItemMeniu[]> {
         { imagine: '/media/produse/bandana-buline-cacao.jpg', titlu: numeTip('bandana'), linkuri: peTesaturi('bandana') },
         { imagine: '/media/produse/medalion.jpg', titlu: numeTip('medalion'), linkuri: peTesaturi('medalion') },
         {
-          imagine: '/media/ugc/04.jpg',
+          imagine: '/media/produse/zgarda-carou-bruma.jpg',
           titlu: ro ? 'Se potrivesc cu' : 'Goes with',
           linkuri: [
             { eticheta: ro ? 'Zgărzi' : 'Collars', href: u('/categorie/zgarda') },
@@ -164,7 +168,8 @@ export async function getMeniu(lang: Limba): Promise<ItemMeniu[]> {
           titlu: ro ? 'Țesături' : 'Cloths',
           linkuri: colectii.map((c) => ({ eticheta: c.nume, href: u(`/colectie/${c.slug}`) })),
         },
-        promoColoana,
+        // bandana Carou Brumă e la −30%
+        promo('/media/produse/bandana-carou-bruma.jpg'),
       ],
     },
     {
@@ -182,7 +187,7 @@ export async function getMeniu(lang: Limba): Promise<ItemMeniu[]> {
             { eticheta: numeTip('lesa'), href: u(`/produs/lesa-${c.slug}`) },
           ],
         })),
-        promoColoana,
+        promo('/media/produse/zgarda-buline-cacao.jpg'),
       ],
     },
     {

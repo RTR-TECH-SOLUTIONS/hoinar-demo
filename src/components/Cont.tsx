@@ -43,11 +43,12 @@ export default function Cont({ t }: Props) {
         ];
 
   return (
-    <div className="mx-auto grid max-w-[64rem] gap-12 md:grid-cols-[minmax(0,1fr)_18rem] md:gap-16">
+    <div className="max-w-[26rem]">
       <div>
         {/* file cu indicator care alunecă */}
         <div className="relative grid grid-cols-2 rounded-[10px] border border-linie p-1">
           <span
+            data-indicator-fila
             aria-hidden="true"
             className="absolute inset-y-1 left-1 w-[calc(50%-0.25rem)] rounded-[7px] bg-ink transition-transform duration-300 ease-out"
             style={{ transform: fila === 'nou' ? 'translateX(100%)' : 'none' }}
@@ -139,19 +140,6 @@ export default function Cont({ t }: Props) {
         </form>
       </div>
 
-      <aside className="md:pt-[3.6rem]">
-        <div className="overflow-hidden rounded-[12px] border border-linie bg-nisip p-5">
-          <h2 className="apare text-[1.05rem]">{t.deCe}</h2>
-          <ul className="mt-4 space-y-3 text-[0.87rem] leading-snug text-ciocolata/80">
-            {[t.deCe1, t.deCe2, t.deCe3, t.deCe4].map((x, i) => (
-              <li key={x} className="apare-x flex items-start gap-2.5" style={{ '--pas': `${140 + i * 90}ms` } as any}>
-                <span aria-hidden="true" className="mt-[0.5em] h-[3px] w-[11px] shrink-0 bg-camel" />
-                {x}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </aside>
     </div>
   );
 }

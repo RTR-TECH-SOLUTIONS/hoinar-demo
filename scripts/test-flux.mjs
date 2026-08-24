@@ -404,10 +404,8 @@ verifica('stergerea din favorite e animata, apoi dispare', iese && disparut, `an
 // pagina de cont: indicatorul de fila se muta
 await page.goto(`${BAZA}/cont`, { waitUntil: 'networkidle' });
 await page.waitForTimeout(700);
-const pozitieIndicator = () => page.locator('form').first().evaluate(() => {
-  const el = document.querySelector('span[aria-hidden="true"].absolute');
-  return el ? getComputedStyle(el).transform : 'nimic';
-});
+const pozitieIndicator = () =>
+  page.locator('[data-indicator-fila]').evaluate((el) => getComputedStyle(el).transform);
 const pozInainte = await pozitieIndicator();
 await page.getByRole('button', { name: 'Cont nou' }).click();
 await page.waitForTimeout(500);

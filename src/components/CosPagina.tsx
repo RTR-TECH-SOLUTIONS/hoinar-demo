@@ -11,9 +11,10 @@ interface Props {
   t: Record<string, string>;
   urlFinalizare: string;
   urlMagazin: string;
+  imagineGol: string;
 }
 
-export default function CosPagina({ t, urlFinalizare, urlMagazin }: Props) {
+export default function CosPagina({ t, urlFinalizare, urlMagazin, imagineGol }: Props) {
   const montat = useMontat();
   const liniiStore = useStore(cos);
   const subtotalStore = useStore(subtotalRon);
@@ -70,19 +71,24 @@ export default function CosPagina({ t, urlFinalizare, urlMagazin }: Props) {
 
   if (linii.length === 0) {
     return (
-      <div className="apare py-16 text-center">
-        <svg viewBox="0 0 24 24" width="52" height="52" aria-hidden="true"
-          className="mx-auto fill-none stroke-camel [animation:puls-blând_2.6s_ease-in-out_infinite]" strokeWidth="1.1">
-          <path d="M3 5h2.2l2.1 10.2h10.4L20 8H6.4" strokeLinecap="round" strokeLinejoin="round" />
-          <circle cx="9.5" cy="19" r="1.3" />
-          <circle cx="16.5" cy="19" r="1.3" />
-        </svg>
-        <p className="mt-5 text-[1.05rem]">{t.gol}</p>
-        <p className="mt-2 text-[0.9rem] text-ciocolata/65">{t.golText}</p>
-        <a href={urlMagazin}
-          className="mt-7 inline-block rounded-[10px] bg-ink px-7 py-3.5 text-[0.92rem] text-crem transition-[background-color,transform] duration-200 hover:bg-ciocolata active:scale-[0.97]">
-          {t.inapoiMagazin}
-        </a>
+      <div className="apare overflow-hidden rounded-[14px] border border-linie">
+        <div className="grid items-stretch md:grid-cols-[1.1fr_1fr]">
+          <img src={imagineGol} alt="" className="h-full min-h-[15rem] w-full object-cover md:min-h-[22rem]" />
+          <div className="flex flex-col justify-center bg-nisip p-8 text-center md:p-10 md:text-left">
+            <svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true"
+              className="mx-auto fill-none stroke-camel [animation:puls-blând_2.6s_ease-in-out_infinite] md:mx-0" strokeWidth="1.2">
+              <path d="M3 5h2.2l2.1 10.2h10.4L20 8H6.4" strokeLinecap="round" strokeLinejoin="round" />
+              <circle cx="9.5" cy="19" r="1.3" />
+              <circle cx="16.5" cy="19" r="1.3" />
+            </svg>
+            <p className="mt-4 text-[1.15rem]">{t.gol}</p>
+            <p className="mt-2 max-w-[34ch] text-[0.9rem] leading-relaxed text-ciocolata/70">{t.golText}</p>
+            <a href={urlMagazin}
+              className="mt-6 inline-block w-fit self-center rounded-[10px] bg-ink px-7 py-3.5 text-[0.92rem] text-crem transition-[background-color,transform] duration-200 hover:bg-ciocolata active:scale-[0.97] md:self-start">
+              {t.inapoiMagazin}
+            </a>
+          </div>
+        </div>
       </div>
     );
   }

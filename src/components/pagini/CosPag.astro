@@ -1,6 +1,8 @@
 ---
 import { traduceri, url } from '../../lib/i18n';
 import type { Limba } from '../../lib/pret';
+import { getImage } from 'astro:assets';
+import { getImagine } from '../../lib/imagini';
 import CosPagina from '../CosPagina.tsx';
 
 interface Props { lang: Limba }
@@ -18,6 +20,12 @@ const tc = {
 <div class="container-brand py-12">
   <h1 style="font-size: var(--pas-2xl)">{t('cos.titlu')}</h1>
   <div class="mt-9">
-    <CosPagina client:load t={tc} urlFinalizare={url(lang, '/finalizare')} urlMagazin={url(lang, '/colectii')} />
+    <CosPagina
+      client:load
+      t={tc}
+      urlFinalizare={url(lang, '/finalizare')}
+      urlMagazin={url(lang, '/colectii')}
+      imagineGol={(await getImage({ src: getImagine('/media/pui/cos-gol.jpg'), width: 900, format: 'webp' })).src}
+    />
   </div>
 </div>

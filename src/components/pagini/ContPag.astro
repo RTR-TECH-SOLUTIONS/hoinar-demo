@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import { getImagine } from '../../lib/imagini';
 import { traduceri } from '../../lib/i18n';
 import type { Limba } from '../../lib/pret';
 import Cont from '../Cont.tsx';
@@ -6,12 +8,56 @@ import Cont from '../Cont.tsx';
 interface Props { lang: Limba }
 const { lang } = Astro.props;
 const t = traduceri(lang);
-const chei = ['intra','nou','email','parola','nume','uitat','intraButon','creeaza','termeni','demo','gata','deCe','deCe1','deCe2','deCe3','deCe4'] as const;
+const ro = lang === 'ro';
+const chei = ['intra','nou','email','parola','nume','uitat','intraButon','creeaza','termeni','demo','gata'] as const;
 const tc: Record<string, string> = Object.fromEntries(chei.map((c) => [c, t(`cont.${c}` as any)]));
+const avantaje = [t('cont.deCe1'), t('cont.deCe2'), t('cont.deCe3'), t('cont.deCe4')];
 ---
-<div class="container-brand py-12">
-  <h1 class="text-center" style="font-size: var(--pas-2xl)">{t('cont.titlu')}</h1>
-  <div class="mt-9">
-    <Cont client:load t={tc} />
+
+<div class="container-brand py-10 lg:py-14">
+  <div class="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-stretch lg:gap-16">
+    <!-- panoul cu imagine -->
+    <div class="apare relative isolate overflow-hidden rounded-[14px] bg-ciocolata">
+      <Image
+        src={getImagine('/media/pui/cont.jpg')}
+        alt=""
+        widths={[520, 900]}
+        sizes="(min-width: 1024px) 44vw, 92vw"
+        loading="eager"
+        class="h-full min-h-[22rem] w-full object-cover object-[center_28%] lg:min-h-[34rem]"
+      />
+      <span
+        class="pointer-events-none absolute inset-0"
+        style="background: linear-gradient(to top, rgba(24,22,19,0.86) 0%, rgba(24,22,19,0.45) 38%, rgba(24,22,19,0.05) 72%, transparent 100%);"
+        aria-hidden="true"></span>
+
+      <div class="absolute inset-x-0 bottom-0 p-6 lg:p-8">
+        <h2 class="text-crem" style="font-size: var(--pas-xl)">{t('cont.deCe')}</h2>
+        <ul class="mt-4 space-y-2.5">
+          {avantaje.map((a, i) => (
+            <li
+              class="apare-x flex items-start gap-2.5 text-[0.88rem] leading-snug text-crem/85"
+              style={`--pas: ${180 + i * 90}ms`}
+            >
+              <span aria-hidden="true" class="mt-[0.55em] h-[3px] w-[11px] shrink-0 bg-camel"></span>
+              {a}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <!-- formularul -->
+    <div class="flex flex-col justify-center">
+      <h1 style="font-size: var(--pas-2xl)">{t('cont.titlu')}</h1>
+      <p class="mt-2.5 max-w-[44ch] text-[0.93rem] leading-relaxed text-ciocolata/70">
+        {ro
+          ? 'Intri o dată și îți ții comenzile, adresa și favoritele la un loc. Durează un minut.'
+          : 'Sign in once and keep your orders, address and saved pieces together. It takes a minute.'}
+      </p>
+      <div class="mt-8">
+        <Cont client:load t={tc} />
+      </div>
+    </div>
   </div>
 </div>
