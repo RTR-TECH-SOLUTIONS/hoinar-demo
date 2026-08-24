@@ -150,6 +150,7 @@ const t = {
     'filtre.ultimele': 'Ultimele',
     'filtre.economie': 'Economisești',
     'filtre.doarReduceri': 'Doar la reducere',
+    'filtre.altele': 'Altele',
     'filtre.set': 'Set',
     'filtre.nou': 'Nou',
 
@@ -327,6 +328,7 @@ const t = {
     'filtre.ultimele': 'Only',
     'filtre.economie': 'Save',
     'filtre.doarReduceri': 'On sale only',
+    'filtre.altele': 'Other',
     'filtre.set': 'Set',
     'filtre.nou': 'New',
 

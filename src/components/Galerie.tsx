@@ -1,9 +1,6 @@
 import { useState } from 'react';
 
-interface Imagine {
-  mic: string;
-  mare: string;
-}
+interface Imagine { mic: string; mare: string }
 
 interface Props {
   imagini: Imagine[];
@@ -14,21 +11,27 @@ interface Props {
 export default function Galerie({ imagini, alt, eticheta }: Props) {
   const [activ, setActiv] = useState(0);
 
+  /**
+   * O singură listă de miniaturi, poziționată din CSS:
+   * pe mobil sub imagine, pe desktop în stânga ei. `flex-row-reverse` face
+   * ca al doilea element din DOM să apară primul pe ecran.
+   */
   return (
-    <div>
-      <div className="overflow-hidden rounded-[12px] bg-nisip">
+    <div className="flex flex-col gap-3 lg:flex-row-reverse lg:items-start">
+      <div className="min-w-0 flex-1 overflow-hidden rounded-[12px] bg-nisip">
         <img
+          data-principala
           src={imagini[activ].mare}
           alt={alt}
-          width={1088}
-          height={1360}
+          width={1000}
+          height={1000}
           loading="eager"
-          className="aspect-[4/5] w-full object-cover"
+          className="aspect-square w-full object-cover"
         />
       </div>
 
       {imagini.length > 1 && (
-        <ul className="mt-3 flex gap-3" aria-label={eticheta}>
+        <ul className="flex shrink-0 gap-2.5 lg:w-[4.5rem] lg:flex-col" aria-label={eticheta}>
           {imagini.map((im, i) => (
             <li key={im.mic}>
               <button
@@ -43,9 +46,9 @@ export default function Galerie({ imagini, alt, eticheta }: Props) {
                   src={im.mic}
                   alt=""
                   width={72}
-                  height={90}
+                  height={72}
                   loading="lazy"
-                  className="h-[5.6rem] w-[4.5rem] object-cover"
+                  className="h-[4.5rem] w-[4.5rem] object-cover"
                 />
               </button>
             </li>

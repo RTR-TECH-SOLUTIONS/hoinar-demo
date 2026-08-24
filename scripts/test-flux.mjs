@@ -205,16 +205,32 @@ verifica('filtrul de marime din URL se aplica',
 await page.goto(`${BAZA}/produs/ham-carou-bruma`, { waitUntil: 'networkidle' });
 await page.waitForTimeout(900);
 const dimGalerie = await page.evaluate(() => {
-  const im = document.querySelector('article img');
+  const im = document.querySelector('[data-principala]');
   const r = im.getBoundingClientRect();
   return { w: Math.round(r.width), h: Math.round(r.height), articol: Math.round(document.querySelector('article').getBoundingClientRect().height) };
 });
-verifica('imaginea principala nu depaseste ecranul', dimGalerie.h < 820, JSON.stringify(dimGalerie));
+verifica('imaginea principala are dimensiune rezonabila', dimGalerie.h > 300 && dimGalerie.h < 700, JSON.stringify(dimGalerie));
 const miniaturi = await page.locator('article button img').count();
-verifica('galeria are miniaturi', miniaturi >= 2, `${miniaturi} miniaturi`);
+verifica('galeria are exact cate o miniatura per imagine', miniaturi === 3, `${miniaturi} miniaturi`);
+const inainte = await page.locator('[data-principala]').getAttribute('src');
 await page.locator('article button img').nth(1).click();
 await page.waitForTimeout(300);
-verifica('miniatura schimba imaginea principala', true);
+const dupa = await page.locator('[data-principala]').getAttribute('src');
+verifica('miniatura schimba imaginea principala', inainte !== dupa, `${String(inainte).split('/').pop()} -> ${String(dupa).split('/').pop()}`);
+
+// ---------- 14. pagina de categorie ----------
+await page.goto(`${BAZA}/categorie/ham`, { waitUntil: 'networkidle' });
+await page.waitForTimeout(700);
+const coloane = await page.evaluate(() => {
+  const grila = [...document.querySelectorAll('main div')].find((d) => getComputedStyle(d).display === 'grid' && d.querySelectorAll('article').length > 2);
+  return grila ? getComputedStyle(grila).gridTemplateColumns.split(' ').length : 0;
+});
+verifica('grila de categorie are patru coloane', coloane === 4, `${coloane} coloane`);
+const panou = page.locator('#panou-filtre');
+verifica('panoul de filtre e inchis la inceput', await panou.isHidden());
+await page.getByRole('button', { name: /Filtreaz/ }).click();
+await page.waitForTimeout(300);
+verifica('butonul Filtreaza deschide panoul', await panou.isVisible());
 
 verifica('fara erori JavaScript', eroriConsola.length === 0, eroriConsola.slice(0, 3).join(' | '));
 

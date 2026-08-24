@@ -52,13 +52,13 @@ const marimiToate = [...new Set(produse.flatMap((p) => p.marimi))];
 ---
 
 {titlu && (
-  <div class="container-brand pt-10">
-    <h1 style="font-size: var(--pas-3xl)">{titlu}</h1>
-    {intro && <p class="mt-4 max-w-[58ch] leading-relaxed text-ciocolata/75">{intro}</p>}
+  <div class="container-brand pt-12 text-center">
+    <h1 style="font-size: var(--pas-2xl)">{titlu}</h1>
+    {intro && <p class="mx-auto mt-3 max-w-[56ch] leading-relaxed text-ciocolata/75">{intro}</p>}
   </div>
 )}
 
-<div class="container-brand mt-10 pb-4">
+<div class="container-brand mt-8 pb-4">
   <Catalog
     client:load
     produse={carduri}
@@ -78,6 +78,7 @@ const marimiToate = [...new Set(produse.flatMap((p) => p.marimi))];
       pretCresc: t('filtre.pretCresc'),
       pretDesc: t('filtre.pretDesc'),
       rezultate: t('filtre.rezultate'),
+      altele: t('filtre.altele'),
       nimic: t('filtre.nimic'),
       ultimele: t('filtre.ultimele'),
       economie: t('filtre.economie'),

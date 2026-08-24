@@ -44,6 +44,11 @@ const trust = [
   [t('trust.ramburs'), t('trust.rambursText')],
 ];
 
+/** Șase categorii în bandă: opt nu încap fără să se înghesuie. */
+const tipuriPrincipale = tipuri.filter((t) =>
+  ['ham', 'ham-explore', 'lesa', 'zgarda', 'geanta', 'bandana'].includes(t.slug),
+);
+
 const ugc = ['/media/ugc/01.jpg', '/media/ugc/02.jpg', '/media/ugc/05.jpg', '/media/ugc/04.jpg', '/media/ugc/03.jpg'];
 ---
 
@@ -100,31 +105,6 @@ const ugc = ['/media/ugc/01.jpg', '/media/ugc/02.jpg', '/media/ugc/05.jpg', '/me
   </div>
 </section>
 
-<!-- 1b. CATEGORII SUB HERO -->
-<section class="border-b border-linie bg-crem" aria-label={ro ? 'Categorii' : 'Categories'}>
-  <ul class="container-brand flex snap-x gap-6 overflow-x-auto py-6 [scrollbar-width:none] sm:justify-center sm:gap-8 lg:gap-10">
-    {tipuri.map((tip) => (
-      <li class="shrink-0 snap-start">
-        <a href={u(`/categorie/${tip.slug}`)} class="group flex w-[5.5rem] flex-col items-center gap-2.5 text-center lg:w-[6.5rem]">
-          <span class="block overflow-hidden rounded-full border border-linie bg-nisip transition-colors group-hover:border-camel">
-            <Image
-              src={getImagine(tip.imagine)}
-              alt=""
-              widths={[120, 240]}
-              sizes="104px"
-              loading="lazy"
-              class="h-[4.5rem] w-[4.5rem] object-cover transition-transform duration-400 ease-out group-hover:scale-[1.08] lg:h-[5.5rem] lg:w-[5.5rem]"
-            />
-          </span>
-          <span class="text-[0.78rem] leading-snug text-ciocolata/80 transition-colors group-hover:text-teracota">
-            {tip.nume}
-          </span>
-        </a>
-      </li>
-    ))}
-  </ul>
-</section>
-
 <!-- 2. BANDA DE ÎNCREDERE -->
 <section class="border-b border-linie bg-ink text-crem" aria-label={ro ? 'Condiții de livrare' : 'Delivery terms'}>
   <ul class="container-brand grid grid-cols-2 gap-x-6 gap-y-4 py-5 lg:grid-cols-4">
@@ -135,6 +115,31 @@ const ugc = ['/media/ugc/01.jpg', '/media/ugc/02.jpg', '/media/ugc/05.jpg', '/me
           <span class="block text-[0.87rem] leading-snug">{titlu}</span>
           <span class="block text-[0.78rem] leading-snug text-crem/60">{text}</span>
         </span>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<!-- 2b. CATEGORII, sub banda de încredere -->
+<section class="border-b border-linie bg-crem" aria-label={ro ? 'Categorii' : 'Categories'}>
+  <ul class="container-brand flex snap-x gap-7 overflow-x-auto py-9 [scrollbar-width:none] sm:justify-center sm:gap-10 lg:gap-14">
+    {tipuriPrincipale.map((tip) => (
+      <li class="shrink-0 snap-start">
+        <a href={u(`/categorie/${tip.slug}`)} class="group flex w-[7rem] flex-col items-center gap-3 text-center lg:w-[9rem]">
+          <span class="block overflow-hidden rounded-full border border-linie bg-nisip transition-colors group-hover:border-camel">
+            <Image
+              src={getImagine(tip.imagine)}
+              alt=""
+              widths={[180, 320]}
+              sizes="144px"
+              loading="lazy"
+              class="h-[6.5rem] w-[6.5rem] object-cover transition-transform duration-400 ease-out group-hover:scale-[1.07] lg:h-[8.5rem] lg:w-[8.5rem]"
+            />
+          </span>
+          <span class="text-[0.86rem] leading-snug text-ciocolata/85 transition-colors group-hover:text-teracota">
+            {tip.nume}
+          </span>
+        </a>
       </li>
     ))}
   </ul>

@@ -10,6 +10,7 @@ import InimaProdus from '../InimaProdus.tsx';
 import Galerie from '../Galerie.tsx';
 import ConstructorSet from '../ConstructorSet.tsx';
 import CardProdus from '../CardProdus.astro';
+import Stele from '../Stele.astro';
 
 interface Props { produs: Produs; lang: Limba }
 const { produs, lang } = Astro.props;
@@ -29,7 +30,7 @@ const imagineCos = await src(produs.imagini[0], 200);
 const imaginiGalerie = await Promise.all(
   produs.imagini.map(async (cale) => ({
     mic: await src(cale, 160),
-    mare: await src(cale, 1088),
+    mare: await src(cale, 1000),
   })),
 );
 
@@ -47,6 +48,7 @@ const pieseSet = await Promise.all(
 
 const stocRedus = produs.stoc > 0 && produs.stoc <= 6;
 
+const areReducere = produs.reducere > 0 && produs.pretVechiRon;
 const acordeoane = [
   { titlu: t('produs.caracteristici'), continut: produs.caracteristici },
   { titlu: t('produs.livrare'), text: t('produs.livrareText') },
@@ -81,31 +83,62 @@ const intrebari = [
 
   <!-- INFORMAȚII -->
   <div class="lg:sticky lg:top-[calc(var(--header-total)+1.5rem)] lg:self-start">
-    <a
-      href={u(`/colectie/${produs.colectie}`)}
-      class="text-[0.85rem] text-teracota underline underline-offset-4"
-    >{colectie?.nume}</a>
+    <a href={u(`/colectie/${produs.colectie}`)} class="text-[0.78rem] uppercase tracking-[0.12em] text-teracota">
+      {colectie?.nume}
+    </a>
 
-    <h1 class="mt-2" style="font-size: var(--pas-2xl)">{produs.tipNume}</h1>
+    <h1 class="mt-2.5 text-[1.75rem] leading-tight md:text-[2rem]">{produs.tipNume}</h1>
 
-    <p class="mt-3 flex items-baseline gap-3">
-      <span class="text-[1.25rem] tabular-nums">{formatPret(produs.pretRon)}</span>
-      {produs.pretIntregRon && (
-        <span class="text-[0.95rem] tabular-nums text-ciocolata/45 line-through">
-          {formatPret(produs.pretIntregRon)}
+    <div class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
+      <p class="flex items-baseline gap-2.5">
+        <span class={`text-[1.3rem] tabular-nums ${areReducere ? 'text-teracota' : ''}`}>
+          {formatPret(produs.pretRon)}
         </span>
-      )}
-    </p>
+        {produs.pretVechiRon && (
+          <span class="text-[0.95rem] tabular-nums text-ciocolata/45 line-through">
+            {formatPret(produs.pretVechiRon)}
+          </span>
+        )}
+        {areReducere && (
+          <span class="rounded-[5px] bg-teracota px-1.5 py-0.5 text-[0.72rem] leading-none text-crem tabular-nums">
+            −{produs.reducere}%
+          </span>
+        )}
+      </p>
+      <div class="flex items-center gap-1.5">
+        <Stele n={produs.rating} marime={13} />
+        <span class="text-[0.8rem] tabular-nums text-ciocolata/55">
+          {produs.rating.toFixed(1)} · {produs.nrRecenzii} {lang === 'ro' ? 'recenzii' : 'reviews'}
+        </span>
+      </div>
+    </div>
 
-    <p class="mt-2 text-[0.85rem]">
+    <p class="mt-3 flex items-center gap-2 text-[0.85rem]">
+      <span
+        aria-hidden="true"
+        class={`inline-block h-[0.5rem] w-[0.5rem] rounded-full ${
+          produs.stoc === 0 ? 'bg-ciocolata/30' : stocRedus ? 'bg-teracota' : 'bg-[#5c7a4a]'
+        }`}
+      ></span>
       {produs.stoc === 0
         ? <span class="text-ciocolata/55">{t('produs.epuizat')}</span>
         : stocRedus
-          ? <span class="text-teracota">{t('produs.stocRedus')} ({produs.stoc})</span>
-          : <span class="text-ciocolata/65">{t('produs.stoc')}</span>}
+          ? <span class="text-teracota">{t('produs.stocRedus')} — {produs.stoc} {lang === 'ro' ? 'bucăți' : 'left'}</span>
+          : <span class="text-ciocolata/70">{t('produs.stoc')}</span>}
     </p>
 
-    <p class="mt-6 max-w-[52ch] leading-relaxed text-ciocolata/80">{produs.descriere}</p>
+    <!-- trei argumente scurte, deasupra mărimilor, ca la referință -->
+    <ul class="mt-5 space-y-2.5 border-y border-linie py-5">
+      {produs.caracteristici.slice(0, 3).map((c) => (
+        <li class="flex items-start gap-2.5 text-[0.9rem] leading-snug">
+          <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" class="mt-[0.15em] shrink-0 fill-none stroke-teracota" stroke-width="1.5">
+            <circle cx="8" cy="8" r="6.6" />
+            <path d="M5.2 8.2l2 2 3.6-4" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <span class="text-ciocolata/85">{c}</span>
+        </li>
+      ))}
+    </ul>
 
     <AdaugaInCos
       client:load
@@ -131,7 +164,15 @@ const intrebari = [
       </a>
     </div>
 
-    <div class="mt-9 border-t border-linie">
+    <div class="mt-8 border-t border-linie">
+      <details class="group border-b border-linie" open>
+        <summary class="flex cursor-pointer list-none items-center justify-between py-4 text-[0.95rem] marker:content-none">
+          {t('produs.descriere')}
+          <span aria-hidden="true" class="text-[1.1rem] leading-none text-ciocolata/50 transition-transform duration-200 group-open:rotate-45">+</span>
+        </summary>
+        <p class="max-w-[54ch] pb-5 text-[0.9rem] leading-relaxed text-ciocolata/80">{produs.descriere}</p>
+      </details>
+
       {acordeoane.map((a) => (
         <details class="group border-b border-linie">
           <summary class="flex cursor-pointer list-none items-center justify-between py-4 text-[0.95rem] marker:content-none">
@@ -150,6 +191,7 @@ const intrebari = [
           </div>
         </details>
       ))}
+
       <details class="group border-b border-linie">
         <summary class="flex cursor-pointer list-none items-center justify-between py-4 text-[0.95rem] marker:content-none">
           {t('produs.intrebari')}
