@@ -189,6 +189,19 @@ export async function getNoutati(lang: Limba, limita = 4): Promise<Produs[]> {
   return lista.filter((p) => p.nou).slice(0, limita);
 }
 
+/**
+ * Același tip de produs, în celelalte culori. Ăsta e comutatorul real de
+ * variantă: la un ham, celelalte trei țesături în care se face.
+ */
+export async function getVariante(
+  tip: string,
+  lang: Limba,
+  exclude?: string,
+): Promise<Produs[]> {
+  const lista = await getProduse(lang, { tip });
+  return lista.filter((p) => p.slug !== exclude);
+}
+
 /** Produsele dintr-o colecție care pot intra într-un set, fără setul în sine. */
 export async function getComponenteSet(colectie: string, lang: Limba): Promise<Produs[]> {
   const lista = await getProduse(lang, { colectie });

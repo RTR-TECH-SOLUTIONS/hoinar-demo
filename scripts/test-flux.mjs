@@ -470,6 +470,29 @@ const trio = await page.evaluate(() => {
 verifica('fotografia cu trei caini nu e decupata',
   !!trio && Math.abs(trio.afisat - trio.sursa) < 0.03, JSON.stringify(trio));
 
+// ---------- 25. produse similare si comutator de culoare ----------
+await page.goto(`${BAZA}/produs/ham-buline-cacao`, { waitUntil: 'networkidle' });
+await page.waitForTimeout(800);
+const pdpBlocuri = await page.evaluate(() => ({
+  titluri: [...document.querySelectorAll('main h2')].map((h) => h.textContent?.trim()),
+  carduri: document.querySelectorAll('main article').length,
+}));
+verifica('pagina are trei blocuri de produse similare',
+  ['Același model, altă culoare', 'Din aceeași țesătură', 'Se cumpără des împreună']
+    .every((x) => pdpBlocuri.titluri.includes(x)),
+  pdpBlocuri.titluri.join(' | '));
+verifica('sunt destule produse similare', pdpBlocuri.carduri >= 12, `${pdpBlocuri.carduri} carduri`);
+
+const pastileCuloare = page.locator('main a[style*="background"], main span[aria-current="true"]');
+verifica('comutatorul de culoare are patru variante',
+  (await pastileCuloare.count()) === 4, `${await pastileCuloare.count()} pastile`);
+const altaCuloare = page.locator('main a[title]').first();
+const caleaAlta = await altaCuloare.getAttribute('href');
+await altaCuloare.click();
+await page.waitForLoadState('networkidle');
+verifica('pastila de culoare duce la acelasi tip in alta culoare',
+  page.url().includes('/produs/ham-') && !page.url().includes('buline-cacao'), page.url());
+
 verifica('fara erori JavaScript', eroriConsola.length === 0, eroriConsola.slice(0, 3).join(' | '));
 
 await browser.close();

@@ -1,7 +1,7 @@
 ---
 import { getImage } from 'astro:assets';
 import { getImagine } from '../../lib/imagini';
-import { getProdus, getColectie, getComponenteSet, type Produs } from '../../lib/catalog';
+import { getColectie, getComponenteSet, getVariante, getBestsellers, type Produs } from '../../lib/catalog';
 import { traduceri, url } from '../../lib/i18n';
 import { formatPret } from '../../lib/pret';
 import type { Limba } from '../../lib/pret';
@@ -19,7 +19,11 @@ const u = (c: string) => url(lang, c);
 
 const colectie = await getColectie(produs.colectie, lang);
 const piese = await getComponenteSet(produs.colectie, lang);
-const inrudite = piese.filter((p) => p.slug !== produs.slug).slice(0, 4);
+const inrudite = piese.filter((p) => p.slug !== produs.slug);
+const variante = produs.esteSet ? [] : await getVariante(produs.tip, lang, produs.slug);
+const recomandate = (await getBestsellers(lang, 6))
+  .filter((p) => p.slug !== produs.slug && !variante.some((v) => v.slug === p.slug))
+  .slice(0, 4);
 
 /** Insulele React primesc URL-uri gata optimizate, nu ImageMetadata. */
 async function src(cale: string, w: number) {
@@ -186,6 +190,35 @@ const intrebari = [
       ))}
     </ul>
 
+    {variante.length > 0 && (
+      <div class="mt-6">
+        <p class="text-[0.85rem] text-ciocolata/70">
+          {t('produs.culoare')}: <span class="text-ciocolata">{produs.culoare}</span>
+        </p>
+        <ul class="mt-2.5 flex flex-wrap gap-2.5">
+          <li>
+            <span
+              aria-current="true"
+              title={produs.culoare}
+              class="grid h-9 w-9 place-items-center rounded-full ring-2 ring-ciocolata ring-offset-2 ring-offset-crem"
+              style={`background: ${produs.culoareHex}`}
+            ></span>
+          </li>
+          {variante.map((v) => (
+            <li>
+              <a
+                href={u(`/produs/${v.slug}`)}
+                title={v.culoare}
+                aria-label={v.culoare}
+                class="grid h-9 w-9 place-items-center rounded-full ring-1 ring-linie transition-[box-shadow,transform] duration-200 hover:ring-camel active:scale-95"
+                style={`background: ${v.culoareHex}`}
+              ></a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
     <AdaugaInCos
       client:load
       slug={produs.slug}
@@ -254,11 +287,47 @@ const intrebari = [
   </section>
 )}
 
-{inrudite.length > 0 && (
+{variante.length > 0 && (
   <section class="container-brand mt-[var(--sectiune)]">
-    <h2 style="font-size: var(--pas-xl)">{t('produs.dinColectie')}</h2>
+    <div class="flex items-end justify-between gap-6">
+      <h2 style="font-size: var(--pas-xl)">{t('produs.alteCulori')}</h2>
+      <a href={u(`/categorie/${produs.tip}`)} class="shrink-0 text-[0.86rem] underline underline-offset-4 hover:text-teracota">
+        {t('nav.toate')}
+      </a>
+    </div>
     <div class="mt-7 grid grid-cols-2 gap-x-4 gap-y-9 lg:grid-cols-4">
-      {inrudite.map((p) => <CardProdus produs={p} lang={lang} />)}
+      {variante.map((p) => <CardProdus produs={p} lang={lang} />)}
     </div>
   </section>
 )}
+
+{inrudite.length > 0 && (
+  <section class="mt-[var(--sectiune)]">
+    <div class="container-brand flex items-end justify-between gap-6">
+      <div>
+        <h2 style="font-size: var(--pas-xl)">{t('produs.dinColectie')}</h2>
+        <p class="mt-1.5 text-[0.88rem] text-ciocolata/65">{colectie?.tesatura}</p>
+      </div>
+      <a href={u(`/colectie/${produs.colectie}`)} class="shrink-0 text-[0.86rem] underline underline-offset-4 hover:text-teracota">
+        {t('produs.veziTot')}
+      </a>
+    </div>
+    <div class="mt-7 flex snap-x snap-mandatory gap-4 overflow-x-auto px-[clamp(1rem,0.5rem+2.5vw,3rem)] pb-3 [scrollbar-width:thin]">
+      {inrudite.map((p) => (
+        <div class="w-[46vw] shrink-0 snap-start sm:w-[30vw] lg:w-[calc((90rem-6rem-3rem)/4)]">
+          <CardProdus produs={p} lang={lang} />
+        </div>
+      ))}
+    </div>
+  </section>
+)}
+
+{recomandate.length > 0 && (
+  <section class="container-brand mt-[var(--sectiune)]">
+    <h2 style="font-size: var(--pas-xl)">{t('produs.recomandate')}</h2>
+    <div class="mt-7 grid grid-cols-2 gap-x-4 gap-y-9 lg:grid-cols-4">
+      {recomandate.map((p) => <CardProdus produs={p} lang={lang} />)}
+    </div>
+  </section>
+)}
+
