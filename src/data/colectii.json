@@ -1,0 +1,70 @@
+[
+  {
+    "id": "carou-bruma",
+    "nume": {
+      "ro": "Carou Brumă",
+      "en": "Frost Check"
+    },
+    "accent": "#8A6A45",
+    "imagine": "/media/colectii/carou-bruma.jpg",
+    "tesatura": {
+      "ro": "Bumbac țesut în carouri camel și ciocolată, 320 g/mp.",
+      "en": "Cotton woven in camel and chocolate check, 320 gsm."
+    },
+    "descriere": {
+      "ro": "Caroul care a pornit brandul. Firul e vopsit înainte de țesere, așa că modelul nu se decolorează la spălare, se estompează uniform.",
+      "en": "The check the brand started with. The yarn is dyed before weaving, so the pattern does not bleach out in the wash, it fades evenly."
+    }
+  },
+  {
+    "id": "buline-cacao",
+    "nume": {
+      "ro": "Buline Cacao",
+      "en": "Cocoa Dot"
+    },
+    "accent": "#4A3728",
+    "imagine": "/media/colectii/buline-cacao.jpg",
+    "tesatura": {
+      "ro": "Bumbac crem cu buline ciocolată imprimate cu pigment, 300 g/mp.",
+      "en": "Cream cotton with pigment-printed chocolate dots, 300 gsm."
+    },
+    "descriere": {
+      "ro": "Buline de 6 mm, imprimate cu pigment pe bumbac spălat în prealabil. Bumbacul e prespălat, deci nu intră la apă după prima spălare.",
+      "en": "Six-millimetre dots, pigment-printed on pre-washed cotton. The cotton is pre-shrunk, so it will not pull in after the first wash."
+    }
+  },
+  {
+    "id": "dungi-sinaia",
+    "nume": {
+      "ro": "Dungi Sinaia",
+      "en": "Sinaia Stripe"
+    },
+    "accent": "#A15C3A",
+    "imagine": "/media/colectii/dungi-sinaia.jpg",
+    "tesatura": {
+      "ro": "Bumbac cu dungi teracotă și crem, țesute nu imprimate, 340 g/mp.",
+      "en": "Cotton with terracotta and cream stripes, woven rather than printed, 340 gsm."
+    },
+    "descriere": {
+      "ro": "Dungile sunt țesute, nu imprimate, deci se văd la fel pe ambele fețe. Culoarea vine din pătura de munte, nu dintr-un catalog de tendințe.",
+      "en": "The stripes are woven, not printed, so they read the same on both faces. The colour comes from a mountain blanket, not a trend deck."
+    }
+  },
+  {
+    "id": "canepa-naturala",
+    "nume": {
+      "ro": "Cânepă Naturală",
+      "en": "Natural Hemp"
+    },
+    "accent": "#9A8A6E",
+    "imagine": "/media/colectii/canepa-naturala.jpg",
+    "tesatura": {
+      "ro": "Cânepă nevopsită cu bumbac, 380 g/mp, se înmoaie la fiecare spălare.",
+      "en": "Undyed hemp with cotton, 380 gsm, softens with every wash."
+    },
+    "descriere": {
+      "ro": "Fără vopsea și fără imprimeu. Cânepa e aspră la început și se înmoaie după trei sau patru spălări, ca o cămașă bună de in.",
+      "en": "No dye and no print. Hemp starts out coarse and softens after three or four washes, like a good linen shirt."
+    }
+  }
+]

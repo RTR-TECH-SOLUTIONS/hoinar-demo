@@ -1,0 +1,91 @@
+---
+import { getColectii, getTipuri } from '../lib/catalog';
+import { traduceri, url, comuta } from '../lib/i18n';
+import type { Limba } from '../lib/pret';
+
+interface Props { lang: Limba; pathname: string }
+const { lang, pathname } = Astro.props;
+const t = traduceri(lang);
+const colectii = await getColectii(lang);
+const tipuri = await getTipuri(lang);
+const u = (c: string) => url(lang, c);
+const an = 2026;
+
+const coloane = [
+  {
+    titlu: t('footer.magazin'),
+    linkuri: tipuri.map((tip) => ({ eticheta: tip.nume, href: u(`/categorie/${tip.slug}`) })),
+  },
+  {
+    titlu: t('nav.colectii'),
+    linkuri: colectii.map((c) => ({ eticheta: c.nume, href: u(`/colectie/${c.slug}`) })),
+  },
+  {
+    titlu: t('footer.ajutor'),
+    linkuri: [
+      { eticheta: t('produs.ghid'), href: u('/ghid-marimi') },
+      { eticheta: t('produs.livrare'), href: u('/livrare-retur') },
+      { eticheta: lang === 'ro' ? 'Contact' : 'Contact', href: u('/contact') },
+    ],
+  },
+  {
+    titlu: t('footer.despre'),
+    linkuri: [
+      { eticheta: t('nav.poveste'), href: u('/poveste') },
+      { eticheta: lang === 'ro' ? 'Cum sunt făcute' : 'How they are made', href: u('/poveste#atelier') },
+    ],
+  },
+];
+---
+
+<footer class="mt-[var(--sectiune)] border-t border-linie bg-nisip">
+  <div class="container-brand py-14">
+    <div class="grid gap-10 md:grid-cols-[1.2fr_2fr]">
+      <div>
+        <p class="font-[family-name:var(--font-serif)] text-[1.6rem] leading-none tracking-[0.14em]">
+          HOINAR
+        </p>
+        <p class="mt-4 max-w-[30ch] text-[0.9rem] leading-relaxed text-ciocolata/75">
+          {lang === 'ro'
+            ? 'Accesorii de plimbare croite în București, din țesături care se poartă împreună.'
+            : 'Walking accessories cut in Bucharest, in cloths that wear together.'}
+        </p>
+        <p class="mt-5 text-[0.85rem] text-ciocolata/70">
+          <a href="tel:+40721000000" class="hover:text-teracota">0721 000 000</a>
+          <span class="mx-2 text-ciocolata/30">·</span>
+          <a href="mailto:salut@hoinar.ro" class="hover:text-teracota">salut@hoinar.ro</a>
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4">
+        {coloane.map((col) => (
+          <div>
+            <h2 class="font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-ciocolata">
+              {col.titlu}
+            </h2>
+            <ul class="mt-3 space-y-2">
+              {col.linkuri.map((l) => (
+                <li>
+                  <a href={l.href} class="text-[0.85rem] text-ciocolata/75 hover:text-teracota transition-colors">
+                    {l.eticheta}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12 flex flex-col gap-4 border-t border-linie pt-6 text-[0.8rem] text-ciocolata/65 sm:flex-row sm:items-center sm:justify-between">
+      <p>© {an} HOINAR. {t('footer.drepturi')}</p>
+      <div class="flex items-center gap-4">
+        <span>{t('bara.retur')}</span>
+        <span aria-hidden="true" class="text-ciocolata/30">·</span>
+        <a href={comuta(pathname, lang === 'ro' ? 'en' : 'ro')} class="underline underline-offset-4 hover:text-teracota">
+          {lang === 'ro' ? 'English' : 'Română'}
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

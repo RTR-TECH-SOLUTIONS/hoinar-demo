@@ -1,0 +1,79 @@
+---
+import { getImage } from 'astro:assets';
+import { getImagine } from '../../lib/imagini';
+import { getColectii, getTipuri, type Produs } from '../../lib/catalog';
+import { traduceri, url } from '../../lib/i18n';
+import type { Limba } from '../../lib/pret';
+import Catalog from '../Catalog.tsx';
+
+interface Props {
+  lang: Limba;
+  titlu: string;
+  intro?: string;
+  produse: Produs[];
+  ascunde?: ('colectie' | 'tip')[];
+}
+const { lang, titlu, intro, produse, ascunde = [] } = Astro.props;
+const t = traduceri(lang);
+const u = (c: string) => url(lang, c);
+
+const colectii = await getColectii(lang);
+const tipuri = await getTipuri(lang);
+
+async function src(cale: string, w: number) {
+  return (await getImage({ src: getImagine(cale), width: w, format: 'webp' })).src;
+}
+
+const carduri = await Promise.all(
+  produse.map(async (p) => ({
+    slug: p.slug,
+    nume: p.nume,
+    tip: p.tip,
+    colectie: p.colectie,
+    pretRon: p.pretRon,
+    pretIntregRon: p.pretIntregRon,
+    economieRon: p.economieRon,
+    esteSet: p.esteSet,
+    marimi: p.marimi,
+    stoc: p.stoc,
+    bestseller: p.bestseller,
+    url: u(`/produs/${p.slug}`),
+    img1: await src(p.imagini[0], 620),
+    img2: await src(p.imagini[1] ?? p.imagini[0], 620),
+  })),
+);
+
+const marimiToate = [...new Set(produse.flatMap((p) => p.marimi))];
+---
+
+<div class="container-brand pt-10">
+  <h1 style="font-size: var(--pas-3xl)">{titlu}</h1>
+  {intro && <p class="mt-4 max-w-[58ch] leading-relaxed text-ciocolata/75">{intro}</p>}
+</div>
+
+<div class="container-brand mt-10 pb-4">
+  <Catalog
+    client:load
+    produse={carduri}
+    colectii={colectii.map((c) => ({ slug: c.slug, nume: c.nume }))}
+    tipuri={tipuri.map((x) => ({ slug: x.slug, nume: x.nume }))}
+    marimi={marimiToate}
+    ascunde={ascunde}
+    t={{
+      titlu: t('filtre.titlu'),
+      colectie: t('filtre.colectie'),
+      tip: t('filtre.tip'),
+      marime: t('filtre.marime'),
+      inStoc: t('filtre.inStoc'),
+      sterge: t('filtre.sterge'),
+      sortare: t('filtre.sortare'),
+      recomandate: t('filtre.recomandate'),
+      pretCresc: t('filtre.pretCresc'),
+      pretDesc: t('filtre.pretDesc'),
+      rezultate: t('filtre.rezultate'),
+      nimic: t('filtre.nimic'),
+      ultimele: t('filtre.ultimele'),
+      economie: t('filtre.economie'),
+    }}
+  />
+</div>

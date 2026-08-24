@@ -1,0 +1,79 @@
+---
+import { Image } from 'astro:assets';
+import { getImagine } from '../../lib/imagini';
+import type { Limba } from '../../lib/pret';
+
+interface Props { lang: Limba }
+const { lang } = Astro.props;
+const ro = lang === 'ro';
+
+const paragrafe = ro
+  ? [
+      'A început dintr-o problemă banală. Nu găseam un ham care să reziste un an și să nu arate ca un echipament de vânătoare. Ce era rezistent era urât, ce era frumos se destrăma după două luni.',
+      'Am comandat o rolă de chingă de bumbac de la un furnizor din Sibiu, o mașină de cusut de tapițerie de la mâna a doua și am învățat pe cont propriu. Primele treizeci de hamuri le-am dat prietenilor din parc, cu o singură rugăminte: să le rupă.',
+      'Le-au rupt. Catarama de zamac s-a fisurat la frig, cusătura simplă a cedat la primul câine care a tras serios, iar inelul D îndoit s-a desfăcut. Am schimbat catarama pe alamă, am trecut la cusătură în X pe patru rânduri și am comandat inele sudate.',
+      'A doua serie a ținut. De atunci croim tot în București, în serii mici, din patru țesături pe care le ținem în stoc tot anul, ca să poți completa setul peste șase luni și să prinzi exact aceeași nuanță.',
+    ]
+  : [
+      'It started with a dull problem. We could not find a harness that lasted a year and did not look like hunting kit. What was strong was ugly, and what was handsome came apart after two months.',
+      'We ordered a roll of cotton webbing from a supplier in Sibiu, a second-hand upholstery sewing machine, and taught ourselves. The first thirty harnesses went to friends from the park, with one request: break them.',
+      'They broke them. The zinc-alloy buckle cracked in the cold, the single-row stitch gave way with the first dog that really pulled, and the bent D-ring opened up. We moved to brass buckles, four-row cross stitching and welded rings.',
+      'The second run held. We still cut everything in Bucharest, in small runs, from four cloths we keep in stock all year, so you can complete the set six months later and get exactly the same shade.',
+    ];
+
+const atelier = ro
+  ? [
+      ['Croit', 'Tăiem chinga pe lungimi fixe, cu cuțit cald, ca marginea să nu se destrame.'],
+      ['Cusut', 'Fiecare punct de prindere se coase în X, pe patru rânduri, cu ață poliester.'],
+      ['Testat', 'Un exemplar din fiecare serie merge la tracțiune până cedează. Notăm valoarea.'],
+      ['Ambalat', 'Fără plastic. Hârtie și o cutie care se pliază.'],
+    ]
+  : [
+      ['Cutting', 'We cut the webbing to fixed lengths with a hot knife so the edge cannot fray.'],
+      ['Stitching', 'Every load point is cross-stitched over four rows in polyester thread.'],
+      ['Testing', 'One piece from each run is pulled until it fails. We write the number down.'],
+      ['Packing', 'No plastic. Paper and a box that folds flat.'],
+    ];
+---
+<article class="container-brand py-12">
+  <h1 class="max-w-[18ch]" style="font-size: var(--pas-3xl)">
+    {ro ? 'Am început pentru că ne-am săturat să tot cumpărăm hamuri' : 'We started because we were tired of buying harnesses'}
+  </h1>
+
+  <div class="mt-10 grid gap-10 md:grid-cols-[1.1fr_1fr] md:gap-16">
+    <div class="space-y-5 leading-relaxed text-ciocolata/85">
+      {paragrafe.map((p) => <p class="max-w-[58ch]">{p}</p>)}
+    </div>
+    <div class="overflow-hidden rounded-[14px] bg-nisip">
+      <Image
+        src={getImagine('/media/lifestyle/03.jpg')}
+        alt=""
+        widths={[500, 900]}
+        sizes="(min-width: 768px) 44vw, 92vw"
+        loading="eager"
+        class="aspect-[4/5] w-full object-cover"
+      />
+    </div>
+  </div>
+
+  <section id="atelier" class="mt-[var(--sectiune)] scroll-mt-[calc(var(--header-h)+2rem)]">
+    <h2 style="font-size: var(--pas-2xl)">{ro ? 'Cum sunt făcute' : 'How they are made'}</h2>
+    <ol class="mt-8 grid gap-x-8 gap-y-7 sm:grid-cols-2 lg:grid-cols-4">
+      {atelier.map(([titlu, text], i) => (
+        <li class="border-t border-linie pt-4">
+          <span class="text-[0.78rem] tabular-nums text-ciocolata/45">{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="mt-1.5 text-[1.15rem]">{titlu}</h3>
+          <p class="mt-2 text-[0.9rem] leading-relaxed text-ciocolata/75">{text}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <div class="mt-[var(--sectiune-strans)] grid grid-cols-2 gap-3 sm:grid-cols-4">
+    {['/media/lifestyle/07.jpg', '/media/lifestyle/08.jpg', '/media/lifestyle/11.jpg', '/media/lifestyle/01.jpg'].map((c) => (
+      <div class="overflow-hidden rounded-[10px] bg-nisip">
+        <Image src={getImagine(c)} alt="" widths={[300, 520]} sizes="(min-width: 640px) 23vw, 46vw" loading="lazy" class="aspect-[4/5] w-full object-cover" />
+      </div>
+    ))}
+  </div>
+</article>

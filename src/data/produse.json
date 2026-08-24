@@ -1,0 +1,1726 @@
+[
+  {
+    "id": "ham-carou-bruma",
+    "nume": {
+      "ro": "Ham reglabil Carou Brumă",
+      "en": "Frost Check Adjustable Harness"
+    },
+    "tip": "ham",
+    "tipNume": {
+      "ro": "Ham reglabil",
+      "en": "Adjustable Harness"
+    },
+    "colectie": "carou-bruma",
+    "pretRon": 189,
+    "marimi": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "imagini": [
+      "/media/produse/ham-carou-bruma.jpg",
+      "/media/colectii/carou-bruma.jpg",
+      "/media/lifestyle/01.jpg"
+    ],
+    "descriere": {
+      "ro": "Ham cu intrare pe cap, cu două puncte de reglaj și cataramă de siguranță. Chinga interioară e căptușită cu neopren de 4 mm, ca să nu frece la subraț. Inelul D e dublu și cusut în X pe patru rânduri. Bumbac țesut în carouri camel și ciocolată, 320 g/mp.",
+      "en": "Step-in harness with two adjustment points and a safety buckle. The inner webbing is lined with 4 mm neoprene so it will not chafe under the leg. The D-ring is doubled and cross-stitched over four rows. Cotton woven in camel and chocolate check, 320 gsm."
+    },
+    "caracteristici": {
+      "ro": [
+        "Două puncte de reglaj",
+        "Căptușeală neopren 4 mm",
+        "Inel D dublu, cusut în X",
+        "Cataramă cu blocare",
+        "Se spală la 30 de grade"
+      ],
+      "en": [
+        "Two adjustment points",
+        "4 mm neoprene lining",
+        "Double D-ring, cross-stitched",
+        "Locking buckle",
+        "Machine wash at 30 degrees"
+      ]
+    },
+    "stoc": 14,
+    "bestseller": true,
+    "segment": null
+  },
+  {
+    "id": "ham-explore-carou-bruma",
+    "nume": {
+      "ro": "Ham Explore Carou Brumă",
+      "en": "Frost Check Explore Harness"
+    },
+    "tip": "ham-explore",
+    "tipNume": {
+      "ro": "Ham Explore",
+      "en": "Explore Harness"
+    },
+    "colectie": "carou-bruma",
+    "pretRon": 249,
+    "marimi": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "imagini": [
+      "/media/produse/ham-explore-carou-bruma.jpg",
+      "/media/colectii/carou-bruma.jpg",
+      "/media/lifestyle/02.jpg"
+    ],
+    "descriere": {
+      "ro": "Ham pentru câini de talie mare, cu mâner de control cusut pe spate și trei puncte de reglaj. Inel frontal pentru dresaj, inel dorsal pentru plimbare. Chinga a fost testată la tracțiune până la 187 kg. Bumbac țesut în carouri camel și ciocolată, 320 g/mp.",
+      "en": "Harness for larger dogs, with a control handle stitched across the back and three adjustment points. Front ring for training, back ring for walking. The webbing was pull-tested to 187 kg. Cotton woven in camel and chocolate check, 320 gsm."
+    },
+    "caracteristici": {
+      "ro": [
+        "Mâner de control pe spate",
+        "Trei puncte de reglaj",
+        "Inel frontal și inel dorsal",
+        "Chingă testată la 187 kg",
+        "Bandă reflectorizantă pe tot conturul"
+      ],
+      "en": [
+        "Control handle across the back",
+        "Three adjustment points",
+        "Front and back rings",
+        "Webbing pull-tested to 187 kg",
+        "Reflective trim all round"
+      ]
+    },
+    "stoc": 9,
+    "bestseller": true,
+    "segment": "talie-mare"
+  },
+  {
+    "id": "lesa-carou-bruma",
+    "nume": {
+      "ro": "Lesă Carou Brumă",
+      "en": "Frost Check Lead"
+    },
+    "tip": "lesa",
+    "tipNume": {
+      "ro": "Lesă",
+      "en": "Lead"
+    },
+    "colectie": "carou-bruma",
+    "pretRon": 139,
+    "marimi": [
+      "120 cm",
+      "180 cm"
+    ],
+    "imagini": [
+      "/media/produse/lesa-carou-bruma.jpg",
+      "/media/colectii/carou-bruma.jpg",
+      "/media/lifestyle/03.jpg"
+    ],
+    "descriere": {
+      "ro": "Lesă cu carabină din alamă masivă și mâner căptușit cu piele tăbăcită vegetal. Are un inel mobil pe chingă, pentru saci sau chei, ca să nu ții nimic în mână. Bumbac țesut în carouri camel și ciocolată, 320 g/mp.",
+      "en": "Lead with a solid brass trigger clip and a handle lined in vegetable-tanned leather. A floating ring on the webbing takes bags or keys, so your hands stay free. Cotton woven in camel and chocolate check, 320 gsm."
+    },
+    "caracteristici": {
+      "ro": [
+        "Carabină din alamă masivă",
+        "Mâner căptușit cu piele",
+        "Inel mobil pentru saci sau chei",
+        "Cusătură întărită la ambele capete",
+        "Se spală la 30 de grade"
+      ],
+      "en": [
+        "Solid brass trigger clip",
+        "Leather-lined handle",
+        "Floating ring for bags or keys",
+        "Reinforced stitching at both ends",
+        "Machine wash at 30 degrees"
+      ]
+    },
+    "stoc": 21,
+    "bestseller": false,
+    "segment": null
+  },
+  {
+    "id": "zgarda-carou-bruma",
+    "nume": {
+      "ro": "Zgardă Carou Brumă",
+      "en": "Frost Check Collar"
+    },
+    "tip": "zgarda",
+    "tipNume": {
+      "ro": "Zgardă",
+      "en": "Collar"
+    },
+    "colectie": "carou-bruma",
+    "pretRon": 119,
+    "marimi": [
+      "S",
+      "M",
+      "L"
+    ],
+    "imagini": [
+      "/media/produse/zgarda-carou-bruma.jpg",
+      "/media/colectii/carou-bruma.jpg",
+      "/media/lifestyle/04.jpg"
+    ],
+    "descriere": {
+      "ro": "Zgardă cu cataramă din alamă și inel D sudat, nu doar îndoit. Marginile sunt tivite dublu, ca să nu se destrame la spălare. Bumbac țesut în carouri camel și ciocolată, 320 g/mp.",
+      "en": "Collar with a brass buckle and a welded D-ring, not merely bent closed. The edges are double-hemmed so they will not fray in the wash. Cotton woven in camel and chocolate check, 320 gsm."
+    },
+    "caracteristici": {
+      "ro": [
+        "Cataramă din alamă",
+        "Inel D sudat",
+        "Margini tivite dublu",
+        "Șapte găuri de reglaj",
+        "Se spală la 30 de grade"
+      ],
+      "en": [
+        "Brass buckle",
+        "Welded D-ring",
+        "Double-hemmed edges",
+        "Seven adjustment holes",
+        "Machine wash at 30 degrees"
+      ]
+    },
+    "stoc": 6,
+    "bestseller": false,
+    "segment": null
+  },
+  {
+    "id": "geanta-carou-bruma",
+    "nume": {
+      "ro": "Geantă de plimbare Carou Brumă",
+      "en": "Frost Check Walking Bag"
+    },
+    "tip": "geanta",
+    "tipNume": {
+      "ro": "Geantă de plimbare",
+      "en": "Walking Bag"
+    },
+    "colectie": "carou-bruma",
+    "pretRon": 239,
+    "marimi": [
+      "Mărime unică"
+    ],
+    "imagini": [
+      "/media/produse/geanta-carou-bruma.jpg",
+      "/media/colectii/carou-bruma.jpg",
+      "/media/lifestyle/05.jpg"
+    ],
+    "descriere": {
+      "ro": "Geantă crossbody cu buzunar căptușit pentru recompense, compartiment separat pentru saci și fermoar din alamă. Cureaua se reglează de la 90 la 140 cm, deci se poartă și pe umăr, și pe diagonală. Bumbac țesut în carouri camel și ciocolată, 320 g/mp.",
+      "en": "Crossbody bag with a lined treat pocket, a separate bag compartment and a brass zip. The strap adjusts from 90 to 140 cm, so it works on the shoulder or across the body. Cotton woven in camel and chocolate check, 320 gsm."
+    },
+    "caracteristici": {
+      "ro": [
+        "Buzunar căptușit pentru recompense",
+        "Compartiment separat pentru saci",
+        "Fermoar din alamă",
+        "Curea reglabilă 90-140 cm",
+        "Interior impermeabil, se șterge"
+      ],
+      "en": [
+        "Lined treat pocket",
+        "Separate bag compartment",
+        "Brass zip",
+        "Strap adjusts 90-140 cm",
+        "Wipe-clean waterproof lining"
+      ]
+    },
+    "stoc": 17,
+    "bestseller": true,
+    "segment": null
+  },
+  {
+    "id": "bandana-carou-bruma",
+    "nume": {
+      "ro": "Bandană Carou Brumă",
+      "en": "Frost Check Bandana"
+    },
+    "tip": "bandana",
+    "tipNume": {
+      "ro": "Bandană",
+      "en": "Bandana"
+    },
+    "colectie": "carou-bruma",
+    "pretRon": 69,
+    "marimi": [
+      "S",
+      "M",
+      "L"
+    ],
+    "imagini": [
+      "/media/produse/bandana-carou-bruma.jpg",
+      "/media/colectii/carou-bruma.jpg",
+      "/media/lifestyle/06.jpg"
+    ],
+    "descriere": {
+      "ro": "Bandană cu trecere pentru zgardă, deci nu se leagă la gât și nu alunecă. Bumbacul e prespălat și se calcă ușor. Bumbac țesut în carouri camel și ciocolată, 320 g/mp.",
+      "en": "Bandana with a collar slot, so nothing ties at the neck and nothing slips. The cotton is pre-washed and presses easily. Cotton woven in camel and chocolate check, 320 gsm."
+    },
+    "caracteristici": {
+      "ro": [
+        "Trecere pentru zgardă, fără noduri",
+        "Bumbac prespălat",
+        "Tiv dublu pe toate laturile",
+        "Se calcă ușor",
+        "Se spală la 30 de grade"
+      ],
+      "en": [
+        "Collar slot, no knots",
+        "Pre-washed cotton",
+        "Double hem on all sides",
+        "Presses easily",
+        "Machine wash at 30 degrees"
+      ]
+    },
+    "stoc": 3,
+    "bestseller": false,
+    "segment": null
+  },
+  {
+    "id": "halat-carou-bruma",
+    "nume": {
+      "ro": "Halat de uscare Carou Brumă",
+      "en": "Frost Check Drying Robe"
+    },
+    "tip": "halat",
+    "tipNume": {
+      "ro": "Halat de uscare",
+      "en": "Drying Robe"
+    },
+    "colectie": "carou-bruma",
+    "pretRon": 279,
+    "marimi": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "imagini": [
+      "/media/produse/halat.jpg",
+      "/media/colectii/carou-bruma.jpg",
+      "/media/lifestyle/07.jpg"
+    ],
+    "descriere": {
+      "ro": "Halat din microfibră cu absorbție mare, cu glugă și chingă pe burtă. Usucă un câine de talie medie în aproximativ 15 minute, fără să-l freci cu prosopul. Bumbac țesut în carouri camel și ciocolată, 320 g/mp.",
+      "en": "High-absorbency microfibre robe with a hood and a belly strap. It dries a medium dog in about fifteen minutes, with no towel rubbing. Cotton woven in camel and chocolate check, 320 gsm."
+    },
+    "caracteristici": {
+      "ro": [
+        "Microfibră de 400 g/mp",
+        "Glugă și chingă pe burtă",
+        "Usucă în circa 15 minute",
+        "Se usucă singur pe umeraș",
+        "Se spală la 30 de grade, fără balsam"
+      ],
+      "en": [
+        "400 gsm microfibre",
+        "Hood and belly strap",
+        "Dries in about fifteen minutes",
+        "Drip-dries on a hanger",
+        "Machine wash at 30 degrees, no softener"
+      ]
+    },
+    "stoc": 11,
+    "bestseller": false,
+    "segment": null
+  },
+  {
+    "id": "medalion-carou-bruma",
+    "nume": {
+      "ro": "Medalion gravat Carou Brumă",
+      "en": "Frost Check Engraved Tag"
+    },
+    "tip": "medalion",
+    "tipNume": {
+      "ro": "Medalion gravat",
+      "en": "Engraved Tag"
+    },
+    "colectie": "carou-bruma",
+    "pretRon": 79,
+    "marimi": [
+      "25 mm",
+      "32 mm"
+    ],
+    "imagini": [
+      "/media/produse/medalion.jpg",
+      "/media/colectii/carou-bruma.jpg",
+      "/media/lifestyle/08.jpg"
+    ],
+    "descriere": {
+      "ro": "Medalion din alamă masivă, gravat cu laser pe ambele fețe. Numele pe față, două numere de telefon pe spate. Vine cu inel dublu, care nu se desface din zgardă. Bumbac țesut în carouri camel și ciocolată, 320 g/mp.",
+      "en": "Solid brass tag, laser-engraved on both faces. Name on the front, two phone numbers on the back. Comes with a double ring that will not work loose from the collar. Cotton woven in camel and chocolate check, 320 gsm."
+    },
+    "caracteristici": {
+      "ro": [
+        "Alamă masivă, nu placată",
+        "Gravură laser pe ambele fețe",
+        "Până la 24 de caractere pe față",
+        "Inel dublu inclus",
+        "Se livrează în 48 de ore"
+      ],
+      "en": [
+        "Solid brass, not plated",
+        "Laser-engraved on both faces",
+        "Up to 24 characters on the front",
+        "Double ring included",
+        "Ships within 48 hours"
+      ]
+    },
+    "stoc": 25,
+    "bestseller": false,
+    "segment": null
+  },
+  {
+    "id": "ham-buline-cacao",
+    "nume": {
+      "ro": "Ham reglabil Buline Cacao",
+      "en": "Cocoa Dot Adjustable Harness"
+    },
+    "tip": "ham",
+    "tipNume": {
+      "ro": "Ham reglabil",
+      "en": "Adjustable Harness"
+    },
+    "colectie": "buline-cacao",
+    "pretRon": 189,
+    "marimi": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "imagini": [
+      "/media/produse/ham-buline-cacao.jpg",
+      "/media/colectii/buline-cacao.jpg",
+      "/media/lifestyle/09.jpg"
+    ],
+    "descriere": {
+      "ro": "Ham cu intrare pe cap, cu două puncte de reglaj și cataramă de siguranță. Chinga interioară e căptușită cu neopren de 4 mm, ca să nu frece la subraț. Inelul D e dublu și cusut în X pe patru rânduri. Bumbac crem cu buline ciocolată imprimate cu pigment, 300 g/mp.",
+      "en": "Step-in harness with two adjustment points and a safety buckle. The inner webbing is lined with 4 mm neoprene so it will not chafe under the leg. The D-ring is doubled and cross-stitched over four rows. Cream cotton with pigment-printed chocolate dots, 300 gsm."
+    },
+    "caracteristici": {
+      "ro": [
+        "Două puncte de reglaj",
+        "Căptușeală neopren 4 mm",
+        "Inel D dublu, cusut în X",
+        "Cataramă cu blocare",
+        "Se spală la 30 de grade"
+      ],
+      "en": [
+        "Two adjustment points",
+        "4 mm neoprene lining",
+        "Double D-ring, cross-stitched",
+        "Locking buckle",
+        "Machine wash at 30 degrees"
+      ]
+    },
+    "stoc": 14,
+    "bestseller": true,
+    "segment": null
+  },
+  {
+    "id": "ham-explore-buline-cacao",
+    "nume": {
+      "ro": "Ham Explore Buline Cacao",
+      "en": "Cocoa Dot Explore Harness"
+    },
+    "tip": "ham-explore",
+    "tipNume": {
+      "ro": "Ham Explore",
+      "en": "Explore Harness"
+    },
+    "colectie": "buline-cacao",
+    "pretRon": 249,
+    "marimi": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "imagini": [
+      "/media/produse/ham-explore-buline-cacao.jpg",
+      "/media/colectii/buline-cacao.jpg",
+      "/media/lifestyle/10.jpg"
+    ],
+    "descriere": {
+      "ro": "Ham pentru câini de talie mare, cu mâner de control cusut pe spate și trei puncte de reglaj. Inel frontal pentru dresaj, inel dorsal pentru plimbare. Chinga a fost testată la tracțiune până la 187 kg. Bumbac crem cu buline ciocolată imprimate cu pigment, 300 g/mp.",
+      "en": "Harness for larger dogs, with a control handle stitched across the back and three adjustment points. Front ring for training, back ring for walking. The webbing was pull-tested to 187 kg. Cream cotton with pigment-printed chocolate dots, 300 gsm."
+    },
+    "caracteristici": {
+      "ro": [
+        "Mâner de control pe spate",
+        "Trei puncte de reglaj",
+        "Inel frontal și inel dorsal",
+        "Chingă testată la 187 kg",
+        "Bandă reflectorizantă pe tot conturul"
+      ],
+      "en": [
+        "Control handle across the back",
+        "Three adjustment points",
+        "Front and back rings",
+        "Webbing pull-tested to 187 kg",
+        "Reflective trim all round"
+      ]
+    },
+    "stoc": 9,
+    "bestseller": false,
+    "segment": "talie-mare"
+  },
+  {
+    "id": "lesa-buline-cacao",
+    "nume": {
+      "ro": "Lesă Buline Cacao",
+      "en": "Cocoa Dot Lead"
+    },
+    "tip": "lesa",
+    "tipNume": {
+      "ro": "Lesă",
+      "en": "Lead"
+    },
+    "colectie": "buline-cacao",
+    "pretRon": 139,
+    "marimi": [
+      "120 cm",
+      "180 cm"
+    ],
+    "imagini": [
+      "/media/produse/lesa-buline-cacao.jpg",
+      "/media/colectii/buline-cacao.jpg",
+      "/media/lifestyle/11.jpg"
+    ],
+    "descriere": {
+      "ro": "Lesă cu carabină din alamă masivă și mâner căptușit cu piele tăbăcită vegetal. Are un inel mobil pe chingă, pentru saci sau chei, ca să nu ții nimic în mână. Bumbac crem cu buline ciocolată imprimate cu pigment, 300 g/mp.",
+      "en": "Lead with a solid brass trigger clip and a handle lined in vegetable-tanned leather. A floating ring on the webbing takes bags or keys, so your hands stay free. Cream cotton with pigment-printed chocolate dots, 300 gsm."
+    },
+    "caracteristici": {
+      "ro": [
+        "Carabină din alamă masivă",
+        "Mâner căptușit cu piele",
+        "Inel mobil pentru saci sau chei",
+        "Cusătură întărită la ambele capete",
+        "Se spală la 30 de grade"
+      ],
+      "en": [
+        "Solid brass trigger clip",
+        "Leather-lined handle",
+        "Floating ring for bags or keys",
+        "Reinforced stitching at both ends",
+        "Machine wash at 30 degrees"
+      ]
+    },
+    "stoc": 21,
+    "bestseller": false,
+    "segment": null
+  },
+  {
+    "id": "zgarda-buline-cacao",
+    "nume": {
+      "ro": "Zgardă Buline Cacao",
+      "en": "Cocoa Dot Collar"
+    },
+    "tip": "zgarda",
+    "tipNume": {
+      "ro": "Zgardă",
+      "en": "Collar"
+    },
+    "colectie": "buline-cacao",
+    "pretRon": 119,
+    "marimi": [
+      "S",
+      "M",
+      "L"
+    ],
+    "imagini": [
+      "/media/produse/zgarda-buline-cacao.jpg",
+      "/media/colectii/buline-cacao.jpg",
+      "/media/lifestyle/01.jpg"
+    ],
+    "descriere": {
+      "ro": "Zgardă cu cataramă din alamă și inel D sudat, nu doar îndoit. Marginile sunt tivite dublu, ca să nu se destrame la spălare. Bumbac crem cu buline ciocolată imprimate cu pigment, 300 g/mp.",
+      "en": "Collar with a brass buckle and a welded D-ring, not merely bent closed. The edges are double-hemmed so they will not fray in the wash. Cream cotton with pigment-printed chocolate dots, 300 gsm."
+    },
+    "caracteristici": {
+      "ro": [
+        "Cataramă din alamă",
+        "Inel D sudat",
+        "Margini tivite dublu",
+        "Șapte găuri de reglaj",
+        "Se spală la 30 de grade"
+      ],
+      "en": [
+        "Brass buckle",
+        "Welded D-ring",
+        "Double-hemmed edges",
+        "Seven adjustment holes",
+        "Machine wash at 30 degrees"
+      ]
+    },
+    "stoc": 6,
+    "bestseller": false,
+    "segment": null
+  },
+  {
+    "id": "geanta-buline-cacao",
+    "nume": {
+      "ro": "Geantă de plimbare Buline Cacao",
+      "en": "Cocoa Dot Walking Bag"
+    },
+    "tip": "geanta",
+    "tipNume": {
+      "ro": "Geantă de plimbare",
+      "en": "Walking Bag"
+    },
+    "colectie": "buline-cacao",
+    "pretRon": 239,
+    "marimi": [
+      "Mărime unică"
+    ],
+    "imagini": [
+      "/media/produse/geanta-buline-cacao.jpg",
+      "/media/colectii/buline-cacao.jpg",
+      "/media/lifestyle/02.jpg"
+    ],
+    "descriere": {
+      "ro": "Geantă crossbody cu buzunar căptușit pentru recompense, compartiment separat pentru saci și fermoar din alamă. Cureaua se reglează de la 90 la 140 cm, deci se poartă și pe umăr, și pe diagonală. Bumbac crem cu buline ciocolată imprimate cu pigment, 300 g/mp.",
+      "en": "Crossbody bag with a lined treat pocket, a separate bag compartment and a brass zip. The strap adjusts from 90 to 140 cm, so it works on the shoulder or across the body. Cream cotton with pigment-printed chocolate dots, 300 gsm."
+    },
+    "caracteristici": {
+      "ro": [
+        "Buzunar căptușit pentru recompense",
+        "Compartiment separat pentru saci",
+        "Fermoar din alamă",
+        "Curea reglabilă 90-140 cm",
+        "Interior impermeabil, se șterge"
+      ],
+      "en": [
+        "Lined treat pocket",
+        "Separate bag compartment",
+        "Brass zip",
+        "Strap adjusts 90-140 cm",
+        "Wipe-clean waterproof lining"
+      ]
+    },
+    "stoc": 17,
+    "bestseller": false,
+    "segment": null
+  },
+  {
+    "id": "bandana-buline-cacao",
+    "nume": {
+      "ro": "Bandană Buline Cacao",
+      "en": "Cocoa Dot Bandana"
+    },
+    "tip": "bandana",
+    "tipNume": {
+      "ro": "Bandană",
+      "en": "Bandana"
+    },
+    "colectie": "buline-cacao",
+    "pretRon": 69,
+    "marimi": [
+      "S",
+      "M",
+      "L"
+    ],
+    "imagini": [
+      "/media/produse/bandana-buline-cacao.jpg",
+      "/media/colectii/buline-cacao.jpg",
+      "/media/lifestyle/03.jpg"
+    ],
+    "descriere": {
+      "ro": "Bandană cu trecere pentru zgardă, deci nu se leagă la gât și nu alunecă. Bumbacul e prespălat și se calcă ușor. Bumbac crem cu buline ciocolată imprimate cu pigment, 300 g/mp.",
+      "en": "Bandana with a collar slot, so nothing ties at the neck and nothing slips. The cotton is pre-washed and presses easily. Cream cotton with pigment-printed chocolate dots, 300 gsm."
+    },
+    "caracteristici": {
+      "ro": [
+        "Trecere pentru zgardă, fără noduri",
+        "Bumbac prespălat",
+        "Tiv dublu pe toate laturile",
+        "Se calcă ușor",
+        "Se spală la 30 de grade"
+      ],
+      "en": [
+        "Collar slot, no knots",
+        "Pre-washed cotton",
+        "Double hem on all sides",
+        "Presses easily",
+        "Machine wash at 30 degrees"
+      ]
+    },
+    "stoc": 3,
+    "bestseller": false,
+    "segment": null
+  },
+  {
+    "id": "halat-buline-cacao",
+    "nume": {
+      "ro": "Halat de uscare Buline Cacao",
+      "en": "Cocoa Dot Drying Robe"
+    },
+    "tip": "halat",
+    "tipNume": {
+      "ro": "Halat de uscare",
+      "en": "Drying Robe"
+    },
+    "colectie": "buline-cacao",
+    "pretRon": 279,
+    "marimi": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "imagini": [
+      "/media/produse/halat.jpg",
+      "/media/colectii/buline-cacao.jpg",
+      "/media/lifestyle/04.jpg"
+    ],
+    "descriere": {
+      "ro": "Halat din microfibră cu absorbție mare, cu glugă și chingă pe burtă. Usucă un câine de talie medie în aproximativ 15 minute, fără să-l freci cu prosopul. Bumbac crem cu buline ciocolată imprimate cu pigment, 300 g/mp.",
+      "en": "High-absorbency microfibre robe with a hood and a belly strap. It dries a medium dog in about fifteen minutes, with no towel rubbing. Cream cotton with pigment-printed chocolate dots, 300 gsm."
+    },
+    "caracteristici": {
+      "ro": [
+        "Microfibră de 400 g/mp",
+        "Glugă și chingă pe burtă",
+        "Usucă în circa 15 minute",
+        "Se usucă singur pe umeraș",
+        "Se spală la 30 de grade, fără balsam"
+      ],
+      "en": [
+        "400 gsm microfibre",
+        "Hood and belly strap",
+        "Dries in about fifteen minutes",
+        "Drip-dries on a hanger",
+        "Machine wash at 30 degrees, no softener"
+      ]
+    },
+    "stoc": 11,
+    "bestseller": false,
+    "segment": null
+  },
+  {
+    "id": "medalion-buline-cacao",
+    "nume": {
+      "ro": "Medalion gravat Buline Cacao",
+      "en": "Cocoa Dot Engraved Tag"
+    },
+    "tip": "medalion",
+    "tipNume": {
+      "ro": "Medalion gravat",
+      "en": "Engraved Tag"
+    },
+    "colectie": "buline-cacao",
+    "pretRon": 79,
+    "marimi": [
+      "25 mm",
+      "32 mm"
+    ],
+    "imagini": [
+      "/media/produse/medalion.jpg",
+      "/media/colectii/buline-cacao.jpg",
+      "/media/lifestyle/05.jpg"
+    ],
+    "descriere": {
+      "ro": "Medalion din alamă masivă, gravat cu laser pe ambele fețe. Numele pe față, două numere de telefon pe spate. Vine cu inel dublu, care nu se desface din zgardă. Bumbac crem cu buline ciocolată imprimate cu pigment, 300 g/mp.",
+      "en": "Solid brass tag, laser-engraved on both faces. Name on the front, two phone numbers on the back. Comes with a double ring that will not work loose from the collar. Cream cotton with pigment-printed chocolate dots, 300 gsm."
+    },
+    "caracteristici": {
+      "ro": [
+        "Alamă masivă, nu placată",
+        "Gravură laser pe ambele fețe",
+        "Până la 24 de caractere pe față",
+        "Inel dublu inclus",
+        "Se livrează în 48 de ore"
+      ],
+      "en": [
+        "Solid brass, not plated",
+        "Laser-engraved on both faces",
+        "Up to 24 characters on the front",
+        "Double ring included",
+        "Ships within 48 hours"
+      ]
+    },
+    "stoc": 25,
+    "bestseller": false,
+    "segment": null
+  },
+  {
+    "id": "ham-dungi-sinaia",
+    "nume": {
+      "ro": "Ham reglabil Dungi Sinaia",
+      "en": "Sinaia Stripe Adjustable Harness"
+    },
+    "tip": "ham",
+    "tipNume": {
+      "ro": "Ham reglabil",
+      "en": "Adjustable Harness"
+    },
+    "colectie": "dungi-sinaia",
+    "pretRon": 189,
+    "marimi": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "imagini": [
+      "/media/produse/ham-dungi-sinaia.jpg",
+      "/media/colectii/dungi-sinaia.jpg",
+      "/media/lifestyle/06.jpg"
+    ],
+    "descriere": {
+      "ro": "Ham cu intrare pe cap, cu două puncte de reglaj și cataramă de siguranță. Chinga interioară e căptușită cu neopren de 4 mm, ca să nu frece la subraț. Inelul D e dublu și cusut în X pe patru rânduri. Bumbac cu dungi teracotă și crem, țesute nu imprimate, 340 g/mp.",
+      "en": "Step-in harness with two adjustment points and a safety buckle. The inner webbing is lined with 4 mm neoprene so it will not chafe under the leg. The D-ring is doubled and cross-stitched over four rows. Cotton with terracotta and cream stripes, woven rather than printed, 340 gsm."
+    },
+    "caracteristici": {
+      "ro": [
+        "Două puncte de reglaj",
+        "Căptușeală neopren 4 mm",
+        "Inel D dublu, cusut în X",
+        "Cataramă cu blocare",
+        "Se spală la 30 de grade"
+      ],
+      "en": [
+        "Two adjustment points",
+        "4 mm neoprene lining",
+        "Double D-ring, cross-stitched",
+        "Locking buckle",
+        "Machine wash at 30 degrees"
+      ]
+    },
+    "stoc": 14,
+    "bestseller": false,
+    "segment": null
+  },
+  {
+    "id": "ham-explore-dungi-sinaia",
+    "nume": {
+      "ro": "Ham Explore Dungi Sinaia",
+      "en": "Sinaia Stripe Explore Harness"
+    },
+    "tip": "ham-explore",
+    "tipNume": {
+      "ro": "Ham Explore",
+      "en": "Explore Harness"
+    },
+    "colectie": "dungi-sinaia",
+    "pretRon": 249,
+    "marimi": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "imagini": [
+      "/media/produse/ham-explore-dungi-sinaia.jpg",
+      "/media/colectii/dungi-sinaia.jpg",
+      "/media/lifestyle/07.jpg"
+    ],
+    "descriere": {
+      "ro": "Ham pentru câini de talie mare, cu mâner de control cusut pe spate și trei puncte de reglaj. Inel frontal pentru dresaj, inel dorsal pentru plimbare. Chinga a fost testată la tracțiune până la 187 kg. Bumbac cu dungi teracotă și crem, țesute nu imprimate, 340 g/mp.",
+      "en": "Harness for larger dogs, with a control handle stitched across the back and three adjustment points. Front ring for training, back ring for walking. The webbing was pull-tested to 187 kg. Cotton with terracotta and cream stripes, woven rather than printed, 340 gsm."
+    },
+    "caracteristici": {
+      "ro": [
+        "Mâner de control pe spate",
+        "Trei puncte de reglaj",
+        "Inel frontal și inel dorsal",
+        "Chingă testată la 187 kg",
+        "Bandă reflectorizantă pe tot conturul"
+      ],
+      "en": [
+        "Control handle across the back",
+        "Three adjustment points",
+        "Front and back rings",
+        "Webbing pull-tested to 187 kg",
+        "Reflective trim all round"
+      ]
+    },
+    "stoc": 9,
+    "bestseller": false,
+    "segment": "talie-mare"
+  },
+  {
+    "id": "lesa-dungi-sinaia",
+    "nume": {
+      "ro": "Lesă Dungi Sinaia",
+      "en": "Sinaia Stripe Lead"
+    },
+    "tip": "lesa",
+    "tipNume": {
+      "ro": "Lesă",
+      "en": "Lead"
+    },
+    "colectie": "dungi-sinaia",
+    "pretRon": 139,
+    "marimi": [
+      "120 cm",
+      "180 cm"
+    ],
+    "imagini": [
+      "/media/produse/lesa-dungi-sinaia.jpg",
+      "/media/colectii/dungi-sinaia.jpg",
+      "/media/lifestyle/08.jpg"
+    ],
+    "descriere": {
+      "ro": "Lesă cu carabină din alamă masivă și mâner căptușit cu piele tăbăcită vegetal. Are un inel mobil pe chingă, pentru saci sau chei, ca să nu ții nimic în mână. Bumbac cu dungi teracotă și crem, țesute nu imprimate, 340 g/mp.",
+      "en": "Lead with a solid brass trigger clip and a handle lined in vegetable-tanned leather. A floating ring on the webbing takes bags or keys, so your hands stay free. Cotton with terracotta and cream stripes, woven rather than printed, 340 gsm."
+    },
+    "caracteristici": {
+      "ro": [
+        "Carabină din alamă masivă",
+        "Mâner căptușit cu piele",
+        "Inel mobil pentru saci sau chei",
+        "Cusătură întărită la ambele capete",
+        "Se spală la 30 de grade"
+      ],
+      "en": [
+        "Solid brass trigger clip",
+        "Leather-lined handle",
+        "Floating ring for bags or keys",
+        "Reinforced stitching at both ends",
+        "Machine wash at 30 degrees"
+      ]
+    },
+    "stoc": 21,
+    "bestseller": false,
+    "segment": null
+  },
+  {
+    "id": "zgarda-dungi-sinaia",
+    "nume": {
+      "ro": "Zgardă Dungi Sinaia",
+      "en": "Sinaia Stripe Collar"
+    },
+    "tip": "zgarda",
+    "tipNume": {
+      "ro": "Zgardă",
+      "en": "Collar"
+    },
+    "colectie": "dungi-sinaia",
+    "pretRon": 119,
+    "marimi": [
+      "S",
+      "M",
+      "L"
+    ],
+    "imagini": [
+      "/media/produse/zgarda-dungi-sinaia.jpg",
+      "/media/colectii/dungi-sinaia.jpg",
+      "/media/lifestyle/09.jpg"
+    ],
+    "descriere": {
+      "ro": "Zgardă cu cataramă din alamă și inel D sudat, nu doar îndoit. Marginile sunt tivite dublu, ca să nu se destrame la spălare. Bumbac cu dungi teracotă și crem, țesute nu imprimate, 340 g/mp.",
+      "en": "Collar with a brass buckle and a welded D-ring, not merely bent closed. The edges are double-hemmed so they will not fray in the wash. Cotton with terracotta and cream stripes, woven rather than printed, 340 gsm."
+    },
+    "caracteristici": {
+      "ro": [
+        "Cataramă din alamă",
+        "Inel D sudat",
+        "Margini tivite dublu",
+        "Șapte găuri de reglaj",
+        "Se spală la 30 de grade"
+      ],
+      "en": [
+        "Brass buckle",
+        "Welded D-ring",
+        "Double-hemmed edges",
+        "Seven adjustment holes",
+        "Machine wash at 30 degrees"
+      ]
+    },
+    "stoc": 6,
+    "bestseller": false,
+    "segment": null
+  },
+  {
+    "id": "geanta-dungi-sinaia",
+    "nume": {
+      "ro": "Geantă de plimbare Dungi Sinaia",
+      "en": "Sinaia Stripe Walking Bag"
+    },
+    "tip": "geanta",
+    "tipNume": {
+      "ro": "Geantă de plimbare",
+      "en": "Walking Bag"
+    },
+    "colectie": "dungi-sinaia",
+    "pretRon": 239,
+    "marimi": [
+      "Mărime unică"
+    ],
+    "imagini": [
+      "/media/produse/geanta-dungi-sinaia.jpg",
+      "/media/colectii/dungi-sinaia.jpg",
+      "/media/lifestyle/10.jpg"
+    ],
+    "descriere": {
+      "ro": "Geantă crossbody cu buzunar căptușit pentru recompense, compartiment separat pentru saci și fermoar din alamă. Cureaua se reglează de la 90 la 140 cm, deci se poartă și pe umăr, și pe diagonală. Bumbac cu dungi teracotă și crem, țesute nu imprimate, 340 g/mp.",
+      "en": "Crossbody bag with a lined treat pocket, a separate bag compartment and a brass zip. The strap adjusts from 90 to 140 cm, so it works on the shoulder or across the body. Cotton with terracotta and cream stripes, woven rather than printed, 340 gsm."
+    },
+    "caracteristici": {
+      "ro": [
+        "Buzunar căptușit pentru recompense",
+        "Compartiment separat pentru saci",
+        "Fermoar din alamă",
+        "Curea reglabilă 90-140 cm",
+        "Interior impermeabil, se șterge"
+      ],
+      "en": [
+        "Lined treat pocket",
+        "Separate bag compartment",
+        "Brass zip",
+        "Strap adjusts 90-140 cm",
+        "Wipe-clean waterproof lining"
+      ]
+    },
+    "stoc": 17,
+    "bestseller": false,
+    "segment": null
+  },
+  {
+    "id": "bandana-dungi-sinaia",
+    "nume": {
+      "ro": "Bandană Dungi Sinaia",
+      "en": "Sinaia Stripe Bandana"
+    },
+    "tip": "bandana",
+    "tipNume": {
+      "ro": "Bandană",
+      "en": "Bandana"
+    },
+    "colectie": "dungi-sinaia",
+    "pretRon": 69,
+    "marimi": [
+      "S",
+      "M",
+      "L"
+    ],
+    "imagini": [
+      "/media/produse/bandana-dungi-sinaia.jpg",
+      "/media/colectii/dungi-sinaia.jpg",
+      "/media/lifestyle/11.jpg"
+    ],
+    "descriere": {
+      "ro": "Bandană cu trecere pentru zgardă, deci nu se leagă la gât și nu alunecă. Bumbacul e prespălat și se calcă ușor. Bumbac cu dungi teracotă și crem, țesute nu imprimate, 340 g/mp.",
+      "en": "Bandana with a collar slot, so nothing ties at the neck and nothing slips. The cotton is pre-washed and presses easily. Cotton with terracotta and cream stripes, woven rather than printed, 340 gsm."
+    },
+    "caracteristici": {
+      "ro": [
+        "Trecere pentru zgardă, fără noduri",
+        "Bumbac prespălat",
+        "Tiv dublu pe toate laturile",
+        "Se calcă ușor",
+        "Se spală la 30 de grade"
+      ],
+      "en": [
+        "Collar slot, no knots",
+        "Pre-washed cotton",
+        "Double hem on all sides",
+        "Presses easily",
+        "Machine wash at 30 degrees"
+      ]
+    },
+    "stoc": 3,
+    "bestseller": false,
+    "segment": null
+  },
+  {
+    "id": "halat-dungi-sinaia",
+    "nume": {
+      "ro": "Halat de uscare Dungi Sinaia",
+      "en": "Sinaia Stripe Drying Robe"
+    },
+    "tip": "halat",
+    "tipNume": {
+      "ro": "Halat de uscare",
+      "en": "Drying Robe"
+    },
+    "colectie": "dungi-sinaia",
+    "pretRon": 279,
+    "marimi": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "imagini": [
+      "/media/produse/halat.jpg",
+      "/media/colectii/dungi-sinaia.jpg",
+      "/media/lifestyle/01.jpg"
+    ],
+    "descriere": {
+      "ro": "Halat din microfibră cu absorbție mare, cu glugă și chingă pe burtă. Usucă un câine de talie medie în aproximativ 15 minute, fără să-l freci cu prosopul. Bumbac cu dungi teracotă și crem, țesute nu imprimate, 340 g/mp.",
+      "en": "High-absorbency microfibre robe with a hood and a belly strap. It dries a medium dog in about fifteen minutes, with no towel rubbing. Cotton with terracotta and cream stripes, woven rather than printed, 340 gsm."
+    },
+    "caracteristici": {
+      "ro": [
+        "Microfibră de 400 g/mp",
+        "Glugă și chingă pe burtă",
+        "Usucă în circa 15 minute",
+        "Se usucă singur pe umeraș",
+        "Se spală la 30 de grade, fără balsam"
+      ],
+      "en": [
+        "400 gsm microfibre",
+        "Hood and belly strap",
+        "Dries in about fifteen minutes",
+        "Drip-dries on a hanger",
+        "Machine wash at 30 degrees, no softener"
+      ]
+    },
+    "stoc": 11,
+    "bestseller": false,
+    "segment": null
+  },
+  {
+    "id": "medalion-dungi-sinaia",
+    "nume": {
+      "ro": "Medalion gravat Dungi Sinaia",
+      "en": "Sinaia Stripe Engraved Tag"
+    },
+    "tip": "medalion",
+    "tipNume": {
+      "ro": "Medalion gravat",
+      "en": "Engraved Tag"
+    },
+    "colectie": "dungi-sinaia",
+    "pretRon": 79,
+    "marimi": [
+      "25 mm",
+      "32 mm"
+    ],
+    "imagini": [
+      "/media/produse/medalion.jpg",
+      "/media/colectii/dungi-sinaia.jpg",
+      "/media/lifestyle/02.jpg"
+    ],
+    "descriere": {
+      "ro": "Medalion din alamă masivă, gravat cu laser pe ambele fețe. Numele pe față, două numere de telefon pe spate. Vine cu inel dublu, care nu se desface din zgardă. Bumbac cu dungi teracotă și crem, țesute nu imprimate, 340 g/mp.",
+      "en": "Solid brass tag, laser-engraved on both faces. Name on the front, two phone numbers on the back. Comes with a double ring that will not work loose from the collar. Cotton with terracotta and cream stripes, woven rather than printed, 340 gsm."
+    },
+    "caracteristici": {
+      "ro": [
+        "Alamă masivă, nu placată",
+        "Gravură laser pe ambele fețe",
+        "Până la 24 de caractere pe față",
+        "Inel dublu inclus",
+        "Se livrează în 48 de ore"
+      ],
+      "en": [
+        "Solid brass, not plated",
+        "Laser-engraved on both faces",
+        "Up to 24 characters on the front",
+        "Double ring included",
+        "Ships within 48 hours"
+      ]
+    },
+    "stoc": 25,
+    "bestseller": false,
+    "segment": null
+  },
+  {
+    "id": "ham-canepa-naturala",
+    "nume": {
+      "ro": "Ham reglabil Cânepă Naturală",
+      "en": "Natural Hemp Adjustable Harness"
+    },
+    "tip": "ham",
+    "tipNume": {
+      "ro": "Ham reglabil",
+      "en": "Adjustable Harness"
+    },
+    "colectie": "canepa-naturala",
+    "pretRon": 189,
+    "marimi": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "imagini": [
+      "/media/produse/ham-canepa-naturala.jpg",
+      "/media/colectii/canepa-naturala.jpg",
+      "/media/lifestyle/03.jpg"
+    ],
+    "descriere": {
+      "ro": "Ham cu intrare pe cap, cu două puncte de reglaj și cataramă de siguranță. Chinga interioară e căptușită cu neopren de 4 mm, ca să nu frece la subraț. Inelul D e dublu și cusut în X pe patru rânduri. Cânepă nevopsită cu bumbac, 380 g/mp, se înmoaie la fiecare spălare.",
+      "en": "Step-in harness with two adjustment points and a safety buckle. The inner webbing is lined with 4 mm neoprene so it will not chafe under the leg. The D-ring is doubled and cross-stitched over four rows. Undyed hemp with cotton, 380 gsm, softens with every wash."
+    },
+    "caracteristici": {
+      "ro": [
+        "Două puncte de reglaj",
+        "Căptușeală neopren 4 mm",
+        "Inel D dublu, cusut în X",
+        "Cataramă cu blocare",
+        "Se spală la 30 de grade"
+      ],
+      "en": [
+        "Two adjustment points",
+        "4 mm neoprene lining",
+        "Double D-ring, cross-stitched",
+        "Locking buckle",
+        "Machine wash at 30 degrees"
+      ]
+    },
+    "stoc": 14,
+    "bestseller": false,
+    "segment": null
+  },
+  {
+    "id": "ham-explore-canepa-naturala",
+    "nume": {
+      "ro": "Ham Explore Cânepă Naturală",
+      "en": "Natural Hemp Explore Harness"
+    },
+    "tip": "ham-explore",
+    "tipNume": {
+      "ro": "Ham Explore",
+      "en": "Explore Harness"
+    },
+    "colectie": "canepa-naturala",
+    "pretRon": 249,
+    "marimi": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "imagini": [
+      "/media/produse/ham-explore-canepa-naturala.jpg",
+      "/media/colectii/canepa-naturala.jpg",
+      "/media/lifestyle/04.jpg"
+    ],
+    "descriere": {
+      "ro": "Ham pentru câini de talie mare, cu mâner de control cusut pe spate și trei puncte de reglaj. Inel frontal pentru dresaj, inel dorsal pentru plimbare. Chinga a fost testată la tracțiune până la 187 kg. Cânepă nevopsită cu bumbac, 380 g/mp, se înmoaie la fiecare spălare.",
+      "en": "Harness for larger dogs, with a control handle stitched across the back and three adjustment points. Front ring for training, back ring for walking. The webbing was pull-tested to 187 kg. Undyed hemp with cotton, 380 gsm, softens with every wash."
+    },
+    "caracteristici": {
+      "ro": [
+        "Mâner de control pe spate",
+        "Trei puncte de reglaj",
+        "Inel frontal și inel dorsal",
+        "Chingă testată la 187 kg",
+        "Bandă reflectorizantă pe tot conturul"
+      ],
+      "en": [
+        "Control handle across the back",
+        "Three adjustment points",
+        "Front and back rings",
+        "Webbing pull-tested to 187 kg",
+        "Reflective trim all round"
+      ]
+    },
+    "stoc": 9,
+    "bestseller": false,
+    "segment": "talie-mare"
+  },
+  {
+    "id": "lesa-canepa-naturala",
+    "nume": {
+      "ro": "Lesă Cânepă Naturală",
+      "en": "Natural Hemp Lead"
+    },
+    "tip": "lesa",
+    "tipNume": {
+      "ro": "Lesă",
+      "en": "Lead"
+    },
+    "colectie": "canepa-naturala",
+    "pretRon": 139,
+    "marimi": [
+      "120 cm",
+      "180 cm"
+    ],
+    "imagini": [
+      "/media/produse/lesa-canepa-naturala.jpg",
+      "/media/colectii/canepa-naturala.jpg",
+      "/media/lifestyle/05.jpg"
+    ],
+    "descriere": {
+      "ro": "Lesă cu carabină din alamă masivă și mâner căptușit cu piele tăbăcită vegetal. Are un inel mobil pe chingă, pentru saci sau chei, ca să nu ții nimic în mână. Cânepă nevopsită cu bumbac, 380 g/mp, se înmoaie la fiecare spălare.",
+      "en": "Lead with a solid brass trigger clip and a handle lined in vegetable-tanned leather. A floating ring on the webbing takes bags or keys, so your hands stay free. Undyed hemp with cotton, 380 gsm, softens with every wash."
+    },
+    "caracteristici": {
+      "ro": [
+        "Carabină din alamă masivă",
+        "Mâner căptușit cu piele",
+        "Inel mobil pentru saci sau chei",
+        "Cusătură întărită la ambele capete",
+        "Se spală la 30 de grade"
+      ],
+      "en": [
+        "Solid brass trigger clip",
+        "Leather-lined handle",
+        "Floating ring for bags or keys",
+        "Reinforced stitching at both ends",
+        "Machine wash at 30 degrees"
+      ]
+    },
+    "stoc": 21,
+    "bestseller": false,
+    "segment": null
+  },
+  {
+    "id": "zgarda-canepa-naturala",
+    "nume": {
+      "ro": "Zgardă Cânepă Naturală",
+      "en": "Natural Hemp Collar"
+    },
+    "tip": "zgarda",
+    "tipNume": {
+      "ro": "Zgardă",
+      "en": "Collar"
+    },
+    "colectie": "canepa-naturala",
+    "pretRon": 119,
+    "marimi": [
+      "S",
+      "M",
+      "L"
+    ],
+    "imagini": [
+      "/media/produse/zgarda-canepa-naturala.jpg",
+      "/media/colectii/canepa-naturala.jpg",
+      "/media/lifestyle/06.jpg"
+    ],
+    "descriere": {
+      "ro": "Zgardă cu cataramă din alamă și inel D sudat, nu doar îndoit. Marginile sunt tivite dublu, ca să nu se destrame la spălare. Cânepă nevopsită cu bumbac, 380 g/mp, se înmoaie la fiecare spălare.",
+      "en": "Collar with a brass buckle and a welded D-ring, not merely bent closed. The edges are double-hemmed so they will not fray in the wash. Undyed hemp with cotton, 380 gsm, softens with every wash."
+    },
+    "caracteristici": {
+      "ro": [
+        "Cataramă din alamă",
+        "Inel D sudat",
+        "Margini tivite dublu",
+        "Șapte găuri de reglaj",
+        "Se spală la 30 de grade"
+      ],
+      "en": [
+        "Brass buckle",
+        "Welded D-ring",
+        "Double-hemmed edges",
+        "Seven adjustment holes",
+        "Machine wash at 30 degrees"
+      ]
+    },
+    "stoc": 6,
+    "bestseller": false,
+    "segment": null
+  },
+  {
+    "id": "geanta-canepa-naturala",
+    "nume": {
+      "ro": "Geantă de plimbare Cânepă Naturală",
+      "en": "Natural Hemp Walking Bag"
+    },
+    "tip": "geanta",
+    "tipNume": {
+      "ro": "Geantă de plimbare",
+      "en": "Walking Bag"
+    },
+    "colectie": "canepa-naturala",
+    "pretRon": 239,
+    "marimi": [
+      "Mărime unică"
+    ],
+    "imagini": [
+      "/media/produse/geanta-canepa-naturala.jpg",
+      "/media/colectii/canepa-naturala.jpg",
+      "/media/lifestyle/07.jpg"
+    ],
+    "descriere": {
+      "ro": "Geantă crossbody cu buzunar căptușit pentru recompense, compartiment separat pentru saci și fermoar din alamă. Cureaua se reglează de la 90 la 140 cm, deci se poartă și pe umăr, și pe diagonală. Cânepă nevopsită cu bumbac, 380 g/mp, se înmoaie la fiecare spălare.",
+      "en": "Crossbody bag with a lined treat pocket, a separate bag compartment and a brass zip. The strap adjusts from 90 to 140 cm, so it works on the shoulder or across the body. Undyed hemp with cotton, 380 gsm, softens with every wash."
+    },
+    "caracteristici": {
+      "ro": [
+        "Buzunar căptușit pentru recompense",
+        "Compartiment separat pentru saci",
+        "Fermoar din alamă",
+        "Curea reglabilă 90-140 cm",
+        "Interior impermeabil, se șterge"
+      ],
+      "en": [
+        "Lined treat pocket",
+        "Separate bag compartment",
+        "Brass zip",
+        "Strap adjusts 90-140 cm",
+        "Wipe-clean waterproof lining"
+      ]
+    },
+    "stoc": 17,
+    "bestseller": false,
+    "segment": null
+  },
+  {
+    "id": "bandana-canepa-naturala",
+    "nume": {
+      "ro": "Bandană Cânepă Naturală",
+      "en": "Natural Hemp Bandana"
+    },
+    "tip": "bandana",
+    "tipNume": {
+      "ro": "Bandană",
+      "en": "Bandana"
+    },
+    "colectie": "canepa-naturala",
+    "pretRon": 69,
+    "marimi": [
+      "S",
+      "M",
+      "L"
+    ],
+    "imagini": [
+      "/media/produse/bandana-canepa-naturala.jpg",
+      "/media/colectii/canepa-naturala.jpg",
+      "/media/lifestyle/08.jpg"
+    ],
+    "descriere": {
+      "ro": "Bandană cu trecere pentru zgardă, deci nu se leagă la gât și nu alunecă. Bumbacul e prespălat și se calcă ușor. Cânepă nevopsită cu bumbac, 380 g/mp, se înmoaie la fiecare spălare.",
+      "en": "Bandana with a collar slot, so nothing ties at the neck and nothing slips. The cotton is pre-washed and presses easily. Undyed hemp with cotton, 380 gsm, softens with every wash."
+    },
+    "caracteristici": {
+      "ro": [
+        "Trecere pentru zgardă, fără noduri",
+        "Bumbac prespălat",
+        "Tiv dublu pe toate laturile",
+        "Se calcă ușor",
+        "Se spală la 30 de grade"
+      ],
+      "en": [
+        "Collar slot, no knots",
+        "Pre-washed cotton",
+        "Double hem on all sides",
+        "Presses easily",
+        "Machine wash at 30 degrees"
+      ]
+    },
+    "stoc": 3,
+    "bestseller": false,
+    "segment": null
+  },
+  {
+    "id": "halat-canepa-naturala",
+    "nume": {
+      "ro": "Halat de uscare Cânepă Naturală",
+      "en": "Natural Hemp Drying Robe"
+    },
+    "tip": "halat",
+    "tipNume": {
+      "ro": "Halat de uscare",
+      "en": "Drying Robe"
+    },
+    "colectie": "canepa-naturala",
+    "pretRon": 279,
+    "marimi": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "imagini": [
+      "/media/produse/halat.jpg",
+      "/media/colectii/canepa-naturala.jpg",
+      "/media/lifestyle/09.jpg"
+    ],
+    "descriere": {
+      "ro": "Halat din microfibră cu absorbție mare, cu glugă și chingă pe burtă. Usucă un câine de talie medie în aproximativ 15 minute, fără să-l freci cu prosopul. Cânepă nevopsită cu bumbac, 380 g/mp, se înmoaie la fiecare spălare.",
+      "en": "High-absorbency microfibre robe with a hood and a belly strap. It dries a medium dog in about fifteen minutes, with no towel rubbing. Undyed hemp with cotton, 380 gsm, softens with every wash."
+    },
+    "caracteristici": {
+      "ro": [
+        "Microfibră de 400 g/mp",
+        "Glugă și chingă pe burtă",
+        "Usucă în circa 15 minute",
+        "Se usucă singur pe umeraș",
+        "Se spală la 30 de grade, fără balsam"
+      ],
+      "en": [
+        "400 gsm microfibre",
+        "Hood and belly strap",
+        "Dries in about fifteen minutes",
+        "Drip-dries on a hanger",
+        "Machine wash at 30 degrees, no softener"
+      ]
+    },
+    "stoc": 11,
+    "bestseller": false,
+    "segment": null
+  },
+  {
+    "id": "medalion-canepa-naturala",
+    "nume": {
+      "ro": "Medalion gravat Cânepă Naturală",
+      "en": "Natural Hemp Engraved Tag"
+    },
+    "tip": "medalion",
+    "tipNume": {
+      "ro": "Medalion gravat",
+      "en": "Engraved Tag"
+    },
+    "colectie": "canepa-naturala",
+    "pretRon": 79,
+    "marimi": [
+      "25 mm",
+      "32 mm"
+    ],
+    "imagini": [
+      "/media/produse/medalion.jpg",
+      "/media/colectii/canepa-naturala.jpg",
+      "/media/lifestyle/10.jpg"
+    ],
+    "descriere": {
+      "ro": "Medalion din alamă masivă, gravat cu laser pe ambele fețe. Numele pe față, două numere de telefon pe spate. Vine cu inel dublu, care nu se desface din zgardă. Cânepă nevopsită cu bumbac, 380 g/mp, se înmoaie la fiecare spălare.",
+      "en": "Solid brass tag, laser-engraved on both faces. Name on the front, two phone numbers on the back. Comes with a double ring that will not work loose from the collar. Undyed hemp with cotton, 380 gsm, softens with every wash."
+    },
+    "caracteristici": {
+      "ro": [
+        "Alamă masivă, nu placată",
+        "Gravură laser pe ambele fețe",
+        "Până la 24 de caractere pe față",
+        "Inel dublu inclus",
+        "Se livrează în 48 de ore"
+      ],
+      "en": [
+        "Solid brass, not plated",
+        "Laser-engraved on both faces",
+        "Up to 24 characters on the front",
+        "Double ring included",
+        "Ships within 48 hours"
+      ]
+    },
+    "stoc": 25,
+    "bestseller": false,
+    "segment": null
+  },
+  {
+    "id": "set-carou-bruma",
+    "nume": {
+      "ro": "Set complet Carou Brumă",
+      "en": "Frost Check Full Set"
+    },
+    "tip": "set",
+    "tipNume": {
+      "ro": "Set complet",
+      "en": "Full Set"
+    },
+    "colectie": "carou-bruma",
+    "pretRon": 339,
+    "pretIntregRon": 447,
+    "componente": [
+      "ham-carou-bruma",
+      "lesa-carou-bruma",
+      "zgarda-carou-bruma"
+    ],
+    "marimi": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "imagini": [
+      "/media/produse/ham-carou-bruma.jpg",
+      "/media/colectii/carou-bruma.jpg",
+      "/media/produse/lesa-carou-bruma.jpg"
+    ],
+    "descriere": {
+      "ro": "Ham reglabil, lesă și zgardă din aceeași țesătură, cumpărate împreună. Bumbac țesut în carouri camel și ciocolată, 320 g/mp. Economisești 108 lei față de prețul separat.",
+      "en": "Adjustable harness, lead and collar in the same cloth, bought together. Cotton woven in camel and chocolate check, 320 gsm. You save 108 lei against buying separately."
+    },
+    "caracteristici": {
+      "ro": [
+        "Ham reglabil, lesă și zgardă",
+        "Aceeași țesătură pe toate trei",
+        "Economisești 108 lei",
+        "Se livrează într-o singură cutie"
+      ],
+      "en": [
+        "Adjustable harness, lead and collar",
+        "The same cloth across all three",
+        "You save 108 lei",
+        "Ships in a single box"
+      ]
+    },
+    "stoc": 8,
+    "bestseller": true,
+    "segment": null
+  },
+  {
+    "id": "set-buline-cacao",
+    "nume": {
+      "ro": "Set complet Buline Cacao",
+      "en": "Cocoa Dot Full Set"
+    },
+    "tip": "set",
+    "tipNume": {
+      "ro": "Set complet",
+      "en": "Full Set"
+    },
+    "colectie": "buline-cacao",
+    "pretRon": 339,
+    "pretIntregRon": 447,
+    "componente": [
+      "ham-buline-cacao",
+      "lesa-buline-cacao",
+      "zgarda-buline-cacao"
+    ],
+    "marimi": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "imagini": [
+      "/media/produse/ham-buline-cacao.jpg",
+      "/media/colectii/buline-cacao.jpg",
+      "/media/produse/lesa-buline-cacao.jpg"
+    ],
+    "descriere": {
+      "ro": "Ham reglabil, lesă și zgardă din aceeași țesătură, cumpărate împreună. Bumbac crem cu buline ciocolată imprimate cu pigment, 300 g/mp. Economisești 108 lei față de prețul separat.",
+      "en": "Adjustable harness, lead and collar in the same cloth, bought together. Cream cotton with pigment-printed chocolate dots, 300 gsm. You save 108 lei against buying separately."
+    },
+    "caracteristici": {
+      "ro": [
+        "Ham reglabil, lesă și zgardă",
+        "Aceeași țesătură pe toate trei",
+        "Economisești 108 lei",
+        "Se livrează într-o singură cutie"
+      ],
+      "en": [
+        "Adjustable harness, lead and collar",
+        "The same cloth across all three",
+        "You save 108 lei",
+        "Ships in a single box"
+      ]
+    },
+    "stoc": 8,
+    "bestseller": false,
+    "segment": null
+  },
+  {
+    "id": "set-dungi-sinaia",
+    "nume": {
+      "ro": "Set complet Dungi Sinaia",
+      "en": "Sinaia Stripe Full Set"
+    },
+    "tip": "set",
+    "tipNume": {
+      "ro": "Set complet",
+      "en": "Full Set"
+    },
+    "colectie": "dungi-sinaia",
+    "pretRon": 339,
+    "pretIntregRon": 447,
+    "componente": [
+      "ham-dungi-sinaia",
+      "lesa-dungi-sinaia",
+      "zgarda-dungi-sinaia"
+    ],
+    "marimi": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "imagini": [
+      "/media/produse/ham-dungi-sinaia.jpg",
+      "/media/colectii/dungi-sinaia.jpg",
+      "/media/produse/lesa-dungi-sinaia.jpg"
+    ],
+    "descriere": {
+      "ro": "Ham reglabil, lesă și zgardă din aceeași țesătură, cumpărate împreună. Bumbac cu dungi teracotă și crem, țesute nu imprimate, 340 g/mp. Economisești 108 lei față de prețul separat.",
+      "en": "Adjustable harness, lead and collar in the same cloth, bought together. Cotton with terracotta and cream stripes, woven rather than printed, 340 gsm. You save 108 lei against buying separately."
+    },
+    "caracteristici": {
+      "ro": [
+        "Ham reglabil, lesă și zgardă",
+        "Aceeași țesătură pe toate trei",
+        "Economisești 108 lei",
+        "Se livrează într-o singură cutie"
+      ],
+      "en": [
+        "Adjustable harness, lead and collar",
+        "The same cloth across all three",
+        "You save 108 lei",
+        "Ships in a single box"
+      ]
+    },
+    "stoc": 8,
+    "bestseller": true,
+    "segment": null
+  },
+  {
+    "id": "set-canepa-naturala",
+    "nume": {
+      "ro": "Set complet Cânepă Naturală",
+      "en": "Natural Hemp Full Set"
+    },
+    "tip": "set",
+    "tipNume": {
+      "ro": "Set complet",
+      "en": "Full Set"
+    },
+    "colectie": "canepa-naturala",
+    "pretRon": 339,
+    "pretIntregRon": 447,
+    "componente": [
+      "ham-canepa-naturala",
+      "lesa-canepa-naturala",
+      "zgarda-canepa-naturala"
+    ],
+    "marimi": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "imagini": [
+      "/media/produse/ham-canepa-naturala.jpg",
+      "/media/colectii/canepa-naturala.jpg",
+      "/media/produse/lesa-canepa-naturala.jpg"
+    ],
+    "descriere": {
+      "ro": "Ham reglabil, lesă și zgardă din aceeași țesătură, cumpărate împreună. Cânepă nevopsită cu bumbac, 380 g/mp, se înmoaie la fiecare spălare. Economisești 108 lei față de prețul separat.",
+      "en": "Adjustable harness, lead and collar in the same cloth, bought together. Undyed hemp with cotton, 380 gsm, softens with every wash. You save 108 lei against buying separately."
+    },
+    "caracteristici": {
+      "ro": [
+        "Ham reglabil, lesă și zgardă",
+        "Aceeași țesătură pe toate trei",
+        "Economisești 108 lei",
+        "Se livrează într-o singură cutie"
+      ],
+      "en": [
+        "Adjustable harness, lead and collar",
+        "The same cloth across all three",
+        "You save 108 lei",
+        "Ships in a single box"
+      ]
+    },
+    "stoc": 8,
+    "bestseller": false,
+    "segment": null
+  }
+]

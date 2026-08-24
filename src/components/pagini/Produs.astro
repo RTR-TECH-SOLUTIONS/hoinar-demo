@@ -1,0 +1,195 @@
+---
+import { Image, getImage } from 'astro:assets';
+import { getImagine } from '../../lib/imagini';
+import { getProdus, getColectie, getComponenteSet, type Produs } from '../../lib/catalog';
+import { traduceri, url } from '../../lib/i18n';
+import { formatPret } from '../../lib/pret';
+import type { Limba } from '../../lib/pret';
+import AdaugaInCos from '../AdaugaInCos.tsx';
+import ConstructorSet from '../ConstructorSet.tsx';
+import CardProdus from '../CardProdus.astro';
+
+interface Props { produs: Produs; lang: Limba }
+const { produs, lang } = Astro.props;
+const t = traduceri(lang);
+const u = (c: string) => url(lang, c);
+
+const colectie = await getColectie(produs.colectie, lang);
+const piese = await getComponenteSet(produs.colectie, lang);
+const inrudite = piese.filter((p) => p.slug !== produs.slug).slice(0, 4);
+
+/** Insulele React primesc URL-uri gata optimizate, nu ImageMetadata. */
+async function src(cale: string, w: number) {
+  return (await getImage({ src: getImagine(cale), width: w, format: 'webp' })).src;
+}
+const imagineCos = await src(produs.imagini[0], 200);
+
+const pieseSet = await Promise.all(
+  piese.map(async (p) => ({
+    slug: p.slug,
+    nume: p.nume,
+    tipNume: p.tipNume,
+    pretRon: p.pretRon,
+    imagine: await src(p.imagini[0], 120),
+    url: u(`/produs/${p.slug}`),
+    marimi: p.marimi,
+  })),
+);
+
+const stocRedus = produs.stoc > 0 && produs.stoc <= 6;
+
+const acordeoane = [
+  { titlu: t('produs.caracteristici'), continut: produs.caracteristici },
+  { titlu: t('produs.livrare'), text: t('produs.livrareText') },
+];
+const intrebari = [
+  [t('produs.intrebare1'), t('produs.raspuns1')],
+  [t('produs.intrebare2'), t('produs.raspuns2')],
+  [t('produs.intrebare3'), t('produs.raspuns3')],
+];
+---
+
+<div class="container-brand pt-6">
+  <nav aria-label="breadcrumb" class="text-[0.8rem] text-ciocolata/60">
+    <a href={u('/')} class="hover:text-teracota">{t('produs.acasa')}</a>
+    <span aria-hidden="true" class="mx-2">/</span>
+    <a href={u(`/colectie/${produs.colectie}`)} class="hover:text-teracota">{colectie?.nume}</a>
+    <span aria-hidden="true" class="mx-2">/</span>
+    <span class="text-ciocolata/85">{produs.tipNume}</span>
+  </nav>
+</div>
+
+<article class="container-brand mt-6 grid gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
+  <!-- GALERIE: stivuită pe desktop, carusel pe mobil -->
+  <div class="-mx-[clamp(1rem,0.5rem+2.5vw,3rem)] flex snap-x snap-mandatory gap-3 overflow-x-auto px-[clamp(1rem,0.5rem+2.5vw,3rem)] lg:mx-0 lg:grid lg:grid-cols-1 lg:gap-3 lg:overflow-visible lg:px-0">
+    {produs.imagini.map((cale, i) => (
+      <div class="w-[86vw] shrink-0 snap-start overflow-hidden rounded-[10px] bg-nisip sm:w-[60vw] lg:w-full">
+        <Image
+          src={getImagine(cale)}
+          alt={i === 0 ? produs.nume : ''}
+          widths={[520, 800, 1100]}
+          sizes="(min-width: 1024px) 52vw, 86vw"
+          loading={i === 0 ? 'eager' : 'lazy'}
+          class="aspect-[3/4] w-full object-cover"
+        />
+      </div>
+    ))}
+  </div>
+
+  <!-- INFORMAȚII -->
+  <div class="lg:sticky lg:top-[calc(var(--header-h)+1.5rem)] lg:self-start">
+    <a
+      href={u(`/colectie/${produs.colectie}`)}
+      class="text-[0.85rem] text-teracota underline underline-offset-4"
+    >{colectie?.nume}</a>
+
+    <h1 class="mt-2" style="font-size: var(--pas-2xl)">{produs.tipNume}</h1>
+
+    <p class="mt-3 flex items-baseline gap-3">
+      <span class="text-[1.25rem] tabular-nums">{formatPret(produs.pretRon)}</span>
+      {produs.pretIntregRon && (
+        <span class="text-[0.95rem] tabular-nums text-ciocolata/45 line-through">
+          {formatPret(produs.pretIntregRon)}
+        </span>
+      )}
+    </p>
+
+    <p class="mt-2 text-[0.85rem]">
+      {produs.stoc === 0
+        ? <span class="text-ciocolata/55">{t('produs.epuizat')}</span>
+        : stocRedus
+          ? <span class="text-teracota">{t('produs.stocRedus')} ({produs.stoc})</span>
+          : <span class="text-ciocolata/65">{t('produs.stoc')}</span>}
+    </p>
+
+    <p class="mt-6 max-w-[52ch] leading-relaxed text-ciocolata/80">{produs.descriere}</p>
+
+    <AdaugaInCos
+      client:load
+      slug={produs.slug}
+      nume={produs.nume}
+      pretRon={produs.pretRon}
+      imagine={imagineCos}
+      url={u(`/produs/${produs.slug}`)}
+      marimi={produs.marimi}
+      stoc={produs.stoc}
+      t={{
+        marime: t('produs.marime'),
+        adauga: t('actiune.adauga'),
+        epuizat: t('produs.epuizat'),
+        alegeMarime: t('produs.alegeMarime'),
+      }}
+    />
+
+    <p class="mt-3 text-center text-[0.8rem] text-ciocolata/60">
+      <a href={u('/ghid-marimi')} class="underline underline-offset-4 hover:text-teracota">
+        {t('produs.ghid')}
+      </a>
+    </p>
+
+    <div class="mt-9 border-t border-linie">
+      {acordeoane.map((a) => (
+        <details class="group border-b border-linie">
+          <summary class="flex cursor-pointer list-none items-center justify-between py-4 text-[0.95rem] marker:content-none">
+            {a.titlu}
+            <span aria-hidden="true" class="text-[1.1rem] leading-none text-ciocolata/50 transition-transform duration-200 group-open:rotate-45">+</span>
+          </summary>
+          <div class="pb-5 text-[0.9rem] leading-relaxed text-ciocolata/80">
+            {a.continut
+              ? <ul class="space-y-2">{a.continut.map((c) => (
+                  <li class="flex gap-2.5">
+                    <span aria-hidden="true" class="mt-[0.6em] h-[3px] w-[10px] shrink-0 bg-camel"></span>
+                    <span>{c}</span>
+                  </li>
+                ))}</ul>
+              : <p class="max-w-[54ch]">{a.text}</p>}
+          </div>
+        </details>
+      ))}
+      <details class="group border-b border-linie">
+        <summary class="flex cursor-pointer list-none items-center justify-between py-4 text-[0.95rem] marker:content-none">
+          {t('produs.intrebari')}
+          <span aria-hidden="true" class="text-[1.1rem] leading-none text-ciocolata/50 transition-transform duration-200 group-open:rotate-45">+</span>
+        </summary>
+        <div class="space-y-4 pb-5">
+          {intrebari.map(([q, a]) => (
+            <div>
+              <p class="text-[0.9rem]">{q}</p>
+              <p class="mt-1 max-w-[54ch] text-[0.88rem] leading-relaxed text-ciocolata/75">{a}</p>
+            </div>
+          ))}
+        </div>
+      </details>
+    </div>
+  </div>
+</article>
+
+{!produs.esteSet && pieseSet.length > 1 && (
+  <div class="container-brand mt-[var(--sectiune-strans)]">
+    <ConstructorSet
+      client:visible
+      piese={pieseSet}
+      presel={[produs.slug]}
+      t={{
+        titlu: t('produs.set'),
+        text: t('produs.setText'),
+        total: t('produs.total'),
+        economie: t('produs.economie'),
+        indiciu: t('produs.indiciu'),
+        adauga: t('produs.adaugaSet'),
+        marime: t('produs.marime'),
+        piesa: t('produs.piesa'),
+        piese: t('produs.piese'),
+      }}
+    />
+  </div>
+)}
+
+{inrudite.length > 0 && (
+  <section class="container-brand mt-[var(--sectiune)]">
+    <h2 style="font-size: var(--pas-xl)">{t('produs.dinColectie')}</h2>
+    <div class="mt-7 grid grid-cols-2 gap-x-4 gap-y-9 lg:grid-cols-4">
+      {inrudite.map((p) => <CardProdus produs={p} lang={lang} />)}
+    </div>
+  </section>
+)}

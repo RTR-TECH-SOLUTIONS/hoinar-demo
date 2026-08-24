@@ -1,0 +1,10 @@
+---
+import Base from '../layouts/Base.astro';
+import Lista from '../components/pagini/Lista.astro';
+import { getProduse } from '../lib/catalog';
+
+const produse = await getProduse('ro', {});
+---
+<Base lang="ro" titlu="Tot ce facem — HOINAR">
+  <Lista lang="ro" titlu="Tot ce facem" intro="Patru țesături, opt piese. Filtrează după ce ai nevoie." produse={produse} />
+</Base>

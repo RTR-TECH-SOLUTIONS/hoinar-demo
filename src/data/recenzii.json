@@ -1,0 +1,74 @@
+[
+  {
+    "id": "r1",
+    "nume": "Ana M.",
+    "oras": { "ro": "București", "en": "Bucharest" },
+    "stele": 5,
+    "produs": "set-carou-bruma",
+    "imagine": "/media/lifestyle/04.jpg",
+    "text": {
+      "ro": "Am luat setul în carou pentru Rocky. După trei ore prin Herăstrău nu i-a lăsat nicio urmă la subraț, ceea ce la hamul vechi se întâmpla de fiecare dată.",
+      "en": "I got the check set for Rocky. After three hours in the park it left no mark under his legs, which the old harness did every single time."
+    }
+  },
+  {
+    "id": "r2",
+    "nume": "Cristi P.",
+    "oras": { "ro": "Cluj-Napoca", "en": "Cluj-Napoca" },
+    "stele": 5,
+    "produs": "lesa-carou-bruma",
+    "imagine": "/media/lifestyle/06.jpg",
+    "text": {
+      "ro": "Singura lesă care mi-a rezistat un an întreg cu un ciobănesc care trage. Carabina de alamă nu s-a slăbit deloc.",
+      "en": "The only lead that lasted a full year with a shepherd that pulls. The brass clip has not loosened at all."
+    }
+  },
+  {
+    "id": "r3",
+    "nume": "Ioana T.",
+    "oras": { "ro": "Timișoara", "en": "Timisoara" },
+    "stele": 5,
+    "produs": "bandana-buline-cacao",
+    "imagine": "/media/lifestyle/09.jpg",
+    "text": {
+      "ro": "Am comandat marți seara, joi dimineața era la easybox. Bandana a intrat perfect pe zgarda pe care o aveam deja.",
+      "en": "Ordered Tuesday evening, it was in the locker by Thursday morning. The bandana slid straight onto the collar I already had."
+    }
+  },
+  {
+    "id": "r4",
+    "nume": "Radu D.",
+    "oras": { "ro": "Iași", "en": "Iasi" },
+    "stele": 5,
+    "produs": "ham-dungi-sinaia",
+    "imagine": "/media/lifestyle/05.jpg",
+    "text": {
+      "ro": "Măsurile din ghid au fost exacte. Am luat M pentru un cocker de 13 kg și e fix cum trebuie, fără să mai schimb nimic.",
+      "en": "The size guide was spot on. I took an M for a 13 kg cocker and it fits exactly, no swapping needed."
+    }
+  },
+  {
+    "id": "r5",
+    "nume": "Alexandra V.",
+    "oras": { "ro": "Brașov", "en": "Brasov" },
+    "stele": 5,
+    "produs": "halat-canepa-naturala",
+    "imagine": "/media/lifestyle/10.jpg",
+    "text": {
+      "ro": "Halatul chiar usucă. După o zi la lac, în loc de o oră de frecat cu prosopul, l-am lăsat douăzeci de minute în el și gata.",
+      "en": "The robe genuinely dries. After a day at the lake, instead of an hour of towelling, twenty minutes in it and we were done."
+    }
+  },
+  {
+    "id": "r6",
+    "nume": "Mihai S.",
+    "oras": { "ro": "Constanța", "en": "Constanta" },
+    "stele": 5,
+    "produs": "ham-explore-carou-bruma",
+    "imagine": "/media/lifestyle/02.jpg",
+    "text": {
+      "ro": "Al doilea ham de la ei. Primul l-a purtat Luca doi ani și încă arată bine, l-am dat mai departe unui prieten.",
+      "en": "My second harness from them. Luca wore the first for two years and it still looks good, I passed it on to a friend."
+    }
+  }
+]

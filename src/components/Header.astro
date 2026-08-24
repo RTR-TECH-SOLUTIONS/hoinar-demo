@@ -1,0 +1,126 @@
+---
+import { getColectii, getTipuri } from '../lib/catalog';
+import { traduceri, url, comuta } from '../lib/i18n';
+import type { Limba } from '../lib/pret';
+import CosButon from './CosButon.tsx';
+import SelectorMoneda from './SelectorMoneda.tsx';
+import { Image } from 'astro:assets';
+import { getImagine } from '../lib/imagini';
+
+interface Props { lang: Limba; pathname: string }
+const { lang, pathname } = Astro.props;
+const t = traduceri(lang);
+const colectii = await getColectii(lang);
+const tipuri = await getTipuri(lang);
+const u = (c: string) => url(lang, c);
+
+const navPrincipal = [
+  { eticheta: t('nav.hamuri'), href: u('/categorie/ham') },
+  { eticheta: t('nav.lese'), href: u('/categorie/lesa') },
+  { eticheta: t('nav.genti'), href: u('/categorie/geanta') },
+];
+---
+
+<div class="bg-ink text-crem">
+  <div class="container-brand flex h-[var(--bara-h)] items-center justify-between gap-4 text-[0.75rem]">
+    <p class="truncate">{t('bara.transport')}</p>
+    <p class="hidden md:block">{t('bara.livrare')}</p>
+    <div class="flex items-center gap-3 whitespace-nowrap">
+      <a
+        href={comuta(pathname, lang === 'ro' ? 'en' : 'ro')}
+        class="underline underline-offset-4 hover:text-camel"
+        hreflang={lang === 'ro' ? 'en' : 'ro'}
+      >{lang === 'ro' ? 'EN' : 'RO'}</a>
+      <span aria-hidden="true" class="text-crem/30">/</span>
+      <SelectorMoneda client:idle eticheta={t('footer.moneda')} />
+    </div>
+  </div>
+</div>
+
+<header class="sticky top-0 z-50 border-b border-linie bg-crem/95 backdrop-blur-sm">
+  <div class="container-brand grid h-[var(--header-h)] grid-cols-[1fr_auto_1fr] items-center gap-4">
+    <nav class="hidden items-center gap-7 text-[0.9rem] lg:flex" aria-label={t('actiune.meniu')}>
+      {navPrincipal.map((n) => (
+        <a href={n.href} class="hover:text-teracota transition-colors">{n.eticheta}</a>
+      ))}
+      <div class="group relative">
+        <a
+          href={u('/colectii')}
+          class="inline-flex items-center gap-1.5 hover:text-teracota transition-colors"
+          aria-haspopup="true"
+        >
+          {t('nav.colectii')}
+          <span aria-hidden="true" class="text-[0.6rem] opacity-60">▾</span>
+        </a>
+        <div
+          class="invisible absolute left-1/2 top-full z-10 w-[min(60rem,90vw)] -translate-x-1/2 translate-y-1 border border-linie bg-crem p-6 opacity-0 shadow-[0_18px_40px_-24px_rgba(24,22,19,0.45)] transition-[opacity,transform] duration-200 ease-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100"
+        >
+          <div class="grid grid-cols-4 gap-5">
+            {colectii.map((c) => (
+              <a href={u(`/colectie/${c.slug}`)} class="group/t block">
+                <div class="overflow-hidden rounded-[10px] bg-nisip">
+                  <Image
+                    src={getImagine(c.imagine)}
+                    alt={c.nume}
+                    widths={[220, 440]}
+                    sizes="220px"
+                    class="aspect-[4/3] w-full object-cover transition-transform duration-300 ease-out group-hover/t:scale-[1.03]"
+                  />
+                </div>
+                <p class="mt-2.5 text-[0.9rem]">{c.nume}</p>
+                <p class="text-[0.78rem] text-ciocolata/60">{c.tesatura}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <button
+      type="button"
+      class="justify-self-start text-[0.9rem] lg:hidden"
+      data-meniu-mobil
+      aria-expanded="false"
+      aria-controls="meniu-mobil"
+    >{t('actiune.meniu')}</button>
+
+    <a href={u('/')} class="justify-self-center" aria-label="HOINAR">
+      <span class="font-[family-name:var(--font-serif)] text-[1.6rem] leading-none tracking-[0.14em] md:text-[1.9rem]">
+        HOINAR
+      </span>
+    </a>
+
+    <div class="flex items-center justify-end gap-5 text-[0.9rem]">
+      <a href={u('/colectii')} class="hidden hover:text-teracota transition-colors sm:inline">
+        {t('nav.toate')}
+      </a>
+      <CosButon client:load eticheta={t('actiune.cos')} />
+    </div>
+  </div>
+
+  <div id="meniu-mobil" hidden class="border-t border-linie bg-crem lg:hidden">
+    <nav class="container-brand flex flex-col py-2" aria-label={t('actiune.meniu')}>
+      {tipuri.map((tip) => (
+        <a href={u(`/categorie/${tip.slug}`)} class="border-b border-linie/60 py-3 text-[0.95rem]">
+          {tip.nume}
+        </a>
+      ))}
+      {colectii.map((c) => (
+        <a href={u(`/colectie/${c.slug}`)} class="border-b border-linie/60 py-3 text-[0.95rem]">
+          {c.nume}
+        </a>
+      ))}
+      <a href={u('/poveste')} class="py-3 text-[0.95rem]">{t('nav.poveste')}</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const buton = document.querySelector<HTMLButtonElement>('[data-meniu-mobil]');
+  const panou = document.getElementById('meniu-mobil');
+  buton?.addEventListener('click', () => {
+    const deschis = buton.getAttribute('aria-expanded') === 'true';
+    buton.setAttribute('aria-expanded', String(!deschis));
+    if (panou) panou.hidden = deschis;
+  });
+</script>

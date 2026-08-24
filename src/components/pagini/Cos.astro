@@ -1,0 +1,29 @@
+---
+import { traduceri, url } from '../../lib/i18n';
+import type { Limba } from '../../lib/pret';
+import Checkout from '../Checkout.tsx';
+
+interface Props { lang: Limba }
+const { lang } = Astro.props;
+const t = traduceri(lang);
+const chei = [
+  'pas','din','date','transport','plata','nume','email','telefon','adresa','oras','judet','cod',
+  'continua','inapoi','plaseaza','card','cardText','ramburs','rambursText','easybox','easyboxText',
+  'fan','fanText','cargus','cargusText','gata','gataText','numar','demo','sumar','obligatoriu',
+  'emailInvalid','telefonInvalid','golText','inapoiMagazin',
+] as const;
+const tc: Record<string, string> = Object.fromEntries(chei.map((c) => [c, t(`check.${c}` as any)]));
+tc.gol = t('cos.gol');
+tc.subtotal = t('cos.subtotal');
+tc.gratuit = t('cos.gratuit');
+tc.lipsa = t('cos.lipsa');
+tc.bucata = t('cos.bucata');
+tc.total = t('produs.total');
+tc.sterge = t('actiune.sterge');
+---
+<div class="container-brand py-10">
+  <h1 style="font-size: var(--pas-2xl)">{t('cos.titlu')}</h1>
+  <div class="mt-9">
+    <Checkout client:load t={tc} urlMagazin={url(lang, '/colectii')} lang={lang} />
+  </div>
+</div>

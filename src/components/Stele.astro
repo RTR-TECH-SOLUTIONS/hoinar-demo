@@ -1,0 +1,11 @@
+---
+interface Props { n: number }
+const { n } = Astro.props;
+---
+<div class="flex items-center gap-0.5" role="img" aria-label={`${n} / 5`}>
+  {Array.from({ length: 5 }).map((_, i) => (
+    <svg width="13" height="13" viewBox="0 0 12 12" aria-hidden="true" class={i < n ? 'fill-teracota' : 'fill-linie'}>
+      <path d="M6 0.6l1.6 3.4 3.7.5-2.7 2.6.7 3.7L6 9.05 2.7 10.8l.7-3.7L.7 4.5l3.7-.5z" />
+    </svg>
+  ))}
+</div>

@@ -1,0 +1,61 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CosDrawer from '../components/CosDrawer.tsx';
+import { traduceri, url, comuta } from '../lib/i18n';
+import type { Limba } from '../lib/pret';
+
+interface Props {
+  titlu: string;
+  descriere?: string;
+  lang?: Limba;
+}
+
+const { titlu, descriere = '', lang = (Astro.currentLocale as Limba) ?? 'ro' } = Astro.props;
+const t = traduceri(lang);
+const pathname = Astro.url.pathname;
+
+const tCos = {
+  titlu: t('cos.titlu'),
+  gol: t('cos.gol'),
+  subtotal: t('cos.subtotal'),
+  transport: t('cos.transport'),
+  gratuit: t('cos.gratuit'),
+  lipsa: t('cos.lipsa'),
+  atins: t('cos.atins'),
+  inchide: t('actiune.inchide'),
+  cumpara: t('actiune.cumpara'),
+  sterge: t('actiune.sterge'),
+};
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titlu}</title>
+    {descriere && <meta name="description" content={descriere} />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" hreflang="ro" href={new URL(comuta(pathname, 'ro'), Astro.site)} />
+    <link rel="alternate" hreflang="en" href={new URL(comuta(pathname, 'en'), Astro.site)} />
+  </head>
+  <body>
+    <a
+      href="#continut"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-[8px] focus:bg-ink focus:px-4 focus:py-2 focus:text-crem"
+    >
+      {lang === 'ro' ? 'Sari la conținut' : 'Skip to content'}
+    </a>
+
+    <Header lang={lang} pathname={pathname} />
+
+    <main id="continut">
+      <slot />
+    </main>
+
+    <Footer lang={lang} pathname={pathname} />
+    <CosDrawer client:idle t={tCos} urlCos={url(lang, '/cos')} />
+  </body>
+</html>

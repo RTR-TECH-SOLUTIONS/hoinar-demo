@@ -1,0 +1,72 @@
+---
+import { Image } from 'astro:assets';
+import { getImagine } from '../../lib/imagini';
+import type { Limba } from '../../lib/pret';
+interface Props { lang: Limba }
+const { lang } = Astro.props;
+const ro = lang === 'ro';
+const wa = 'https://wa.me/40721000000';
+---
+<div class="container-brand py-12">
+  <div class="grid gap-12 md:grid-cols-[1.1fr_1fr] md:gap-16">
+    <div>
+      <h1 style="font-size: var(--pas-3xl)">{ro ? 'Scrie-ne' : 'Get in touch'}</h1>
+      <p class="mt-4 max-w-[52ch] leading-relaxed text-ciocolata/80">
+        {ro
+          ? 'Răspundem în aceeași zi, de luni până vineri, între 9 și 18. Dacă ai o întrebare despre mărime, trimite-ne o poză cu câinele și măsurile, e cel mai rapid.'
+          : 'We answer the same day, Monday to Friday, between 9 and 18. If your question is about sizing, send a photo of the dog and the measurements, that is fastest.'}
+      </p>
+
+      <div class="mt-9 space-y-3">
+        <a
+          href={wa}
+          class="flex items-center justify-between gap-4 rounded-[10px] bg-ink px-6 py-4 text-crem transition-colors hover:bg-ciocolata"
+        >
+          <span>
+            <span class="block text-[0.95rem]">{ro ? 'Scrie pe WhatsApp' : 'Message on WhatsApp'}</span>
+            <span class="block text-[0.82rem] text-crem/65">0721 000 000</span>
+          </span>
+          <span aria-hidden="true" class="text-[1.1rem]">›</span>
+        </a>
+        <a
+          href="mailto:salut@hoinar.ro"
+          class="flex items-center justify-between gap-4 rounded-[10px] border border-linie px-6 py-4 transition-colors hover:border-ciocolata"
+        >
+          <span>
+            <span class="block text-[0.95rem]">Email</span>
+            <span class="block text-[0.82rem] text-ciocolata/65">salut@hoinar.ro</span>
+          </span>
+          <span aria-hidden="true" class="text-[1.1rem] text-ciocolata/50">›</span>
+        </a>
+      </div>
+
+      <dl class="mt-10 grid gap-6 sm:grid-cols-2">
+        <div class="border-t border-linie pt-4">
+          <dt class="text-[0.82rem] text-ciocolata/55">{ro ? 'Atelier' : 'Workshop'}</dt>
+          <dd class="mt-1.5 text-[0.92rem] leading-relaxed">
+            Str. Icoanei 42, București<br />
+            {ro ? 'Vizite doar cu programare' : 'Visits by appointment only'}
+          </dd>
+        </div>
+        <div class="border-t border-linie pt-4">
+          <dt class="text-[0.82rem] text-ciocolata/55">{ro ? 'Program' : 'Hours'}</dt>
+          <dd class="mt-1.5 text-[0.92rem] leading-relaxed">
+            {ro ? 'Luni - Vineri, 9:00 - 18:00' : 'Monday - Friday, 9:00 - 18:00'}<br />
+            {ro ? 'Sâmbătă și duminică, închis' : 'Closed Saturday and Sunday'}
+          </dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="overflow-hidden rounded-[14px] bg-nisip">
+      <Image
+        src={getImagine('/media/lifestyle/08.jpg')}
+        alt=""
+        widths={[500, 900]}
+        sizes="(min-width: 768px) 44vw, 92vw"
+        loading="eager"
+        class="aspect-[4/5] w-full object-cover"
+      />
+    </div>
+  </div>
+</div>

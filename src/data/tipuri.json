@@ -1,0 +1,66 @@
+[
+  {
+    "id": "ham",
+    "nume": {
+      "ro": "Ham reglabil",
+      "en": "Adjustable Harness"
+    },
+    "imagine": "/media/produse/ham.jpg"
+  },
+  {
+    "id": "ham-explore",
+    "nume": {
+      "ro": "Ham Explore",
+      "en": "Explore Harness"
+    },
+    "imagine": "/media/produse/ham-explore.jpg"
+  },
+  {
+    "id": "lesa",
+    "nume": {
+      "ro": "Lesă",
+      "en": "Lead"
+    },
+    "imagine": "/media/produse/lesa.jpg"
+  },
+  {
+    "id": "zgarda",
+    "nume": {
+      "ro": "Zgardă",
+      "en": "Collar"
+    },
+    "imagine": "/media/produse/zgarda.jpg"
+  },
+  {
+    "id": "geanta",
+    "nume": {
+      "ro": "Geantă de plimbare",
+      "en": "Walking Bag"
+    },
+    "imagine": "/media/produse/geanta.jpg"
+  },
+  {
+    "id": "bandana",
+    "nume": {
+      "ro": "Bandană",
+      "en": "Bandana"
+    },
+    "imagine": "/media/produse/bandana.jpg"
+  },
+  {
+    "id": "halat",
+    "nume": {
+      "ro": "Halat de uscare",
+      "en": "Drying Robe"
+    },
+    "imagine": "/media/produse/halat.jpg"
+  },
+  {
+    "id": "medalion",
+    "nume": {
+      "ro": "Medalion gravat",
+      "en": "Engraved Tag"
+    },
+    "imagine": "/media/produse/medalion.jpg"
+  }
+]

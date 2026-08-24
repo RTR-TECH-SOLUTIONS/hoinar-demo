@@ -1,0 +1,15 @@
+---
+import Base from '../../layouts/Base.astro';
+import Produs from '../../components/pagini/Produs.astro';
+import { getProduse } from '../../lib/catalog';
+
+export async function getStaticPaths() {
+  const produse = await getProduse('ro', {});
+  return produse.map((produs) => ({ params: { slug: produs.slug }, props: { produs } }));
+}
+
+const { produs } = Astro.props;
+---
+<Base lang="ro" titlu={`${produs.nume} — HOINAR`} descriere={produs.descriere.slice(0, 155)}>
+  <Produs produs={produs} lang="ro" />
+</Base>

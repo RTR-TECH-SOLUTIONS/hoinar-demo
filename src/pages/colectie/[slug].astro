@@ -1,0 +1,20 @@
+---
+import Base from '../../layouts/Base.astro';
+import Lista from '../../components/pagini/Lista.astro';
+import { getProduse, getColectii } from '../../lib/catalog';
+
+export async function getStaticPaths() {
+  const colectii = await getColectii('ro');
+  return Promise.all(
+    colectii.map(async (colectie) => ({
+      params: { slug: colectie.slug },
+      props: { colectie, produse: await getProduse('ro', { colectie: colectie.slug }) },
+    })),
+  );
+}
+
+const { colectie, produse } = Astro.props;
+---
+<Base lang="ro" titlu={`${colectie.nume} — HOINAR`} descriere={colectie.descriere}>
+  <Lista lang="ro" titlu={colectie.nume} intro={colectie.descriere} produse={produse} ascunde={['colectie']} />
+</Base>

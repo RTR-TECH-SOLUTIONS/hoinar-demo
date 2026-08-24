@@ -1,0 +1,31 @@
+---
+import { traduceri } from '../../lib/i18n';
+import type { Limba } from '../../lib/pret';
+import GhidMarimi from '../GhidMarimi.tsx';
+
+interface Props { lang: Limba }
+const { lang } = Astro.props;
+const t = traduceri(lang);
+---
+<div class="container-brand py-12">
+  <h1 style="font-size: var(--pas-3xl)">{t('ghid.titlu')}</h1>
+  <p class="mt-4 max-w-[58ch] leading-relaxed text-ciocolata/75">
+    {lang === 'ro'
+      ? 'Măsoară cu un centimetru de croitorie, peste blană, fără să strângi. Gâtul se măsoară acolo unde stă zgarda. Pieptul, în punctul cel mai lat, imediat în spatele picioarelor din față. Dacă ești între două mărimi, ia-o pe cea mare.'
+      : 'Measure with a tape over the coat, without pulling tight. Measure the neck where the collar sits. Measure the chest at its widest point, just behind the front legs. If you fall between two sizes, take the larger one.'}
+  </p>
+  <div class="mt-9 max-w-[52rem]">
+    <GhidMarimi
+      client:load
+      lang={lang}
+      t={{
+        gat: t('ghid.gat'),
+        piept: t('ghid.piept'),
+        calc: t('ghid.calc'),
+        rezultat: t('ghid.rezultat'),
+        nimic: t('ghid.nimic'),
+        peste: t('ghid.peste'),
+      }}
+    />
+  </div>
+</div>

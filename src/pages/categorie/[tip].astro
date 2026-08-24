@@ -1,0 +1,20 @@
+---
+import Base from '../../layouts/Base.astro';
+import Lista from '../../components/pagini/Lista.astro';
+import { getProduse, getTipuri } from '../../lib/catalog';
+
+export async function getStaticPaths() {
+  const tipuri = await getTipuri('ro');
+  return Promise.all(
+    tipuri.map(async (tip) => ({
+      params: { tip: tip.slug },
+      props: { tip, produse: await getProduse('ro', { tip: tip.slug }) },
+    })),
+  );
+}
+
+const { tip, produse } = Astro.props;
+---
+<Base lang="ro" titlu={`${tip.nume} — HOINAR`}>
+  <Lista lang="ro" titlu={tip.nume} produse={produse} ascunde={['tip']} />
+</Base>

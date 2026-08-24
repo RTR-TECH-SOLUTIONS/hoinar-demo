@@ -1,0 +1,107 @@
+---
+import type { Limba } from '../../lib/pret';
+interface Props { lang: Limba }
+const { lang } = Astro.props;
+const ro = lang === 'ro';
+
+const livrare = ro
+  ? [
+      ['Sameday easybox', '24-48 de ore', '15 lei'],
+      ['FAN Courier, la adresă', '24-48 de ore', '20 lei'],
+      ['Cargus, la adresă', '48 de ore', '18 lei'],
+      ['Peste 250 de lei', 'oricare dintre ele', 'gratuit'],
+    ]
+  : [
+      ['Sameday easybox', '24-48 hours', '15 lei'],
+      ['FAN Courier, to your address', '24-48 hours', '20 lei'],
+      ['Cargus, to your address', '48 hours', '18 lei'],
+      ['Over 250 lei', 'any of them', 'free'],
+    ];
+
+const international = ro
+  ? [
+      ['Uniunea Europeană', '4-7 zile lucrătoare', '89 lei'],
+      ['Marea Britanie și Elveția', '5-9 zile lucrătoare', '129 lei'],
+      ['Restul lumii', '7-14 zile lucrătoare', '169 lei'],
+    ]
+  : [
+      ['European Union', '4-7 working days', '89 lei'],
+      ['United Kingdom and Switzerland', '5-9 working days', '129 lei'],
+      ['Rest of the world', '7-14 working days', '169 lei'],
+    ];
+
+const sectiuni = ro
+  ? [
+      ['Retur', 'Ai 14 zile de la primire ca să te răzgândești, fără să explici de ce. Condiția e ca produsul să nu fi fost purtat afară: îl poți proba pe câine în casă. Trimiți un email la salut@hoinar.ro și îți trimitem AWB-ul de retur. Banii ajung înapoi în 5 zile lucrătoare de la primirea coletului.'],
+      ['Schimb de mărime', 'Primul schimb de mărime e gratuit. Nu retrimiți produsul și apoi comanzi altul, ci ne scrii ce mărime vrei și facem schimbul dintr-o singură mișcare.'],
+      ['Garanție', 'Doi ani pe cusătură și pe feronerie. Dacă cedează o cusătură sau o cataramă în uz normal, o reparăm sau înlocuim produsul. Nu acoperă ce roade câinele.'],
+      ['Produse personalizate', 'Medalioanele gravate nu se returnează, fiind personalizate. Dacă am greșit noi gravura, îl refacem pe cheltuiala noastră.'],
+    ]
+  : [
+      ['Returns', 'You have 14 days from delivery to change your mind, with no explanation. The one condition is that the piece has not been worn outdoors: trying it on your dog indoors is fine. Email salut@hoinar.ro and we will send a return label. Your money is back within 5 working days of the parcel arriving.'],
+      ['Size exchange', 'The first size exchange is free. Do not return and reorder, just tell us which size you want and we swap it in one move.'],
+      ['Warranty', 'Two years on stitching and hardware. If a seam or a buckle fails in normal use, we repair it or replace the piece. It does not cover what the dog chews.'],
+      ['Personalised pieces', 'Engraved tags cannot be returned, as they are made to order. If the engraving is wrong on our side, we remake it at our cost.'],
+    ];
+---
+<div class="container-brand py-12">
+  <h1 style="font-size: var(--pas-3xl)">{ro ? 'Livrare și retur' : 'Shipping and returns'}</h1>
+
+  <div class="mt-10 grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
+    <div>
+      <h2 style="font-size: var(--pas-xl)">{ro ? 'În România' : 'Within Romania'}</h2>
+      <table class="mt-5 w-full border-collapse text-left text-[0.9rem]">
+        <thead>
+          <tr class="border-b border-linie text-ciocolata/60">
+            <th scope="col" class="py-2.5 pr-4 font-normal">{ro ? 'Curier' : 'Courier'}</th>
+            <th scope="col" class="py-2.5 pr-4 font-normal">{ro ? 'Termen' : 'Time'}</th>
+            <th scope="col" class="py-2.5 font-normal">{ro ? 'Cost' : 'Cost'}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {livrare.map(([a, b, c]) => (
+            <tr class="border-b border-linie/60">
+              <td class="py-2.5 pr-4">{a}</td>
+              <td class="py-2.5 pr-4 text-ciocolata/75">{b}</td>
+              <td class="py-2.5 tabular-nums">{c}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <h2 class="mt-12" style="font-size: var(--pas-xl)">{ro ? 'În afara României' : 'Outside Romania'}</h2>
+      <table class="mt-5 w-full border-collapse text-left text-[0.9rem]">
+        <thead>
+          <tr class="border-b border-linie text-ciocolata/60">
+            <th scope="col" class="py-2.5 pr-4 font-normal">{ro ? 'Destinație' : 'Destination'}</th>
+            <th scope="col" class="py-2.5 pr-4 font-normal">{ro ? 'Termen' : 'Time'}</th>
+            <th scope="col" class="py-2.5 font-normal">{ro ? 'Cost' : 'Cost'}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {international.map(([a, b, c]) => (
+            <tr class="border-b border-linie/60">
+              <td class="py-2.5 pr-4">{a}</td>
+              <td class="py-2.5 pr-4 text-ciocolata/75">{b}</td>
+              <td class="py-2.5 tabular-nums">{c}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p class="mt-4 max-w-[56ch] text-[0.85rem] leading-relaxed text-ciocolata/65">
+        {ro
+          ? 'Pentru destinațiile din afara Uniunii Europene, taxele vamale și TVA-ul local se plătesc de destinatar, la livrare.'
+          : 'For destinations outside the European Union, customs duties and local VAT are paid by the recipient on delivery.'}
+      </p>
+    </div>
+
+    <div class="space-y-8">
+      {sectiuni.map(([titlu, text]) => (
+        <section>
+          <h2 style="font-size: var(--pas-lg)">{titlu}</h2>
+          <p class="mt-2.5 max-w-[56ch] leading-relaxed text-ciocolata/80">{text}</p>
+        </section>
+      ))}
+    </div>
+  </div>
+</div>
