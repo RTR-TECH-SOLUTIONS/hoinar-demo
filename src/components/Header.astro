@@ -174,7 +174,7 @@ const social = [
         <div class="container-brand grid grid-cols-5 gap-6 py-7 tracking-normal">
           {m.coloane!.map((col) => (
             <div>
-              <a href={col.linkuri[0].href} class="group/i block overflow-hidden rounded-[10px] bg-nisip">
+              <a href={col.linkuri[0].href} aria-label={col.titlu} class="group/i block overflow-hidden rounded-[10px] bg-nisip">
                 <Image
                   src={getImagine(col.imagine)}
                   alt=""

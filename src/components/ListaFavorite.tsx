@@ -156,7 +156,7 @@ export default function ListaFavorite({ toate, sugestii, imagineGol, t }: Props)
             style={{ '--pas': `${i * 60}ms` } as any}
           >
             <div className="relative overflow-hidden rounded-[10px] bg-nisip">
-              <a href={p.url} className="block">
+              <a href={p.url} aria-label={p.nume} className="block">
                 <img src={p.img} alt={p.nume} loading="lazy"
                   className="aspect-[3/4] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]" />
               </a>

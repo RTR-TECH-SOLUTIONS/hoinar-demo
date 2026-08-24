@@ -138,7 +138,7 @@ export default function CosPagina({ t, urlFinalizare, urlMagazin, imagineGol, su
                 className={`group flex gap-4 rounded-[10px] px-2 py-5 transition-colors duration-200 hover:bg-nisip/45 sm:gap-6 ${iesind.has(k) ? 'iese' : 'apare'}`}
                 style={{ '--pas': `${i * 70}ms` } as any}
               >
-                <a href={l.url} className="shrink-0 overflow-hidden rounded-[8px]">
+                <a href={l.url} aria-label={l.nume} className="shrink-0 overflow-hidden rounded-[8px]">
                   <img src={l.imagine} alt="" width={96} height={120}
                     className="h-[7.5rem] w-24 object-cover transition-transform duration-500 ease-out hover:scale-[1.06]" />
                 </a>

@@ -1,43 +1,61 @@
-# Astro Starter Kit: Minimal
+# HOINAR — demo de magazin online
 
-```sh
-npm create astro@latest -- --template minimal
+Demo de prezentare pentru o clientă care vinde accesorii de plimbare pentru câini.
+Brandul, produsele, fotografiile și textele sunt inventate pentru pitch.
+
+**Live:** https://rtr-tech-solutions.github.io/hoinar-demo/
+
+## Ce e înăuntru
+
+- **Astro 7 + React 19 + Tailwind 4**, build static, 110 pagini
+- **Bilingv** RO (implicit) și EN pe `/en/`, cu selector de monedă RON / EUR
+- **32 de produse**: 7 tipuri × 4 țesături, plus 4 seturi complete
+- Coș real cu persistență în browser, checkout mock în 3 pași
+- Constructor de set cu reducere pe număr de piese
+- Ghid de mărimi interactiv, favorite, căutare cu sugestii
+- Filtre laterale pe culoare, mărime, tip și preț, cu numărătoare per opțiune
+
+## Comenzi
+
+```bash
+npm install
+npm run dev        # dezvoltare
+npm run build      # build în dist/
+npm run preview    # servește build-ul
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Verificări
 
-## 🚀 Project Structure
+Rulează cu preview-ul pornit. `BAZA` trebuie să includă calea de bază.
 
-Inside of your Astro project, you'll see the following folders and files:
+```bash
+npm run build && npx astro preview --port 4390 &
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+node scripts/chei.mjs                                        # traduceri: duplicate, chei lipsă
+node scripts/linkuri.mjs                                     # linkuri interne rupte
+BAZA=http://localhost:4390/hoinar-demo node scripts/audit.mjs      # accesibilitate, meta, imagini
+BAZA=http://localhost:4390/hoinar-demo node scripts/verifica.mjs   # layout pe 4 ecrane
+BAZA=http://localhost:4390/hoinar-demo node scripts/test-flux.mjs  # 83 de teste de flux
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Fiecare a prins bug-uri reale: chei de traducere suprascrise tăcut, un 404
+englezesc care lipsea, dropdownuri care se închideau singure, imagini tăiate.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Ce NU e făcut, fiind demo
 
-Any static assets, like images, can be placed in the `public/` directory.
+Fără research SEO, fără banner cookie sau pagini legale, fără ANPC/SOL, fără
+plăți reale, fără integrare de curier, fără admin. Toate intră la proiectul
+real, după semnare.
 
-## 🧞 Commands
+## Cum crește în proiect real
 
-All commands are run from the root of the project, from a terminal:
+Datele stau în `src/data/*.json`, tipizate cu Zod în `src/content.config.ts`,
+și se citesc **doar** prin `src/lib/catalog.ts`. Când sursa devine un motor de
+comerț (Medusa), se rescrie acel fișier; componentele rămân neatinse. Astro
+trece pe `output: 'server'` pentru catalog și produs, restul rămâne static.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Generarea catalogului
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+```bash
+python3 scripts/genereaza-catalog.py    # rescrie src/data/*.json
+```

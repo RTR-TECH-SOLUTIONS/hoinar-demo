@@ -3,6 +3,13 @@ import path from 'node:path';
 
 /** Verifică fiecare link intern din build: să existe pagina la care trimite. */
 const RAD = './dist';
+// linkurile din HTML conțin calea de bază (ex. /hoinar-demo), dar fișierele
+// stau la rădăcina lui dist; o scoatem înainte de căutare
+const BAZA = (process.env.BAZA_SITE ?? JSON.parse(
+  (fs.readFileSync('astro.config.mjs', 'utf8').match(/base:\s*'([^']*)'/) ?? [null, ''])[1]
+    ? `"${(fs.readFileSync('astro.config.mjs', 'utf8').match(/base:\s*'([^']*)'/))[1]}"`
+    : '""',
+)).replace(/\/+$/, '');
 const html = [];
 (function scan(dir) {
   for (const f of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -14,7 +21,8 @@ const html = [];
 
 const exista = (href) => {
   // slash-ul final trebuie tăiat, altfel `p + '.html'` devine `404/.html`
-  const curat = href.split('#')[0].split('?')[0].replace(/\/+$/, '');
+  let curat = href.split('#')[0].split('?')[0].replace(/\/+$/, '');
+  if (BAZA && curat.startsWith(BAZA)) curat = curat.slice(BAZA.length);
   if (!curat) return fs.existsSync(path.join(RAD, 'index.html'));
   const p = path.join(RAD, curat);
   return fs.existsSync(p + '.html') || fs.existsSync(path.join(p, 'index.html'));
@@ -25,7 +33,7 @@ for (const f of html) {
   const continut = fs.readFileSync(f, 'utf8');
   for (const m of continut.matchAll(/href="(\/[^"]*)"/g)) {
     const href = m[1];
-    if (href.startsWith('//') || href.startsWith('/_astro') || href.startsWith('/media') || /\.(svg|png|jpg|webp|ico|css|js|xml|txt|mp4|webm)$/.test(href)) continue;
+    if (href.startsWith('//') || href.includes('/_astro') || href.includes('/media') || /\.(svg|png|jpg|webp|ico|css|js|xml|txt|mp4|webm)$/.test(href)) continue;
     if (!exista(href)) {
       if (!rupte.has(href)) rupte.set(href, new Set());
       rupte.get(href).add(path.relative(RAD, f));

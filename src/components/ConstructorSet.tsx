@@ -11,6 +11,9 @@ export interface PiesaSet {
   tipNume: string;
   pretRon: number;
   pretVechiRon?: number;
+  /** Folosită la afișarea rândului. */
+  imagineMica: string;
+  /** Trimisă în coș, unde se afișează mai mare. */
   imagine: string;
   url: string;
   marimi: string[];
@@ -97,9 +100,9 @@ export default function ConstructorSet({ piese, presel, t }: Props) {
                   )}
                 </button>
 
-                <a href={p.url} className="shrink-0 overflow-hidden rounded-[8px] bg-crem">
+                <a href={p.url} aria-label={p.tipNume} className="shrink-0 overflow-hidden rounded-[8px] bg-crem">
                   <img
-                    src={p.imagine}
+                    src={p.imagineMica}
                     alt=""
                     width={56}
                     height={70}
@@ -155,7 +158,7 @@ export default function ConstructorSet({ piese, presel, t }: Props) {
                 {selectate.slice(0, 4).map((p, i) => (
                   <li key={p.slug} className="apare" style={{ marginLeft: i === 0 ? 0 : '-0.7rem', zIndex: 10 - i, '--pas': `${i * 60}ms` } as any}>
                     <img
-                      src={p.imagine}
+                      src={p.imagineMica}
                       alt=""
                       width={44}
                       height={54}

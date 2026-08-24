@@ -91,50 +91,24 @@ export async function getMeniu(lang: Limba): Promise<ItemMeniu[]> {
     },
     {
       slug: 'lese',
-      eticheta: ro ? 'Lese & Zgărzi' : 'Leads & Collars',
+      eticheta: ro ? 'Lese' : 'Leads',
       href: u('/categorie/lesa'),
       coloane: [
         { imagine: '/media/produse/lesa-carou-bruma.jpg', titlu: numeTip('lesa'), linkuri: peTesaturi('lesa') },
-        { imagine: '/media/produse/zgarda-dungi-sinaia.jpg', titlu: numeTip('zgarda'), linkuri: peTesaturi('zgarda') },
-        {
-          imagine: '/media/produse/medalion.jpg',
-          titlu: numeTip('medalion'),
-          linkuri: [
-            { eticheta: ro ? 'Toate medalioanele' : 'All tags', href: u('/categorie/medalion') },
-            { eticheta: ro ? 'Rotund 25 mm' : 'Round 25 mm', href: u('/categorie/medalion?marime=25 cm') },
-            { eticheta: ro ? 'Rotund 32 mm' : 'Round 32 mm', href: u('/categorie/medalion?marime=32 cm') },
-          ],
-        },
         {
           imagine: '/media/produse/lesa-canepa-naturala.jpg',
           titlu: ro ? 'Lungimi' : 'Lengths',
           linkuri: [
             { eticheta: ro ? 'Lesă 120 cm' : 'Lead 120 cm', href: u('/categorie/lesa?marime=120 cm') },
             { eticheta: ro ? 'Lesă 180 cm' : 'Lead 180 cm', href: u('/categorie/lesa?marime=180 cm') },
-            { eticheta: ro ? 'Seturi complete' : 'Full sets', href: u('/colectii?tip=set') },
           ],
         },
-        // lesa Dungi Sinaia e la −20%
-        promo('/media/produse/lesa-dungi-sinaia.jpg'),
-      ],
-    },
-    {
-      slug: 'genti',
-      eticheta: ro ? 'Genți de plimbare' : 'Walking Bags',
-      href: u('/categorie/geanta'),
-      coloane: [
-        { imagine: '/media/produse/geanta-carou-bruma.jpg', titlu: numeTip('geanta'), linkuri: peTesaturi('geanta') },
         {
-          imagine: '/media/produse/geanta-dungi-sinaia.jpg',
-          titlu: ro ? 'Seturi' : 'Sets',
-          linkuri: colectii.map((c) => ({ eticheta: `${ro ? 'Set' : 'Set'} ${c.nume}`, href: u(`/produs/set-${c.slug}`) })),
-        },
-        {
-          imagine: '/media/produse/bandana-dungi-sinaia.jpg',
-          titlu: ro ? 'Pentru plimbare' : 'For the walk',
+          imagine: '/media/produse/zgarda-carou-bruma.jpg',
+          titlu: ro ? 'Se poartă cu' : 'Goes with',
           linkuri: [
-            { eticheta: ro ? 'Bandane' : 'Bandanas', href: u('/categorie/bandana') },
-            { eticheta: ro ? 'Medalioane gravate' : 'Engraved tags', href: u('/categorie/medalion') },
+            { eticheta: ro ? 'Zgărzi' : 'Collars', href: u('/categorie/zgarda') },
+            { eticheta: ro ? 'Hamuri' : 'Harnesses', href: u('/categorie/ham') },
             { eticheta: ro ? 'Seturi complete' : 'Full sets', href: u('/colectii?tip=set') },
           ],
         },
@@ -143,24 +117,33 @@ export async function getMeniu(lang: Limba): Promise<ItemMeniu[]> {
           titlu: ro ? 'Țesături' : 'Cloths',
           linkuri: colectii.map((c) => ({ eticheta: c.nume, href: u(`/colectie/${c.slug}`) })),
         },
-        // geanta Cânepă Naturală e la −30%
-        promo('/media/produse/geanta-canepa-naturala.jpg'),
+        // lesa Dungi Sinaia e la −20%
+        promo('/media/produse/lesa-dungi-sinaia.jpg'),
       ],
     },
     {
-      slug: 'accesorii',
-      eticheta: ro ? 'Accesorii' : 'Accessories',
-      href: u('/categorie/bandana'),
+      slug: 'zgarzi',
+      eticheta: ro ? 'Zgărzi' : 'Collars',
+      href: u('/categorie/zgarda'),
       coloane: [
-        { imagine: '/media/produse/bandana-buline-cacao.jpg', titlu: numeTip('bandana'), linkuri: peTesaturi('bandana') },
-        { imagine: '/media/produse/medalion.jpg', titlu: numeTip('medalion'), linkuri: peTesaturi('medalion') },
+        { imagine: '/media/produse/zgarda-dungi-sinaia.jpg', titlu: numeTip('zgarda'), linkuri: peTesaturi('zgarda') },
         {
-          imagine: '/media/produse/zgarda-carou-bruma.jpg',
-          titlu: ro ? 'Se potrivesc cu' : 'Goes with',
+          imagine: '/media/produse/medalion.jpg',
+          titlu: numeTip('medalion'),
           linkuri: [
-            { eticheta: ro ? 'Zgărzi' : 'Collars', href: u('/categorie/zgarda') },
-            { eticheta: ro ? 'Lese' : 'Leads', href: u('/categorie/lesa') },
-            { eticheta: ro ? 'Tot ce facem' : 'Everything we make', href: u('/colectii') },
+            { eticheta: ro ? 'Toate medalioanele' : 'All tags', href: u('/categorie/medalion') },
+            { eticheta: ro ? 'Rotund 25 mm' : 'Round 25 mm', href: u('/categorie/medalion?marime=25 mm') },
+            { eticheta: ro ? 'Rotund 32 mm' : 'Round 32 mm', href: u('/categorie/medalion?marime=32 mm') },
+          ],
+        },
+        {
+          imagine: '/media/lifestyle/07.jpg',
+          titlu: ro ? 'După mărime' : 'By size',
+          linkuri: [
+            { eticheta: ro ? 'Gât subțire (S)' : 'Slim neck (S)', href: u('/categorie/zgarda?marime=S') },
+            { eticheta: ro ? 'Mediu (M)' : 'Medium (M)', href: u('/categorie/zgarda?marime=M') },
+            { eticheta: ro ? 'Gât gros (L)' : 'Thick neck (L)', href: u('/categorie/zgarda?marime=L') },
+            { eticheta: ro ? 'Ghid de mărimi' : 'Size guide', href: u('/ghid-marimi') },
           ],
         },
         {
@@ -168,8 +151,33 @@ export async function getMeniu(lang: Limba): Promise<ItemMeniu[]> {
           titlu: ro ? 'Țesături' : 'Cloths',
           linkuri: colectii.map((c) => ({ eticheta: c.nume, href: u(`/colectie/${c.slug}`) })),
         },
-        // bandana Carou Brumă e la −30%
-        promo('/media/produse/bandana-carou-bruma.jpg'),
+        // zgarda Buline Cacao e la −25%
+        promo('/media/produse/zgarda-buline-cacao.jpg'),
+      ],
+    },
+    {
+      slug: 'accesorii',
+      eticheta: ro ? 'Accesorii' : 'Accessories',
+      href: u('/categorie/geanta'),
+      coloane: [
+        { imagine: '/media/produse/geanta-carou-bruma.jpg', titlu: numeTip('geanta'), linkuri: peTesaturi('geanta') },
+        { imagine: '/media/produse/bandana-buline-cacao.jpg', titlu: numeTip('bandana'), linkuri: peTesaturi('bandana') },
+        {
+          imagine: '/media/produse/medalion.jpg',
+          titlu: numeTip('medalion'),
+          linkuri: [
+            { eticheta: ro ? 'Toate medalioanele' : 'All tags', href: u('/categorie/medalion') },
+            { eticheta: ro ? 'Rotund 25 mm' : 'Round 25 mm', href: u('/categorie/medalion?marime=25 mm') },
+            { eticheta: ro ? 'Rotund 32 mm' : 'Round 32 mm', href: u('/categorie/medalion?marime=32 mm') },
+          ],
+        },
+        {
+          imagine: '/media/colectii/canepa-naturala.jpg',
+          titlu: ro ? 'Țesături' : 'Cloths',
+          linkuri: colectii.map((c) => ({ eticheta: c.nume, href: u(`/colectie/${c.slug}`) })),
+        },
+        // geanta Cânepă Naturală e la −30%
+        promo('/media/produse/geanta-canepa-naturala.jpg'),
       ],
     },
     {

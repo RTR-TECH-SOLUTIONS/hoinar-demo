@@ -10,6 +10,7 @@ import InimaProdus from '../InimaProdus.tsx';
 import Galerie from '../Galerie.tsx';
 import ConstructorSet from '../ConstructorSet.tsx';
 import CardProdus from '../CardProdus.astro';
+import Carusel from '../Carusel.astro';
 import Stele from '../Stele.astro';
 
 interface Props { produs: Produs; lang: Limba }
@@ -45,7 +46,8 @@ const pieseSet = await Promise.all(
     tipNume: p.tipNume,
     pretRon: p.pretRon,
     pretVechiRon: p.pretVechiRon,
-    imagine: await src(p.imagini[0], 420),
+    imagineMica: await src(p.imagini[0], 120),
+    imagine: await src(p.imagini[0], 240),
     url: u(`/produs/${p.slug}`),
     marimi: p.marimi,
   })),
@@ -83,6 +85,7 @@ const intrebari = [
       imagini={imaginiGalerie}
       alt={produs.nume}
       eticheta={lang === 'ro' ? 'Alte imagini' : 'More images'}
+      numeMiniatura={lang === 'ro' ? 'Imaginea {n}' : 'Image {n}'}
     />
     <!-- Acordeoanele stau sub fotografie, nu în coloana din dreapta:
          acolo rămânea un gol mare sub imagine. -->
@@ -302,24 +305,19 @@ const intrebari = [
 )}
 
 {inrudite.length > 0 && (
-  <section class="mt-[var(--sectiune)]">
-    <div class="container-brand flex items-end justify-between gap-6">
-      <div>
-        <h2 style="font-size: var(--pas-xl)">{t('produs.dinColectie')}</h2>
-        <p class="mt-1.5 text-[0.88rem] text-ciocolata/65">{colectie?.tesatura}</p>
+  <Carusel
+    titlu={t('produs.dinColectie')}
+    subtitlu={colectie?.tesatura}
+    linkEticheta={t('produs.veziTot')}
+    linkHref={u(`/colectie/${produs.colectie}`)}
+    eticheta={{ inapoi: t('carusel.inapoi'), inainte: t('carusel.inainte') }}
+  >
+    {inrudite.map((p) => (
+      <div class="w-[44vw] shrink-0 snap-start sm:w-[29vw] lg:w-[calc((100%-3rem)/4)]">
+        <CardProdus produs={p} lang={lang} />
       </div>
-      <a href={u(`/colectie/${produs.colectie}`)} class="shrink-0 text-[0.86rem] underline underline-offset-4 hover:text-teracota">
-        {t('produs.veziTot')}
-      </a>
-    </div>
-    <div class="mt-7 flex snap-x snap-mandatory gap-4 overflow-x-auto px-[clamp(1rem,0.5rem+2.5vw,3rem)] pb-3 [scrollbar-width:thin]">
-      {inrudite.map((p) => (
-        <div class="w-[46vw] shrink-0 snap-start sm:w-[30vw] lg:w-[calc((90rem-6rem-3rem)/4)]">
-          <CardProdus produs={p} lang={lang} />
-        </div>
-      ))}
-    </div>
-  </section>
+    ))}
+  </Carusel>
 )}
 
 {recomandate.length > 0 && (

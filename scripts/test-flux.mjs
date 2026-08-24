@@ -493,6 +493,56 @@ await page.waitForLoadState('networkidle');
 verifica('pastila de culoare duce la acelasi tip in alta culoare',
   page.url().includes('/produs/ham-') && !page.url().includes('buline-cacao'), page.url());
 
+// ---------- 26. carusel cu sageti ----------
+await page.goto(`${BAZA}/produs/zgarda-canepa-naturala`, { waitUntil: 'networkidle' });
+await page.waitForTimeout(1500);
+const car = page.locator('[data-carusel]').first();
+await car.scrollIntoViewIfNeeded();
+await page.waitForTimeout(600);
+const stareInitiala = await car.evaluate((el) => {
+  const pista = el.querySelector('[data-pista]');
+  const prim = pista.firstElementChild;
+  return {
+    sagetiVizibile: !el.querySelector('[data-sageti]').hidden,
+    inapoiDezactivat: el.querySelector('[data-inapoi]').disabled,
+    scrollLeft: Math.round(pista.scrollLeft),
+    // primul card trebuie sa inceapa de la marginea containerului, nu de la 0
+    aliniatCuContainerul: Math.round(prim.getBoundingClientRect().left) > 20,
+  };
+});
+verifica('caruselul are sageti', stareInitiala.sagetiVizibile);
+verifica('sageata inapoi e dezactivata la inceput', stareInitiala.inapoiDezactivat);
+verifica('pista porneste aliniata cu containerul, nu lipita de ecran',
+  stareInitiala.scrollLeft === 0 && stareInitiala.aliniatCuContainerul, JSON.stringify(stareInitiala));
+
+await car.locator('[data-inainte]').click();
+await page.waitForTimeout(900);
+const dupaInainte = await car.evaluate((el) => ({
+  scrollLeft: Math.round(el.querySelector('[data-pista]').scrollLeft),
+  inapoiDezactivat: el.querySelector('[data-inapoi]').disabled,
+}));
+verifica('sageata inainte deruleaza si activeaza inapoi',
+  dupaInainte.scrollLeft > 100 && !dupaInainte.inapoiDezactivat, JSON.stringify(dupaInainte));
+
+for (let i = 0; i < 4; i++) { await car.locator('[data-inainte]').click().catch(() => {}); await page.waitForTimeout(450); }
+verifica('la capat sageata inainte se dezactiveaza',
+  await car.locator('[data-inainte]').isDisabled());
+
+// ---------- 27. navigatia noua ----------
+await page.goto(`${BAZA}/`, { waitUntil: 'networkidle' });
+await page.waitForTimeout(700);
+const categoriiNav = await page.evaluate(() =>
+  [...document.querySelectorAll('[data-rand-nav] a')].map((a) => a.textContent?.replace(/\s+/g, ' ').trim()));
+verifica('navigatia are Lese si Zgarzi separat',
+  categoriiNav.some((x) => /^Lese/.test(x)) && categoriiNav.some((x) => /^Zgărzi/.test(x)),
+  categoriiNav.join(' | '));
+verifica('nu mai exista Genti de plimbare in navigatie',
+  !categoriiNav.some((x) => /Genți de plimbare/.test(x)), categoriiNav.join(' | '));
+await page.hover('[data-mega="accesorii"]');
+await page.waitForTimeout(500);
+verifica('gentile sunt in meniul Accesorii',
+  (await page.locator('[data-panou="accesorii"] a[href*="/categorie/geanta"]').count()) > 0);
+
 verifica('fara erori JavaScript', eroriConsola.length === 0, eroriConsola.slice(0, 3).join(' | '));
 
 await browser.close();

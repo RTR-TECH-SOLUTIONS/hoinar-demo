@@ -1,7 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
+import { url } from '../lib/i18n';
+const u = (c: string) => url('ro', c);
 ---
-<Base lang="ro" titlu="Pagina nu există — HOINAR">
+<Base lang="ro" titlu="Pagina nu există — HOINAR" descriere="Pagina căutată nu există. Vezi tot ce facem: hamuri, lese, zgărzi și genți de plimbare.">
   <div class="container-brand flex min-h-[46svh] flex-col items-center justify-center py-20 text-center">
     <p class="apare font-[family-name:var(--font-serif)] text-[4rem] leading-none text-camel">404</p>
     <h1 class="apare mt-4" style="font-size: var(--pas-2xl); --pas: 90ms">Aici nu e nimic</h1>
@@ -9,10 +11,10 @@ import Base from '../layouts/Base.astro';
       Pagina s-a mutat sau n-a existat niciodată. Se întâmplă.
     </p>
     <div class="apare mt-8 flex flex-wrap justify-center gap-3" style="--pas: 230ms">
-      <a href="/colectii" class="rounded-[10px] bg-ink px-7 py-3.5 text-[0.92rem] text-crem transition-[background-color,transform] duration-200 hover:bg-ciocolata active:scale-[0.97]">
+      <a href={u("/colectii")} class="rounded-[10px] bg-ink px-7 py-3.5 text-[0.92rem] text-crem transition-[background-color,transform] duration-200 hover:bg-ciocolata active:scale-[0.97]">
         Vezi tot ce facem
       </a>
-      <a href="/" class="rounded-[10px] border border-linie px-7 py-3.5 text-[0.92rem] transition-colors hover:border-ciocolata">
+      <a href={u("/")} class="rounded-[10px] border border-linie px-7 py-3.5 text-[0.92rem] transition-colors hover:border-ciocolata">
         Acasă
       </a>
     </div>

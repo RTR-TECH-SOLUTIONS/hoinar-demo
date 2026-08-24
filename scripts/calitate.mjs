@@ -1,0 +1,11 @@
+import { chromium } from 'playwright';
+const b = await chromium.launch();
+const p = await (await b.newContext({ viewport: { width: 1440, height: 950 }, deviceScaleFactor: 2 })).newPage();
+await p.goto('http://localhost:4390/produs/ham-carou-bruma', { waitUntil: 'networkidle' });
+await p.waitForTimeout(1200);
+const el = await p.$('[data-principala]');
+await el.screenshot({ path: '/tmp/q-produs.png' });
+await p.goto('http://localhost:4390/', { waitUntil: 'networkidle' });
+await p.waitForTimeout(1500);
+await p.screenshot({ path: '/tmp/q-hero.png', clip: { x: 0, y: 200, width: 1440, height: 560 } });
+await b.close();

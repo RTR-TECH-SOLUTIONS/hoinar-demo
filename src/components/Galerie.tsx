@@ -6,9 +6,11 @@ interface Props {
   imagini: Imagine[];
   alt: string;
   eticheta: string;
+  /** „Imaginea {n}”, pentru numele accesibil al miniaturilor. */
+  numeMiniatura: string;
 }
 
-export default function Galerie({ imagini, alt, eticheta }: Props) {
+export default function Galerie({ imagini, alt, eticheta, numeMiniatura }: Props) {
   const [activ, setActiv] = useState(0);
 
   /**
@@ -38,6 +40,7 @@ export default function Galerie({ imagini, alt, eticheta }: Props) {
                 type="button"
                 onClick={() => setActiv(i)}
                 aria-current={i === activ}
+                aria-label={numeMiniatura.replace('{n}', String(i + 1))}
                 className={`block overflow-hidden rounded-[8px] border transition-colors ${
                   i === activ ? 'border-ciocolata' : 'border-linie hover:border-camel'
                 }`}

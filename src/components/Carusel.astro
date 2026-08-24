@@ -1,0 +1,100 @@
+---
+/**
+ * Carusel orizontal cu săgeți. Derularea se face nativ (scroll-snap),
+ * săgețile doar împing cu o lățime de fereastră. Se dezactivează la capete,
+ * iar dacă totul încape pe ecran nu apar deloc.
+ */
+interface Props {
+  titlu: string;
+  subtitlu?: string;
+  linkEticheta?: string;
+  linkHref?: string;
+  eticheta: { inapoi: string; inainte: string };
+}
+const { titlu, subtitlu, linkEticheta, linkHref, eticheta } = Astro.props;
+---
+
+<section class="mt-[var(--sectiune)]" data-carusel>
+  <div class="container-brand flex flex-wrap items-end justify-between gap-4">
+    <div>
+      <h2 style="font-size: var(--pas-xl)">{titlu}</h2>
+      {subtitlu && <p class="mt-1.5 text-[0.88rem] text-ciocolata/65">{subtitlu}</p>}
+    </div>
+
+    <div class="flex items-center gap-4">
+      {linkHref && (
+        <a href={linkHref} class="text-[0.86rem] underline underline-offset-4 hover:text-teracota">
+          {linkEticheta}
+        </a>
+      )}
+      <div class="flex gap-2" data-sageti hidden>
+        <button
+          type="button"
+          data-inapoi
+          aria-label={eticheta.inapoi}
+          class="grid h-10 w-10 place-items-center rounded-full border border-linie transition-[background-color,border-color,transform] duration-200 hover:border-ciocolata active:scale-90 disabled:opacity-30 disabled:hover:border-linie"
+        >
+          <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" class="fill-none stroke-current" stroke-width="1.6">
+            <path d="M10 3L5 8l5 5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+        <button
+          type="button"
+          data-inainte
+          aria-label={eticheta.inainte}
+          class="grid h-10 w-10 place-items-center rounded-full border border-linie transition-[background-color,border-color,transform] duration-200 hover:border-ciocolata active:scale-90 disabled:opacity-30 disabled:hover:border-linie"
+        >
+          <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" class="fill-none stroke-current" stroke-width="1.6">
+            <path d="M6 3l5 5-5 5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- scroll-padding-inline trebuie să fie egal cu padding-ul containerului:
+       fără el, scroll-snap aliniază primul card la marginea ferestrei de
+       derulare, sare peste padding și pista pornește lipită de ecran. -->
+  <div
+    data-pista
+    style="scroll-padding-inline: clamp(1rem, 0.5rem + 2.5vw, 3rem)"
+    class="container-brand mt-7 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+  >
+    <slot />
+  </div>
+</section>
+
+<script>
+  for (const carusel of document.querySelectorAll<HTMLElement>('[data-carusel]')) {
+    const pista = carusel.querySelector<HTMLElement>('[data-pista]');
+    const sageti = carusel.querySelector<HTMLElement>('[data-sageti]');
+    const inapoi = carusel.querySelector<HTMLButtonElement>('[data-inapoi]');
+    const inainte = carusel.querySelector<HTMLButtonElement>('[data-inainte]');
+    if (!pista || !sageti || !inapoi || !inainte) continue;
+
+    const potDerula = () => pista.scrollWidth - pista.clientWidth > 4;
+
+    const actualizeaza = () => {
+      const are = potDerula();
+      sageti.hidden = !are;
+      if (!are) return;
+      inapoi.disabled = pista.scrollLeft <= 2;
+      inainte.disabled = pista.scrollLeft >= pista.scrollWidth - pista.clientWidth - 2;
+    };
+
+    const pas = () => Math.max(240, pista.clientWidth * 0.8);
+    const fara = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    inapoi.addEventListener('click', () =>
+      pista.scrollBy({ left: -pas(), behavior: fara ? 'auto' : 'smooth' }));
+    inainte.addEventListener('click', () =>
+      pista.scrollBy({ left: pas(), behavior: fara ? 'auto' : 'smooth' }));
+
+    pista.addEventListener('scroll', actualizeaza, { passive: true });
+    window.addEventListener('resize', actualizeaza);
+    // imaginile schimbă lățimea pistei după ce se încarcă
+    for (const im of pista.querySelectorAll('img')) {
+      if (!im.complete) im.addEventListener('load', actualizeaza, { once: true });
+    }
+    actualizeaza();
+  }
+</script>

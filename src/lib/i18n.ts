@@ -3,6 +3,18 @@ import type { Limba } from './pret';
 export const LIMBI: Limba[] = ['ro', 'en'];
 export const LIMBA_IMPLICITA: Limba = 'ro';
 
+/**
+ * Calea de bază a site-ului. Pe GitHub Pages proiectul stă într-un
+ * subfolder (/nume-repo), deci fiecare link intern trebuie prefixat.
+ * Local e '/' și nu schimbă nimic.
+ */
+const BAZA = import.meta.env.BASE_URL.replace(/\/+$/, '');
+
+/** Cale către un fișier din public/ (video, favicon), cu baza aplicată. */
+export function fisier(cale: string): string {
+  return `${BAZA}${cale.startsWith('/') ? cale : `/${cale}`}`;
+}
+
 /** Prefixul de rută pentru o limbă. Româna nu are prefix. */
 export function prefix(lang: Limba): string {
   return lang === 'ro' ? '' : `/${lang}`;
@@ -11,17 +23,22 @@ export function prefix(lang: Limba): string {
 /** Construiește o cale absolută în limba dată. cale începe cu "/". */
 export function url(lang: Limba, cale: string): string {
   const c = cale === '/' ? '' : cale;
-  return `${prefix(lang)}${c}` || '/';
+  return `${BAZA}${prefix(lang)}${c}` || '/';
 }
 
 /** Extrage limba dintr-un pathname. */
 export function limbaDin(pathname: string): Limba {
-  return pathname.startsWith('/en') ? 'en' : 'ro';
+  return faraBaza(pathname).startsWith('/en') ? 'en' : 'ro';
+}
+
+/** Scoate calea de bază dintr-un pathname, ca să rămână ruta curată. */
+function faraBaza(pathname: string): string {
+  return BAZA && pathname.startsWith(BAZA) ? pathname.slice(BAZA.length) || '/' : pathname;
 }
 
 /** Aceeași pagină în cealaltă limbă. */
 export function comuta(pathname: string, spre: Limba): string {
-  const fara = pathname.replace(/^\/en(?=\/|$)/, '') || '/';
+  const fara = faraBaza(pathname).replace(/^\/en(?=\/|$)/, '') || '/';
   return url(spre, fara);
 }
 
@@ -118,6 +135,8 @@ const t = {
     'produs.culoare': 'Culoare',
     'produs.recomandate': 'Se cumpără des împreună',
     'produs.veziTot': 'Vezi toată colecția',
+    'carusel.inapoi': 'Produsele anterioare',
+    'carusel.inainte': 'Produsele următoare',
     'produs.set': 'Fă-ți setul',
     'produs.setText': 'Alege ce vrei din aceeași țesătură. Prețul scade pe măsură ce adaugi.',
     'produs.economie': 'Economisești',
@@ -338,6 +357,8 @@ const t = {
     'produs.culoare': 'Colour',
     'produs.recomandate': 'Often bought together',
     'produs.veziTot': 'See the whole collection',
+    'carusel.inapoi': 'Previous products',
+    'carusel.inainte': 'Next products',
     'produs.set': 'Build your set',
     'produs.setText': 'Pick what you want in the same cloth. The price drops as you add.',
     'produs.economie': 'You save',

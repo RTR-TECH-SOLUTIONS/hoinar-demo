@@ -270,7 +270,7 @@ export default function Catalog({ produse, culori, tipuri, marimi, ascunde = [],
         </button>
 
         <div id="panou-filtre" className={`${panouMobil ? 'mt-6' : 'hidden'} lg:mt-0 lg:block`}>
-          <p className="mb-5 hidden text-[0.8rem] uppercase tracking-[0.12em] text-ciocolata lg:block">{t.titlu}</p>
+          <h2 className="mb-5 hidden text-[0.8rem] uppercase tracking-[0.12em] text-ciocolata lg:block">{t.titlu}</h2>
           {filtreBloc}
         </div>
       </aside>

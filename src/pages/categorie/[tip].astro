@@ -15,6 +15,6 @@ export async function getStaticPaths() {
 
 const { tip, produse } = Astro.props;
 ---
-<Base lang="ro" titlu={`${tip.nume} — HOINAR`}>
+<Base lang="ro" titlu={`${tip.nume} — HOINAR`} descriere={`${tip.nume} HOINAR, în patru țesături și mai multe mărimi. Croite în București, livrare în 24-48 de ore.`}>
   <Lista lang="ro" titlu={tip.nume} produse={produse} ascunde={['tip']} />
 </Base>

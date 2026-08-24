@@ -97,7 +97,7 @@ export default function CosDrawer({ t, urlCos }: Props) {
             <ul className="divide-y divide-linie">
               {linii.map((l) => (
                 <li key={`${l.slug}-${l.marime}`} className="flex gap-4 py-4">
-                  <a href={l.url} className="shrink-0">
+                  <a href={l.url} aria-label={l.nume} className="shrink-0">
                     <img
                       src={l.imagine}
                       alt=""

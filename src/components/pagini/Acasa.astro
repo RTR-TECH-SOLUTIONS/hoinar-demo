@@ -2,10 +2,11 @@
 import { Image } from 'astro:assets';
 import { getImagine } from '../../lib/imagini';
 import { getBestsellers, getColectii, getTipuri, getReduceri, getNoutati } from '../../lib/catalog';
-import { traduceri, url } from '../../lib/i18n';
+import { traduceri, url, fisier } from '../../lib/i18n';
 import { formatPret } from '../../lib/pret';
 import type { Limba } from '../../lib/pret';
 import CardProdus from '../CardProdus.astro';
+import Carusel from '../Carusel.astro';
 import Stele from '../Stele.astro';
 import Numaratoare from '../Numaratoare.tsx';
 import recenziiBrute from '../../data/recenzii.json';
@@ -60,8 +61,8 @@ const ugc = ['/media/ugc/01.jpg', '/media/ugc/02.jpg', '/media/ugc/05.jpg', '/me
     poster={heroPoster.src}
     aria-hidden="true"
   >
-    <source src="/media/video/hero.webm" type="video/webm" />
-    <source src="/media/video/hero.mp4" type="video/mp4" />
+    <source src={fisier("/media/video/hero.webm")} type="video/webm" />
+    <source src={fisier("/media/video/hero.mp4")} type="video/mp4" />
   </video>
   <Image
     src={heroPoster}
@@ -197,8 +198,8 @@ const ugc = ['/media/ugc/01.jpg', '/media/ugc/02.jpg', '/media/ugc/05.jpg', '/me
     poster={alergarePoster.src}
     aria-hidden="true"
   >
-    <source src="/media/video/alergare.webm" type="video/webm" />
-    <source src="/media/video/alergare.mp4" type="video/mp4" />
+    <source src={fisier("/media/video/alergare.webm")} type="video/webm" />
+    <source src={fisier("/media/video/alergare.mp4")} type="video/mp4" />
   </video>
   <Image
     src={alergarePoster}
@@ -370,7 +371,7 @@ const ugc = ['/media/ugc/01.jpg', '/media/ugc/02.jpg', '/media/ugc/05.jpg', '/me
     <h2 style="font-size: var(--pas-2xl)">{ro ? 'De la oamenii care le poartă' : 'From the people who wear them'}</h2>
     <p class="text-[0.85rem] text-ciocolata/60">#hoinarpelume</p>
   </div>
-  <div data-apare class="mt-7 grid grid-cols-2 gap-2 px-[clamp(1rem,0.5rem+2.5vw,3rem)] sm:grid-cols-5 sm:gap-3">
+  <div data-apare class="container-brand mt-7 grid grid-cols-2 gap-2 sm:grid-cols-5 sm:gap-3">
     {ugc.map((cale, i) => (
       <div class={`overflow-hidden rounded-[10px] bg-nisip ${i > 3 ? 'hidden sm:block' : ''}`}>
         <Image
