@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useStore } from '@nanostores/react';
 import { moneda as monedaStore } from '../stores/cos';
 import { useMontat } from '../lib/useMontat';
@@ -50,6 +50,19 @@ export default function Catalog({ produse, colectii, tipuri, marimi, ascunde = [
   const [doarReduse, setDoarReduse] = useState(false);
   const [sortare, setSortare] = useState<Sortare>('recomandate');
   const [panouDeschis, setPanouDeschis] = useState(false);
+
+  // Linkurile din meniu vin cu ?colectie=, ?tip=, ?marime=. Le citim după
+  // montare, nu la initializare, ca prima randare sa fie identica cu serverul.
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search);
+    const c = q.get('colectie');
+    const ti = q.get('tip');
+    const m = q.get('marime');
+    if (c) setColectie(c);
+    if (ti) setTip(ti);
+    if (m) setMarime(m);
+    if (q.get('reduceri') === '1') setDoarReduse(true);
+  }, []);
 
   const numarFiltre = [colectie, tip, marime, doarStoc || null, doarReduse || null].filter(Boolean).length;
   const areFiltru = numarFiltre > 0;

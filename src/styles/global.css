@@ -148,20 +148,17 @@ header { border-bottom: 1px solid var(--color-linie); }
   padding-block: var(--sectiune);
 }
 
-/* Mega-meniul de colecții.
-   E copil direct al barei de navigație, ca să ocupe toată lățimea și să nu
-   iasă din ecran atunci când declanșatorul stă spre marginea dreaptă.
-   Legătura cu linkul se face prin :has(), nu prin group-hover, tocmai
-   pentru că panoul NU e descendentul linkului. */
+/* Mega-meniul.
+   Panourile sunt copii direcți ai barei de navigație, ca să ocupe toată
+   lățimea și să nu iasă din ecran. Vizibilitatea o comandă scriptul din
+   header, prin data-deschis, pentru că panoul nu e descendentul linkului
+   care îl declanșează. */
 .mega {
   visibility: hidden;
   opacity: 0;
-  transition: opacity 200ms ease-out, visibility 200ms;
+  transition: opacity 180ms ease-out, visibility 180ms;
 }
-nav:has([data-mega]:hover) .mega,
-nav:has([data-mega]:focus-visible) .mega,
-nav:has(.mega:hover) .mega,
-nav:has(.mega:focus-within) .mega {
+.mega[data-deschis='da'] {
   visibility: visible;
   opacity: 1;
 }

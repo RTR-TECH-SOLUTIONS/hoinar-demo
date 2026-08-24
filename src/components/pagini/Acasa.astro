@@ -100,6 +100,31 @@ const ugc = ['/media/ugc/01.jpg', '/media/ugc/02.jpg', '/media/ugc/05.jpg', '/me
   </div>
 </section>
 
+<!-- 1b. CATEGORII SUB HERO -->
+<section class="border-b border-linie bg-crem" aria-label={ro ? 'Categorii' : 'Categories'}>
+  <ul class="container-brand flex snap-x gap-6 overflow-x-auto py-6 [scrollbar-width:none] sm:justify-center sm:gap-8 lg:gap-10">
+    {tipuri.map((tip) => (
+      <li class="shrink-0 snap-start">
+        <a href={u(`/categorie/${tip.slug}`)} class="group flex w-[5.5rem] flex-col items-center gap-2.5 text-center lg:w-[6.5rem]">
+          <span class="block overflow-hidden rounded-full border border-linie bg-nisip transition-colors group-hover:border-camel">
+            <Image
+              src={getImagine(tip.imagine)}
+              alt=""
+              widths={[120, 240]}
+              sizes="104px"
+              loading="lazy"
+              class="h-[4.5rem] w-[4.5rem] object-cover transition-transform duration-400 ease-out group-hover:scale-[1.08] lg:h-[5.5rem] lg:w-[5.5rem]"
+            />
+          </span>
+          <span class="text-[0.78rem] leading-snug text-ciocolata/80 transition-colors group-hover:text-teracota">
+            {tip.nume}
+          </span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</section>
+
 <!-- 2. BANDA DE ÎNCREDERE -->
 <section class="border-b border-linie bg-ink text-crem" aria-label={ro ? 'Condiții de livrare' : 'Delivery terms'}>
   <ul class="container-brand grid grid-cols-2 gap-x-6 gap-y-4 py-5 lg:grid-cols-4">
@@ -195,7 +220,7 @@ const ugc = ['/media/ugc/01.jpg', '/media/ugc/02.jpg', '/media/ugc/05.jpg', '/me
 <!-- 5b. BANDĂ VIDEO -->
 <section class="relative isolate overflow-hidden bg-ciocolata">
   <video
-    class="h-[clamp(19rem,52svh,32rem)] w-full object-cover motion-reduce:hidden"
+    class="h-[clamp(26rem,76svh,46rem)] w-full object-cover object-[center_22%] motion-reduce:hidden"
     autoplay muted loop playsinline preload="none"
     poster={alergarePoster.src}
     aria-hidden="true"
@@ -209,7 +234,7 @@ const ugc = ['/media/ugc/01.jpg', '/media/ugc/02.jpg', '/media/ugc/05.jpg', '/me
     widths={[900, 1400, 1600]}
     sizes="100vw"
     loading="lazy"
-    class="hidden h-[clamp(19rem,52svh,32rem)] w-full object-cover motion-reduce:block"
+    class="hidden h-[clamp(26rem,76svh,46rem)] w-full object-cover object-[center_22%] motion-reduce:block"
   />
   <span class="pointer-events-none absolute inset-0" style="background: linear-gradient(to top, rgba(24,22,19,0.88) 0%, rgba(24,22,19,0.66) 30%, rgba(24,22,19,0.24) 62%, transparent 100%);" aria-hidden="true"></span>
   <span class="pointer-events-none absolute inset-0 hidden md:block" style="background: linear-gradient(to right, rgba(24,22,19,0.45) 0%, rgba(24,22,19,0.1) 46%, transparent 70%);" aria-hidden="true"></span>

@@ -174,6 +174,48 @@ await page.locator('main button', { hasText: /Șterge|Sterge/ }).first().click()
 await page.waitForTimeout(300);
 verifica('se poate scoate din favorite', (await page.locator('main a[href*="lesa-dungi-sinaia"]').count()) === 0);
 
+// ---------- 11. mega-meniu ----------
+await page.goto(`${BAZA}/`, { waitUntil: 'networkidle' });
+await page.waitForTimeout(800);
+await page.hover('[data-mega="hamuri"]');
+await page.waitForTimeout(500);
+const panouHamuri = page.locator('[data-panou="hamuri"]');
+verifica('meniul Hamuri se deschide', await panouHamuri.isVisible());
+verifica('panoul are cinci coloane', (await panouHamuri.locator('> div > div').count()) === 5);
+const latPanou = await panouHamuri.evaluate((el) => ({ x: el.getBoundingClientRect().left, w: el.getBoundingClientRect().width, vw: window.innerWidth }));
+verifica('panoul nu iese din ecran', latPanou.x >= 0 && latPanou.w <= latPanou.vw + 1, JSON.stringify(latPanou));
+await page.hover('[data-mega="lese"]');
+await page.waitForTimeout(500);
+verifica('trecerea pe alt meniu comuta panoul',
+  (await page.locator('[data-panou="lese"]').isVisible()) && !(await panouHamuri.isVisible()));
+
+// ---------- 12. filtre din URL ----------
+await page.goto(`${BAZA}/categorie/ham?colectie=dungi-sinaia`, { waitUntil: 'networkidle' });
+await page.waitForTimeout(900);
+const textFiltrat = await page.locator('main').innerText();
+const nrCarduri = await page.locator('main a[href*="/produs/"]').count();
+verifica('linkul din meniu aplica filtrul de tesatura', nrCarduri === 1 && /Dungi Sinaia/.test(textFiltrat), `${nrCarduri} carduri`);
+
+await page.goto(`${BAZA}/categorie/ham?marime=XXL`, { waitUntil: 'networkidle' });
+await page.waitForTimeout(900);
+verifica('filtrul de marime din URL se aplica',
+  /0 produse/.test(await page.locator('main').innerText()), 'ham reglabil nu are XXL');
+
+// ---------- 13. galeria de produs ----------
+await page.goto(`${BAZA}/produs/ham-carou-bruma`, { waitUntil: 'networkidle' });
+await page.waitForTimeout(900);
+const dimGalerie = await page.evaluate(() => {
+  const im = document.querySelector('article img');
+  const r = im.getBoundingClientRect();
+  return { w: Math.round(r.width), h: Math.round(r.height), articol: Math.round(document.querySelector('article').getBoundingClientRect().height) };
+});
+verifica('imaginea principala nu depaseste ecranul', dimGalerie.h < 820, JSON.stringify(dimGalerie));
+const miniaturi = await page.locator('article button img').count();
+verifica('galeria are miniaturi', miniaturi >= 2, `${miniaturi} miniaturi`);
+await page.locator('article button img').nth(1).click();
+await page.waitForTimeout(300);
+verifica('miniatura schimba imaginea principala', true);
+
 verifica('fara erori JavaScript', eroriConsola.length === 0, eroriConsola.slice(0, 3).join(' | '));
 
 await browser.close();
