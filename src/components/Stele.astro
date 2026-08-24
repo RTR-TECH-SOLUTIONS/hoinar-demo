@@ -1,11 +1,15 @@
 ---
-interface Props { n: number }
-const { n } = Astro.props;
+interface Props { n: number; marime?: number; nr?: number }
+const { n, marime = 13, nr } = Astro.props;
+const plin = Math.round(n);
 ---
-<div class="flex items-center gap-0.5" role="img" aria-label={`${n} / 5`}>
-  {Array.from({ length: 5 }).map((_, i) => (
-    <svg width="13" height="13" viewBox="0 0 12 12" aria-hidden="true" class={i < n ? 'fill-teracota' : 'fill-linie'}>
-      <path d="M6 0.6l1.6 3.4 3.7.5-2.7 2.6.7 3.7L6 9.05 2.7 10.8l.7-3.7L.7 4.5l3.7-.5z" />
-    </svg>
-  ))}
+<div class="flex items-center gap-1.5">
+  <div class="flex items-center gap-[1px]" role="img" aria-label={`${n} din 5`}>
+    {Array.from({ length: 5 }).map((_, i) => (
+      <svg width={marime} height={marime} viewBox="0 0 12 12" aria-hidden="true" class={i < plin ? 'fill-camel' : 'fill-linie'}>
+        <path d="M6 0.6l1.6 3.4 3.7.5-2.7 2.6.7 3.7L6 9.05 2.7 10.8l.7-3.7L.7 4.5l3.7-.5z" />
+      </svg>
+    ))}
+  </div>
+  {nr != null && <span class="text-[0.75rem] tabular-nums text-ciocolata/55">({nr})</span>}
 </div>

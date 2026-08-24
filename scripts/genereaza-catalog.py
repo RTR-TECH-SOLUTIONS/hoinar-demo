@@ -193,6 +193,49 @@ STOC = {0: 14, 1: 9, 2: 21, 3: 6, 4: 17, 5: 3, 6: 11, 7: 25}
 
 LIFESTYLE = [f"/media/lifestyle/{i:02d}.jpg" for i in range(1, 12)]
 
+
+# Ce e la reducere si cat. Cheia e (tip, colectie). Reducerile sunt puse
+# deliberat pe produse care se vad des, ca oferta sa fie vizibila pe home.
+REDUCERI = {
+    ("ham", "buline-cacao"): 25,
+    ("ham", "dungi-sinaia"): 20,
+    ("ham-explore", "canepa-naturala"): 30,
+    ("lesa", "dungi-sinaia"): 20,
+    ("lesa", "canepa-naturala"): 15,
+    ("zgarda", "buline-cacao"): 25,
+    ("geanta", "dungi-sinaia"): 20,
+    ("geanta", "canepa-naturala"): 30,
+    ("bandana", "carou-bruma"): 30,
+    ("bandana", "dungi-sinaia"): 25,
+    ("halat", "buline-cacao"): 20,
+    ("medalion", "canepa-naturala"): 15,
+}
+
+NOUTATI = {("ham", "canepa-naturala"), ("bandana", "canepa-naturala"),
+           ("zgarda", "dungi-sinaia"), ("halat", "dungi-sinaia")}
+
+# rating si numar de recenzii, fixe ca sa nu se schimbe la fiecare build
+RATINGURI = [4.9, 4.7, 5.0, 4.8, 4.6, 4.9, 4.8, 5.0, 4.7, 4.9, 4.5, 4.8]
+RECENZII_NR = [214, 87, 342, 156, 63, 198, 121, 276, 94, 183, 47, 231]
+
+
+def comercial(tip_id, col_id, pret, n):
+    """Intoarce campurile comerciale pentru un produs."""
+    proc = REDUCERI.get((tip_id, col_id))
+    d = {
+        "rating": RATINGURI[n % len(RATINGURI)],
+        "nrRecenzii": RECENZII_NR[n % len(RECENZII_NR)],
+        "nou": (tip_id, col_id) in NOUTATI,
+        "reducere": proc or 0,
+    }
+    if proc:
+        # pretul afisat scade, cel vechi ramane cel de lista
+        d["pretVechiRon"] = pret
+        d["pretRon"] = int(round(pret * (100 - proc) / 100))
+    else:
+        d["pretRon"] = pret
+    return d
+
 def imagine_produs(tip, col):
     """Fiecare produs isi are poza in tesatura lui. Daca varianta nu exista
     inca pe disc, cade inapoi pe poza generica a tipului, ca build-ul sa treaca."""
@@ -216,7 +259,7 @@ for col in COLECTII:
             "tip": t["id"],
             "tipNume": t["nume"],
             "colectie": col["id"],
-            "pretRon": t["pret"],
+            **comercial(t["id"], col["id"], t["pret"], n),
             "marimi": t["marimi"],
             "imagini": [imagine_produs(t, col), col["imagine"], LIFESTYLE[n % len(LIFESTYLE)]],
             "descriere": {
@@ -264,6 +307,11 @@ for col in COLECTII:
         "stoc": 8,
         "bestseller": col["id"] in ("carou-bruma", "dungi-sinaia"),
         "segment": None,
+        "rating": 4.9,
+        "nrRecenzii": 128,
+        "nou": False,
+        "reducere": int(round((intreg - PRET_BUNDLE) / intreg * 100)),
+        "pretVechiRon": intreg,
     })
 
 os.makedirs("src/data", exist_ok=True)
@@ -271,7 +319,10 @@ io.open("src/data/colectii.json", "w", encoding="utf-8").write(
     json.dumps(COLECTII, ensure_ascii=False, indent=2))
 io.open("src/data/produse.json", "w", encoding="utf-8").write(
     json.dumps(produse, ensure_ascii=False, indent=2))
+# ordinea din TIPURI e cea comerciala; o salvam explicit, altfel
+# incarcatorul de fisiere le intoarce alfabetic
 io.open("src/data/tipuri.json", "w", encoding="utf-8").write(
-    json.dumps([{k: v for k, v in t.items() if k in ("id", "nume", "imagine")} for t in TIPURI],
+    json.dumps([{**{k: v for k, v in t.items() if k in ("id", "nume", "imagine")}, "ordine": i}
+                for i, t in enumerate(TIPURI)],
                ensure_ascii=False, indent=2))
 print(f"colectii: {len(COLECTII)}  tipuri: {len(TIPURI)}  produse: {len(produse)}")

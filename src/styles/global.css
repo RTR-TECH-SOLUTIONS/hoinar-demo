@@ -28,7 +28,9 @@
 }
 
 :root {
-  --header-h: 4.5rem;
+  --header-h: 4.25rem;
+  --nav-h: 0rem;              /* rândul de categorii apare doar pe desktop */
+  --header-total: calc(var(--header-h) + var(--nav-h));
   --bara-h: 2.25rem;
 
   /* scală tipografică fluidă */
@@ -50,38 +52,50 @@
 }
 
 @media (min-width: 1024px) {
-  :root { --header-h: 5.25rem; }
+  :root {
+    --header-h: 4.75rem;
+    --nav-h: 2.75rem;
+  }
 }
 
-* { min-width: 0; }
+/* IMPORTANT: totul aici intră în @layer base.
+   Tailwind 4 pune utilitarele în layer-ul `utilities`, iar CSS-ul fără layer
+   are prioritate peste orice layer. Dacă regula de mai jos pentru h1-h4 ar
+   sta în afara layer-ului, ar bate `text-crem` și fiecare titlu pus pe fundal
+   închis s-ar randa maro pe maro. */
+@layer base {
+  * { min-width: 0; }
 
-html {
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-crem);
+    color: var(--color-ciocolata);
+    font-family: var(--font-sans);
+    font-size: var(--pas-base);
+    line-height: 1.6;
+    font-synthesis-weight: none;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    font-optical-sizing: auto;
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+    color: var(--color-ciocolata);
+  }
+
+  p { text-wrap: pretty; }
+
+  img, video { display: block; max-width: 100%; height: auto; }
 }
-
-body {
-  background: var(--color-crem);
-  color: var(--color-ciocolata);
-  font-family: var(--font-sans);
-  font-size: var(--pas-base);
-  line-height: 1.6;
-  font-synthesis-weight: none;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: clip;
-}
-
-h1, h2, h3, h4 {
-  font-family: var(--font-serif);
-  font-optical-sizing: auto;
-  font-weight: 400;
-  line-height: 1.08;
-  letter-spacing: -0.015em;
-  text-wrap: balance;
-  color: var(--color-ciocolata);
-}
-
-p { text-wrap: pretty; }
 
 /* focus vizibil, obligatoriu */
 :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
@@ -89,8 +103,6 @@ p { text-wrap: pretty; }
   outline-offset: 3px;
   border-radius: 3px;
 }
-
-img, video { display: block; max-width: 100%; height: auto; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

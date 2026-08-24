@@ -10,6 +10,11 @@ export interface ProdusCard {
   tip: string;
   colectie: string;
   pretRon: number;
+  pretVechiRon?: number;
+  reducere: number;
+  rating: number;
+  nrRecenzii: number;
+  nou: boolean;
   pretIntregRon?: number;
   economieRon: number;
   esteSet: boolean;
@@ -42,15 +47,17 @@ export default function Catalog({ produse, colectii, tipuri, marimi, ascunde = [
   const [tip, setTip] = useState<string | null>(null);
   const [marime, setMarime] = useState<string | null>(null);
   const [doarStoc, setDoarStoc] = useState(false);
+  const [doarReduse, setDoarReduse] = useState(false);
   const [sortare, setSortare] = useState<Sortare>('recomandate');
   const [panouDeschis, setPanouDeschis] = useState(false);
 
-  const numarFiltre = [colectie, tip, marime, doarStoc || null].filter(Boolean).length;
+  const numarFiltre = [colectie, tip, marime, doarStoc || null, doarReduse || null].filter(Boolean).length;
   const areFiltru = numarFiltre > 0;
 
   const lista = useMemo(() => {
     let l = produse.filter(
       (p) =>
+        (!doarReduse || p.reducere > 0) &&
         (!colectie || p.colectie === colectie) &&
         (!tip || p.tip === tip) &&
         (!marime || p.marimi.includes(marime)) &&
@@ -60,7 +67,7 @@ export default function Catalog({ produse, colectii, tipuri, marimi, ascunde = [
     else if (sortare === 'descrescator') l = [...l].sort((a, b) => b.pretRon - a.pretRon);
     else l = [...l].sort((a, b) => Number(b.bestseller) - Number(a.bestseller));
     return l;
-  }, [produse, colectie, tip, marime, doarStoc, sortare]);
+  }, [produse, colectie, tip, marime, doarStoc, doarReduse, sortare]);
 
   function Grup({
     titlu,
@@ -102,7 +109,7 @@ export default function Catalog({ produse, colectii, tipuri, marimi, ascunde = [
 
   return (
     <div className="grid gap-8 lg:grid-cols-[15rem_1fr] lg:gap-12">
-      <aside className="lg:sticky lg:top-[calc(var(--header-h)+1.5rem)] lg:self-start">
+      <aside className="lg:sticky lg:top-[calc(var(--header-total)+1.5rem)] lg:self-start">
         <button
           type="button"
           onClick={() => setPanouDeschis((v) => !v)}
@@ -139,15 +146,26 @@ export default function Catalog({ produse, colectii, tipuri, marimi, ascunde = [
             valoare={marime}
             seteaza={setMarime}
           />
-          <label className="flex cursor-pointer items-center gap-2.5 text-[0.85rem]">
-            <input
-              type="checkbox"
-              checked={doarStoc}
-              onChange={(e) => setDoarStoc(e.currentTarget.checked)}
-              className="h-[1.05rem] w-[1.05rem] cursor-pointer accent-[#181613]"
-            />
-            {t.inStoc}
-          </label>
+          <div className="space-y-2.5">
+            <label className="flex cursor-pointer items-center gap-2.5 text-[0.85rem]">
+              <input
+                type="checkbox"
+                checked={doarReduse}
+                onChange={(e) => setDoarReduse(e.currentTarget.checked)}
+                className="h-[1.05rem] w-[1.05rem] cursor-pointer accent-[#a15c3a]"
+              />
+              <span className="text-teracota">{t.doarReduceri}</span>
+            </label>
+            <label className="flex cursor-pointer items-center gap-2.5 text-[0.85rem]">
+              <input
+                type="checkbox"
+                checked={doarStoc}
+                onChange={(e) => setDoarStoc(e.currentTarget.checked)}
+                className="h-[1.05rem] w-[1.05rem] cursor-pointer accent-[#181613]"
+              />
+              {t.inStoc}
+            </label>
+          </div>
           {areFiltru && (
             <button
               type="button"
@@ -156,6 +174,7 @@ export default function Catalog({ produse, colectii, tipuri, marimi, ascunde = [
                 setTip(null);
                 setMarime(null);
                 setDoarStoc(false);
+                setDoarReduse(false);
               }}
               className="text-[0.83rem] underline underline-offset-4 hover:text-teracota"
             >
@@ -201,23 +220,49 @@ export default function Catalog({ produse, colectii, tipuri, marimi, ascunde = [
                     loading="lazy"
                     className="absolute inset-0 aspect-[3/4] w-full object-cover opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100"
                   />
-                  {p.esteSet && (
-                    <span className="absolute left-3 top-3 rounded-[6px] bg-ink px-2.5 py-1 text-[0.68rem] text-crem">
-                      {t.economie} {p.economieRon} lei
-                    </span>
-                  )}
-                  {!p.esteSet && p.stoc > 0 && p.stoc <= 6 && (
-                    <span className="absolute left-3 top-3 rounded-[6px] bg-crem/92 px-2.5 py-1 text-[0.68rem] text-teracota">
-                      {t.ultimele} {p.stoc}
-                    </span>
-                  )}
+                  <div className="pointer-events-none absolute inset-x-2.5 top-2.5 flex items-start justify-between gap-2">
+                    <div className="flex flex-col items-start gap-1.5">
+                      {p.reducere > 0 && (
+                        <span className="rounded-[6px] bg-teracota px-2 py-1 text-[0.72rem] font-medium leading-none text-crem tabular-nums">
+                          −{p.reducere}%
+                        </span>
+                      )}
+                      {p.esteSet && (
+                        <span className="rounded-[6px] bg-ink px-2 py-1 text-[0.72rem] leading-none text-crem">
+                          {t.set}
+                        </span>
+                      )}
+                      {p.nou && p.reducere === 0 && (
+                        <span className="rounded-[6px] bg-ciocolata px-2 py-1 text-[0.72rem] leading-none text-crem">
+                          {t.nou}
+                        </span>
+                      )}
+                    </div>
+                    {p.stoc > 0 && p.stoc <= 6 && (
+                      <span className="rounded-[6px] bg-crem/95 px-2 py-1 text-[0.72rem] leading-none text-teracota tabular-nums">
+                        {t.ultimele} {p.stoc}
+                      </span>
+                    )}
+                  </div>
                 </div>
-                <h3 className="mt-3 text-[0.92rem] leading-snug">{p.nume}</h3>
-                <p className="mt-1 text-[0.88rem] tabular-nums text-ciocolata/80">
-                  {formatPret(p.pretRon, moneda)}
-                  {p.pretIntregRon && (
-                    <span className="ml-2 text-ciocolata/45 line-through">
-                      {formatPret(p.pretIntregRon, moneda)}
+                <div className="mt-3 flex items-center gap-1.5">
+                  <div className="flex items-center gap-[1px]" role="img" aria-label={`${p.rating} / 5`}>
+                    {[0, 1, 2, 3, 4].map((i) => (
+                      <svg key={i} width="11" height="11" viewBox="0 0 12 12" aria-hidden="true" className={i < Math.round(p.rating) ? 'fill-camel' : 'fill-linie'}>
+                        <path d="M6 0.6l1.6 3.4 3.7.5-2.7 2.6.7 3.7L6 9.05 2.7 10.8l.7-3.7L.7 4.5l3.7-.5z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <span className="text-[0.75rem] tabular-nums text-ciocolata/55">({p.nrRecenzii})</span>
+                </div>
+                <h3 className="mt-1.5 text-[0.92rem] leading-snug">{p.nume}</h3>
+                <p className="mt-1 flex flex-wrap items-baseline gap-2 text-[0.92rem] tabular-nums">
+                  <span className={p.pretVechiRon ? 'font-medium text-teracota' : 'text-ciocolata'}>
+                    {formatPret(p.pretRon, moneda)}
+                  </span>
+                  {p.pretVechiRon && (
+                    <span className="text-[0.82rem] text-ciocolata/45 line-through">
+                      {formatPret(p.pretVechiRon, moneda)}
                     </span>
                   )}
                 </p>

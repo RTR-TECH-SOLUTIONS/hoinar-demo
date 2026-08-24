@@ -1,115 +1,202 @@
 ---
-import { getColectii, getTipuri } from '../lib/catalog';
+import { getImage } from 'astro:assets';
+import { Image } from 'astro:assets';
+import { getImagine } from '../lib/imagini';
+import { getColectii, getTipuri, getProduse, getReduceri } from '../lib/catalog';
 import { traduceri, url, comuta } from '../lib/i18n';
+import { formatPret } from '../lib/pret';
 import type { Limba } from '../lib/pret';
 import CosButon from './CosButon.tsx';
 import SelectorMoneda from './SelectorMoneda.tsx';
-import { Image } from 'astro:assets';
-import { getImagine } from '../lib/imagini';
+import Cautare from './Cautare.tsx';
+import BaraPromo from './BaraPromo.astro';
 
 interface Props { lang: Limba; pathname: string }
 const { lang, pathname } = Astro.props;
 const t = traduceri(lang);
-const colectii = await getColectii(lang);
-const tipuri = await getTipuri(lang);
+const ro = lang === 'ro';
 const u = (c: string) => url(lang, c);
 
-const navPrincipal = [
+const colectii = await getColectii(lang);
+const tipuri = await getTipuri(lang);
+const produse = await getProduse(lang, {});
+const reduceri = await getReduceri(lang, 1);
+
+async function src(cale: string, w: number) {
+  return (await getImage({ src: getImagine(cale), width: w, format: 'webp' })).src;
+}
+
+const numeColectie = new Map(colectii.map((c) => [c.slug, c.nume]));
+const indexCautare = await Promise.all(
+  produse.map(async (p) => ({
+    slug: p.slug,
+    nume: p.nume,
+    tipNume: p.tipNume,
+    colectieNume: numeColectie.get(p.colectie) ?? '',
+    pretRon: p.pretRon,
+    pretVechiRon: p.pretVechiRon,
+    img: await src(p.imagini[0], 90),
+    url: u(`/produs/${p.slug}`),
+  })),
+);
+
+const categorii = [
   { eticheta: t('nav.hamuri'), href: u('/categorie/ham') },
   { eticheta: t('nav.lese'), href: u('/categorie/lesa') },
   { eticheta: t('nav.genti'), href: u('/categorie/geanta') },
+  { eticheta: t('nav.accesorii'), href: u('/categorie/bandana') },
 ];
+
+const promoMega = reduceri[0];
 ---
 
-<div class="bg-ink text-crem">
-  <div class="container-brand flex h-[var(--bara-h)] items-center justify-between gap-4 text-[0.75rem]">
-    <p class="truncate">{t('bara.transport')}</p>
-    <p class="hidden md:block">{t('bara.livrare')}</p>
-    <div class="flex items-center gap-3 whitespace-nowrap">
-      <a
-        href={comuta(pathname, lang === 'ro' ? 'en' : 'ro')}
-        class="underline underline-offset-4 hover:text-camel"
-        hreflang={lang === 'ro' ? 'en' : 'ro'}
-      >{lang === 'ro' ? 'EN' : 'RO'}</a>
-      <span aria-hidden="true" class="text-crem/30">/</span>
-      <SelectorMoneda client:idle eticheta={t('footer.moneda')} />
-    </div>
+<BaraPromo lang={lang}>
+  <div class="flex shrink-0 items-center gap-3 text-[0.75rem]">
+    <a
+      href={comuta(pathname, ro ? 'en' : 'ro')}
+      class="text-crem/70 underline underline-offset-4 transition-colors hover:text-crem"
+      hreflang={ro ? 'en' : 'ro'}
+    >{ro ? 'EN' : 'RO'}</a>
+    <span aria-hidden="true" class="text-crem/25">/</span>
+    <SelectorMoneda client:idle eticheta={t('footer.moneda')} />
   </div>
-</div>
+</BaraPromo>
 
-<header class="sticky top-0 z-50 border-b border-linie bg-crem/95 backdrop-blur-sm">
-  <div class="container-brand grid h-[var(--header-h)] grid-cols-[1fr_auto_1fr] items-center gap-4">
-    <nav class="hidden items-center gap-7 text-[0.9rem] lg:flex" aria-label={t('actiune.meniu')}>
-      {navPrincipal.map((n) => (
-        <a href={n.href} class="hover:text-teracota transition-colors">{n.eticheta}</a>
-      ))}
-      <div class="group relative">
-        <a
-          href={u('/colectii')}
-          class="inline-flex items-center gap-1.5 hover:text-teracota transition-colors"
-          aria-haspopup="true"
-        >
-          {t('nav.colectii')}
-          <span aria-hidden="true" class="text-[0.6rem] opacity-60">▾</span>
-        </a>
-        <div
-          class="invisible absolute left-1/2 top-full z-10 w-[min(60rem,90vw)] -translate-x-1/2 translate-y-1 border border-linie bg-crem p-6 opacity-0 shadow-[0_18px_40px_-24px_rgba(24,22,19,0.45)] transition-[opacity,transform] duration-200 ease-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100"
-        >
-          <div class="grid grid-cols-4 gap-5">
-            {colectii.map((c) => (
-              <a href={u(`/colectie/${c.slug}`)} class="group/t block">
-                <div class="overflow-hidden rounded-[10px] bg-nisip">
-                  <Image
-                    src={getImagine(c.imagine)}
-                    alt={c.nume}
-                    widths={[220, 440]}
-                    sizes="220px"
-                    class="aspect-[4/3] w-full object-cover transition-transform duration-300 ease-out group-hover/t:scale-[1.03]"
-                  />
-                </div>
-                <p class="mt-2.5 text-[0.9rem]">{c.nume}</p>
-                <p class="text-[0.78rem] text-ciocolata/60">{c.tesatura}</p>
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
-    </nav>
+<header class="sticky top-0 z-50 border-b border-linie bg-crem/97 backdrop-blur-sm">
+  <!-- rândul de brand -->
+  <div class="container-brand grid h-[var(--header-h)] grid-cols-[auto_1fr_auto] items-center gap-4 lg:gap-8">
+    <div class="flex items-center gap-3">
+      <button
+        type="button"
+        class="text-[0.85rem] lg:hidden"
+        data-meniu-mobil
+        aria-expanded="false"
+        aria-controls="meniu-mobil"
+      >{t('actiune.meniu')}</button>
+      <a href={u('/')} aria-label="HOINAR" class="shrink-0">
+        <span class="font-[family-name:var(--font-serif)] text-[1.45rem] leading-none tracking-[0.14em] md:text-[1.75rem]">
+          HOINAR
+        </span>
+      </a>
+    </div>
 
-    <button
-      type="button"
-      class="justify-self-start text-[0.9rem] lg:hidden"
-      data-meniu-mobil
-      aria-expanded="false"
-      aria-controls="meniu-mobil"
-    >{t('actiune.meniu')}</button>
+    <div class="hidden justify-self-center lg:block lg:w-full lg:max-w-[26rem]">
+      <Cautare
+        client:idle
+        index={indexCautare}
+        placeholder={t('cauta.placeholder')}
+        eticheta={t('actiune.cauta')}
+        nimic={t('cauta.nimic')}
+        toate={t('cauta.toate')}
+        urlToate={u('/colectii')}
+      />
+    </div>
 
-    <a href={u('/')} class="justify-self-center" aria-label="HOINAR">
-      <span class="font-[family-name:var(--font-serif)] text-[1.6rem] leading-none tracking-[0.14em] md:text-[1.9rem]">
-        HOINAR
-      </span>
-    </a>
-
-    <div class="flex items-center justify-end gap-5 text-[0.9rem]">
-      <a href={u('/colectii')} class="hidden hover:text-teracota transition-colors sm:inline">
-        {t('nav.toate')}
+    <div class="flex items-center justify-end gap-4 text-[0.88rem] sm:gap-5">
+      <a href={u('/ghid-marimi')} class="hidden transition-colors hover:text-teracota xl:inline">
+        {t('produs.ghid')}
+      </a>
+      <a href={u('/contact')} class="hidden transition-colors hover:text-teracota sm:inline">
+        {t('actiune.cont')}
       </a>
       <CosButon client:load eticheta={t('actiune.cos')} />
     </div>
   </div>
 
-  <div id="meniu-mobil" hidden class="border-t border-linie bg-crem lg:hidden">
-    <nav class="container-brand flex flex-col py-2" aria-label={t('actiune.meniu')}>
-      {tipuri.map((tip) => (
-        <a href={u(`/categorie/${tip.slug}`)} class="border-b border-linie/60 py-3 text-[0.95rem]">
-          {tip.nume}
+  <!-- rândul de categorii -->
+  <nav class="hidden border-t border-linie/70 lg:block" aria-label={t('actiune.meniu')}>
+    <div class="container-brand flex h-11 items-center gap-7 text-[0.87rem]">
+      {categorii.map((c) => (
+        <a href={c.href} class="transition-colors hover:text-teracota">{c.eticheta}</a>
+      ))}
+
+      <div class="group relative h-full">
+        <a
+          href={u('/colectii')}
+          class="inline-flex h-full items-center gap-1.5 transition-colors hover:text-teracota"
+          aria-haspopup="true"
+        >
+          {t('nav.colectii')}
+          <span aria-hidden="true" class="text-[0.6rem] opacity-55">▾</span>
         </a>
+        <div class="invisible absolute left-1/2 top-full z-10 w-[min(64rem,92vw)] -translate-x-1/2 border border-linie bg-crem p-6 opacity-0 shadow-[0_20px_44px_-24px_rgba(24,22,19,0.45)] transition-[opacity,transform] duration-200 ease-out group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+          <div class="grid grid-cols-[repeat(4,1fr)_1.15fr] gap-5">
+            {colectii.map((c) => (
+              <a href={u(`/colectie/${c.slug}`)} class="group/t block">
+                <div class="overflow-hidden rounded-[10px] bg-nisip">
+                  <Image
+                    src={getImagine(c.imagine)}
+                    alt=""
+                    widths={[220, 440]}
+                    sizes="220px"
+                    class="aspect-[4/3] w-full object-cover transition-transform duration-300 ease-out group-hover/t:scale-[1.04]"
+                  />
+                </div>
+                <p class="mt-2.5 text-[0.88rem]">{c.nume}</p>
+                <p class="mt-0.5 text-[0.76rem] leading-snug text-ciocolata/60">{c.tesatura}</p>
+              </a>
+            ))}
+
+            {promoMega && (
+              <a href={u('/reduceri')} class="group/p relative block overflow-hidden rounded-[10px] bg-ciocolata">
+                <Image
+                  src={getImagine(promoMega.imagini[0])}
+                  alt=""
+                  widths={[260, 520]}
+                  sizes="260px"
+                  class="aspect-[3/4] w-full object-cover opacity-75 transition-transform duration-300 ease-out group-hover/p:scale-[1.04]"
+                />
+                <span class="absolute inset-0 flex flex-col justify-end p-4">
+                  <span class="w-fit rounded-[5px] bg-teracota px-2 py-1 text-[0.7rem] leading-none text-crem">
+                    −{promoMega.reducere}%
+                  </span>
+                  <span class="mt-2 font-[family-name:var(--font-serif)] text-[1.15rem] leading-tight text-crem">
+                    {ro ? 'Colecția de toamnă' : 'Autumn collection'}
+                  </span>
+                  <span class="mt-0.5 text-[0.78rem] text-crem/80">
+                    {ro ? 'Reduceri până la −30%' : 'Up to −30% off'}
+                  </span>
+                </span>
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <a href={u('/colectii')} class="transition-colors hover:text-teracota">{t('nav.toate')}</a>
+
+      <a href={u('/reduceri')} class="ml-auto inline-flex items-center gap-2 font-medium text-teracota transition-opacity hover:opacity-75">
+        <span class="inline-block h-1.5 w-1.5 rounded-full bg-teracota" aria-hidden="true"></span>
+        {t('nav.reduceri')}
+      </a>
+    </div>
+  </nav>
+
+  <!-- meniu mobil -->
+  <div id="meniu-mobil" hidden class="border-t border-linie bg-crem lg:hidden">
+    <div class="container-brand py-3">
+      <Cautare
+        client:idle
+        index={indexCautare}
+        placeholder={t('cauta.placeholder')}
+        eticheta={t('actiune.cauta')}
+        nimic={t('cauta.nimic')}
+        toate={t('cauta.toate')}
+        urlToate={u('/colectii')}
+      />
+    </div>
+    <nav class="container-brand flex flex-col pb-3" aria-label={t('actiune.meniu')}>
+      <a href={u('/reduceri')} class="flex items-center gap-2 border-b border-linie/60 py-3 text-[0.95rem] font-medium text-teracota">
+        <span class="inline-block h-1.5 w-1.5 rounded-full bg-teracota" aria-hidden="true"></span>
+        {t('nav.reduceri')}
+      </a>
+      {tipuri.map((tip) => (
+        <a href={u(`/categorie/${tip.slug}`)} class="border-b border-linie/60 py-3 text-[0.95rem]">{tip.nume}</a>
       ))}
       {colectii.map((c) => (
-        <a href={u(`/colectie/${c.slug}`)} class="border-b border-linie/60 py-3 text-[0.95rem]">
-          {c.nume}
-        </a>
+        <a href={u(`/colectie/${c.slug}`)} class="border-b border-linie/60 py-3 text-[0.95rem] text-ciocolata/80">{c.nume}</a>
       ))}
+      <a href={u('/ghid-marimi')} class="border-b border-linie/60 py-3 text-[0.95rem]">{t('produs.ghid')}</a>
       <a href={u('/poveste')} class="py-3 text-[0.95rem]">{t('nav.poveste')}</a>
     </nav>
   </div>

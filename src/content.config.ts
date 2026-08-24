@@ -24,6 +24,13 @@ const produse = defineCollection({
     tipNume: bilingv,
     colectie: z.string(),
     pretRon: z.number().positive(),
+    /** Prețul de listă, prezent doar cât timp produsul e la reducere. */
+    pretVechiRon: z.number().positive().optional(),
+    /** Procentul de reducere, 0 dacă nu e la reducere. */
+    reducere: z.number().min(0).max(90),
+    rating: z.number().min(1).max(5),
+    nrRecenzii: z.number().int().nonnegative(),
+    nou: z.boolean(),
     /** Prezent doar pe seturi: prețul componentelor cumpărate separat. */
     pretIntregRon: z.number().positive().optional(),
     /** Prezent doar pe seturi: id-urile produselor incluse. */
@@ -43,6 +50,7 @@ const tipuri = defineCollection({
   schema: z.object({
     nume: bilingv,
     imagine: z.string(),
+    ordine: z.number().int(),
   }),
 });
 

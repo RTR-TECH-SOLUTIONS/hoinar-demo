@@ -14,6 +14,11 @@ export interface Produs {
   tipNume: string;
   colectie: string;
   pretRon: number;
+  pretVechiRon?: number;
+  reducere: number;
+  rating: number;
+  nrRecenzii: number;
+  nou: boolean;
   pretIntregRon?: number;
   componente?: string[];
   marimi: string[];
@@ -40,6 +45,7 @@ export interface Tip {
   slug: string;
   nume: string;
   imagine: string;
+  ordine: number;
 }
 
 export interface Filtre {
@@ -49,6 +55,8 @@ export interface Filtre {
   pretMaxRon?: number;
   doarInStoc?: boolean;
   segment?: 'talie-mare' | 'baieti';
+  /** Doar produsele cu reducere. */
+  doarReduceri?: boolean;
 }
 
 export type Sortare = 'recomandate' | 'pret-crescator' | 'pret-descrescator';
@@ -63,6 +71,11 @@ function laProdus(entry: { id: string; data: any }, lang: Limba): Produs {
     tipNume: d.tipNume[lang],
     colectie: d.colectie,
     pretRon: d.pretRon,
+    pretVechiRon: d.pretVechiRon,
+    reducere: d.reducere ?? 0,
+    rating: d.rating ?? 5,
+    nrRecenzii: d.nrRecenzii ?? 0,
+    nou: d.nou ?? false,
     pretIntregRon: d.pretIntregRon,
     componente: d.componente,
     marimi: d.marimi,
@@ -104,7 +117,14 @@ export async function getColectie(slug: string, lang: Limba): Promise<Colectie |
 
 export async function getTipuri(lang: Limba): Promise<Tip[]> {
   const raw = await getCollection('tipuri');
-  return raw.map((e) => ({ slug: e.id, nume: e.data.nume[lang], imagine: e.data.imagine }));
+  return raw
+    .map((e) => ({
+      slug: e.id,
+      nume: e.data.nume[lang],
+      imagine: e.data.imagine,
+      ordine: e.data.ordine,
+    }))
+    .sort((a, b) => a.ordine - b.ordine);
 }
 
 export async function getProduse(
@@ -121,6 +141,7 @@ export async function getProduse(
   if (filtre.pretMaxRon != null) lista = lista.filter((p) => p.pretRon <= filtre.pretMaxRon!);
   if (filtre.doarInStoc) lista = lista.filter((p) => p.stoc > 0);
   if (filtre.segment) lista = lista.filter((p) => p.segment === filtre.segment);
+  if (filtre.doarReduceri) lista = lista.filter((p) => p.reducere > 0);
 
   if (sortare === 'pret-crescator') lista.sort((a, b) => a.pretRon - b.pretRon);
   else if (sortare === 'pret-descrescator') lista.sort((a, b) => b.pretRon - a.pretRon);
@@ -141,6 +162,19 @@ export async function getBestsellers(lang: Limba, limita = 4): Promise<Produs[]>
 
 export async function getProduseDinColectie(colectie: string, lang: Limba): Promise<Produs[]> {
   return getProduse(lang, { colectie });
+}
+
+/** Produsele la reducere, cele mai mari procente întâi. */
+export async function getReduceri(lang: Limba, limita?: number): Promise<Produs[]> {
+  const lista = await getProduse(lang, { doarReduceri: true });
+  lista.sort((a, b) => b.reducere - a.reducere);
+  return limita ? lista.slice(0, limita) : lista;
+}
+
+/** Produsele marcate ca noutăți. */
+export async function getNoutati(lang: Limba, limita = 4): Promise<Produs[]> {
+  const lista = await getProduse(lang, {});
+  return lista.filter((p) => p.nou).slice(0, limita);
 }
 
 /** Produsele dintr-o colecție care pot intra într-un set, fără setul în sine. */

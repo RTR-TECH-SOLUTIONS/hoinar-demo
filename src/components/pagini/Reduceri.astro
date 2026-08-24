@@ -1,0 +1,44 @@
+---
+import { getReduceri } from '../../lib/catalog';
+import { traduceri } from '../../lib/i18n';
+import type { Limba } from '../../lib/pret';
+import Lista from './Lista.astro';
+import Numaratoare from '../Numaratoare.tsx';
+
+interface Props { lang: Limba }
+const { lang } = Astro.props;
+const t = traduceri(lang);
+const ro = lang === 'ro';
+
+const produse = await getReduceri(lang);
+const reducereMax = Math.max(...produse.map((p) => p.reducere));
+
+const acum = new Date();
+const final = new Date(acum);
+final.setDate(acum.getDate() + ((7 - acum.getDay()) % 7));
+final.setHours(23, 59, 59, 0);
+if (final.getTime() <= acum.getTime()) final.setDate(final.getDate() + 7);
+---
+
+<div class="border-b border-linie bg-nisip">
+  <div class="container-brand flex flex-wrap items-end justify-between gap-6 py-10">
+    <div>
+      <span class="rounded-[5px] bg-teracota px-2 py-1 text-[0.72rem] leading-none text-crem">
+        {ro ? `Până la −${reducereMax}%` : `Up to −${reducereMax}%`}
+      </span>
+      <h1 class="mt-3" style="font-size: var(--pas-3xl)">{t('promo.titlu')}</h1>
+      <p class="mt-3 max-w-[52ch] leading-relaxed text-ciocolata/75">
+        {ro
+          ? 'Prețurile de mai jos sunt deja reduse. Nu ai nevoie de cod, se aplică direct în coș. Stocul e cel afișat, nu recompletăm până în primăvară.'
+          : 'The prices below are already reduced. No code needed, it applies straight in the cart. Stock is what you see, we do not restock until spring.'}
+      </p>
+    </div>
+    <Numaratoare
+      client:visible
+      pana={final.toISOString()}
+      etichete={{ zile: t('promo.zile'), ore: t('promo.ore'), minute: t('promo.minute'), secunde: t('promo.secunde') }}
+    />
+  </div>
+</div>
+
+<Lista lang={lang} titlu="" produse={produse} />

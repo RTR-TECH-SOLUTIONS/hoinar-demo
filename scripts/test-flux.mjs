@@ -131,7 +131,27 @@ verifica('coșul afiseaza euro dupa comutare', /€/.test(textDrawer), textDrawe
 await page.goto(`${BAZA}/produs/ham-carou-bruma`, { waitUntil: 'networkidle' });
 await page.getByRole('link', { name: 'EN', exact: true }).first().click();
 await page.waitForLoadState('networkidle');
-verifica('EN duce la acelasi produs', page.url().endsWith('/en/produs/ham-carou-bruma'), page.url());
+verifica(
+  'EN duce la acelasi produs',
+  /\/en\/produs\/ham-carou-bruma\/?$/.test(page.url()),
+  page.url(),
+);
+
+// ---------- 9. cautarea ----------
+await page.goto(`${BAZA}/`, { waitUntil: 'networkidle' });
+await page.waitForTimeout(700);
+await page.getByPlaceholder(/Caut/).first().fill('bandana carou');
+await page.waitForTimeout(400);
+const sugestii = page.locator('#cauta').locator('xpath=../..').locator('a[href*="/produs/"]');
+const nrSugestii = await sugestii.count();
+verifica('cautarea gaseste produsul fara diacritice', nrSugestii > 0, `${nrSugestii} sugestii`);
+if (nrSugestii > 0) {
+  const primaCale = await sugestii.first().getAttribute('href');
+  verifica('prima sugestie e bandana carou', String(primaCale).includes('bandana-carou-bruma'), String(primaCale));
+}
+await page.getByPlaceholder(/Caut/).first().fill('xyzq');
+await page.waitForTimeout(300);
+verifica('cautarea spune cand nu gaseste nimic', (await page.getByText(/Nimic gasit|Nimic găsit/).count()) > 0);
 
 verifica('fara erori JavaScript', eroriConsola.length === 0, eroriConsola.slice(0, 3).join(' | '));
 

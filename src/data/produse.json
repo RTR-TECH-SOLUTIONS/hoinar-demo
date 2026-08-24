@@ -11,6 +11,10 @@
       "en": "Adjustable Harness"
     },
     "colectie": "carou-bruma",
+    "rating": 4.9,
+    "nrRecenzii": 214,
+    "nou": false,
+    "reducere": 0,
     "pretRon": 189,
     "marimi": [
       "XS",
@@ -60,6 +64,10 @@
       "en": "Explore Harness"
     },
     "colectie": "carou-bruma",
+    "rating": 4.7,
+    "nrRecenzii": 87,
+    "nou": false,
+    "reducere": 0,
     "pretRon": 249,
     "marimi": [
       "S",
@@ -109,6 +117,10 @@
       "en": "Lead"
     },
     "colectie": "carou-bruma",
+    "rating": 5.0,
+    "nrRecenzii": 342,
+    "nou": false,
+    "reducere": 0,
     "pretRon": 139,
     "marimi": [
       "120 cm",
@@ -155,6 +167,10 @@
       "en": "Collar"
     },
     "colectie": "carou-bruma",
+    "rating": 4.8,
+    "nrRecenzii": 156,
+    "nou": false,
+    "reducere": 0,
     "pretRon": 119,
     "marimi": [
       "S",
@@ -202,6 +218,10 @@
       "en": "Walking Bag"
     },
     "colectie": "carou-bruma",
+    "rating": 4.6,
+    "nrRecenzii": 63,
+    "nou": false,
+    "reducere": 0,
     "pretRon": 239,
     "marimi": [
       "Mărime unică"
@@ -247,7 +267,12 @@
       "en": "Bandana"
     },
     "colectie": "carou-bruma",
-    "pretRon": 69,
+    "rating": 4.9,
+    "nrRecenzii": 198,
+    "nou": false,
+    "reducere": 30,
+    "pretVechiRon": 69,
+    "pretRon": 48,
     "marimi": [
       "S",
       "M",
@@ -294,6 +319,10 @@
       "en": "Drying Robe"
     },
     "colectie": "carou-bruma",
+    "rating": 4.8,
+    "nrRecenzii": 121,
+    "nou": false,
+    "reducere": 0,
     "pretRon": 279,
     "marimi": [
       "XS",
@@ -343,6 +372,10 @@
       "en": "Engraved Tag"
     },
     "colectie": "carou-bruma",
+    "rating": 5.0,
+    "nrRecenzii": 276,
+    "nou": false,
+    "reducere": 0,
     "pretRon": 79,
     "marimi": [
       "25 mm",
@@ -389,7 +422,12 @@
       "en": "Adjustable Harness"
     },
     "colectie": "buline-cacao",
-    "pretRon": 189,
+    "rating": 4.7,
+    "nrRecenzii": 94,
+    "nou": false,
+    "reducere": 25,
+    "pretVechiRon": 189,
+    "pretRon": 142,
     "marimi": [
       "XS",
       "S",
@@ -438,6 +476,10 @@
       "en": "Explore Harness"
     },
     "colectie": "buline-cacao",
+    "rating": 4.9,
+    "nrRecenzii": 183,
+    "nou": false,
+    "reducere": 0,
     "pretRon": 249,
     "marimi": [
       "S",
@@ -487,6 +529,10 @@
       "en": "Lead"
     },
     "colectie": "buline-cacao",
+    "rating": 4.5,
+    "nrRecenzii": 47,
+    "nou": false,
+    "reducere": 0,
     "pretRon": 139,
     "marimi": [
       "120 cm",
@@ -533,7 +579,12 @@
       "en": "Collar"
     },
     "colectie": "buline-cacao",
-    "pretRon": 119,
+    "rating": 4.8,
+    "nrRecenzii": 231,
+    "nou": false,
+    "reducere": 25,
+    "pretVechiRon": 119,
+    "pretRon": 89,
     "marimi": [
       "S",
       "M",
@@ -580,6 +631,10 @@
       "en": "Walking Bag"
     },
     "colectie": "buline-cacao",
+    "rating": 4.9,
+    "nrRecenzii": 214,
+    "nou": false,
+    "reducere": 0,
     "pretRon": 239,
     "marimi": [
       "Mărime unică"
@@ -625,6 +680,10 @@
       "en": "Bandana"
     },
     "colectie": "buline-cacao",
+    "rating": 4.7,
+    "nrRecenzii": 87,
+    "nou": false,
+    "reducere": 0,
     "pretRon": 69,
     "marimi": [
       "S",
@@ -672,7 +731,12 @@
       "en": "Drying Robe"
     },
     "colectie": "buline-cacao",
-    "pretRon": 279,
+    "rating": 5.0,
+    "nrRecenzii": 342,
+    "nou": false,
+    "reducere": 20,
+    "pretVechiRon": 279,
+    "pretRon": 223,
     "marimi": [
       "XS",
       "S",
@@ -721,6 +785,10 @@
       "en": "Engraved Tag"
     },
     "colectie": "buline-cacao",
+    "rating": 4.8,
+    "nrRecenzii": 156,
+    "nou": false,
+    "reducere": 0,
     "pretRon": 79,
     "marimi": [
       "25 mm",
@@ -767,7 +835,12 @@
       "en": "Adjustable Harness"
     },
     "colectie": "dungi-sinaia",
-    "pretRon": 189,
+    "rating": 4.6,
+    "nrRecenzii": 63,
+    "nou": false,
+    "reducere": 20,
+    "pretVechiRon": 189,
+    "pretRon": 151,
     "marimi": [
       "XS",
       "S",
@@ -816,6 +889,10 @@
       "en": "Explore Harness"
     },
     "colectie": "dungi-sinaia",
+    "rating": 4.9,
+    "nrRecenzii": 198,
+    "nou": false,
+    "reducere": 0,
     "pretRon": 249,
     "marimi": [
       "S",
@@ -865,7 +942,12 @@
       "en": "Lead"
     },
     "colectie": "dungi-sinaia",
-    "pretRon": 139,
+    "rating": 4.8,
+    "nrRecenzii": 121,
+    "nou": false,
+    "reducere": 20,
+    "pretVechiRon": 139,
+    "pretRon": 111,
     "marimi": [
       "120 cm",
       "180 cm"
@@ -911,6 +993,10 @@
       "en": "Collar"
     },
     "colectie": "dungi-sinaia",
+    "rating": 5.0,
+    "nrRecenzii": 276,
+    "nou": true,
+    "reducere": 0,
     "pretRon": 119,
     "marimi": [
       "S",
@@ -958,7 +1044,12 @@
       "en": "Walking Bag"
     },
     "colectie": "dungi-sinaia",
-    "pretRon": 239,
+    "rating": 4.7,
+    "nrRecenzii": 94,
+    "nou": false,
+    "reducere": 20,
+    "pretVechiRon": 239,
+    "pretRon": 191,
     "marimi": [
       "Mărime unică"
     ],
@@ -1003,7 +1094,12 @@
       "en": "Bandana"
     },
     "colectie": "dungi-sinaia",
-    "pretRon": 69,
+    "rating": 4.9,
+    "nrRecenzii": 183,
+    "nou": false,
+    "reducere": 25,
+    "pretVechiRon": 69,
+    "pretRon": 52,
     "marimi": [
       "S",
       "M",
@@ -1050,6 +1146,10 @@
       "en": "Drying Robe"
     },
     "colectie": "dungi-sinaia",
+    "rating": 4.5,
+    "nrRecenzii": 47,
+    "nou": true,
+    "reducere": 0,
     "pretRon": 279,
     "marimi": [
       "XS",
@@ -1099,6 +1199,10 @@
       "en": "Engraved Tag"
     },
     "colectie": "dungi-sinaia",
+    "rating": 4.8,
+    "nrRecenzii": 231,
+    "nou": false,
+    "reducere": 0,
     "pretRon": 79,
     "marimi": [
       "25 mm",
@@ -1145,6 +1249,10 @@
       "en": "Adjustable Harness"
     },
     "colectie": "canepa-naturala",
+    "rating": 4.9,
+    "nrRecenzii": 214,
+    "nou": true,
+    "reducere": 0,
     "pretRon": 189,
     "marimi": [
       "XS",
@@ -1194,7 +1302,12 @@
       "en": "Explore Harness"
     },
     "colectie": "canepa-naturala",
-    "pretRon": 249,
+    "rating": 4.7,
+    "nrRecenzii": 87,
+    "nou": false,
+    "reducere": 30,
+    "pretVechiRon": 249,
+    "pretRon": 174,
     "marimi": [
       "S",
       "M",
@@ -1243,7 +1356,12 @@
       "en": "Lead"
     },
     "colectie": "canepa-naturala",
-    "pretRon": 139,
+    "rating": 5.0,
+    "nrRecenzii": 342,
+    "nou": false,
+    "reducere": 15,
+    "pretVechiRon": 139,
+    "pretRon": 118,
     "marimi": [
       "120 cm",
       "180 cm"
@@ -1289,6 +1407,10 @@
       "en": "Collar"
     },
     "colectie": "canepa-naturala",
+    "rating": 4.8,
+    "nrRecenzii": 156,
+    "nou": false,
+    "reducere": 0,
     "pretRon": 119,
     "marimi": [
       "S",
@@ -1336,7 +1458,12 @@
       "en": "Walking Bag"
     },
     "colectie": "canepa-naturala",
-    "pretRon": 239,
+    "rating": 4.6,
+    "nrRecenzii": 63,
+    "nou": false,
+    "reducere": 30,
+    "pretVechiRon": 239,
+    "pretRon": 167,
     "marimi": [
       "Mărime unică"
     ],
@@ -1381,6 +1508,10 @@
       "en": "Bandana"
     },
     "colectie": "canepa-naturala",
+    "rating": 4.9,
+    "nrRecenzii": 198,
+    "nou": true,
+    "reducere": 0,
     "pretRon": 69,
     "marimi": [
       "S",
@@ -1428,6 +1559,10 @@
       "en": "Drying Robe"
     },
     "colectie": "canepa-naturala",
+    "rating": 4.8,
+    "nrRecenzii": 121,
+    "nou": false,
+    "reducere": 0,
     "pretRon": 279,
     "marimi": [
       "XS",
@@ -1477,7 +1612,12 @@
       "en": "Engraved Tag"
     },
     "colectie": "canepa-naturala",
-    "pretRon": 79,
+    "rating": 5.0,
+    "nrRecenzii": 276,
+    "nou": false,
+    "reducere": 15,
+    "pretVechiRon": 79,
+    "pretRon": 67,
     "marimi": [
       "25 mm",
       "32 mm"
@@ -1562,7 +1702,12 @@
     },
     "stoc": 8,
     "bestseller": true,
-    "segment": null
+    "segment": null,
+    "rating": 4.9,
+    "nrRecenzii": 128,
+    "nou": false,
+    "reducere": 24,
+    "pretVechiRon": 447
   },
   {
     "id": "set-buline-cacao",
@@ -1615,7 +1760,12 @@
     },
     "stoc": 8,
     "bestseller": false,
-    "segment": null
+    "segment": null,
+    "rating": 4.9,
+    "nrRecenzii": 128,
+    "nou": false,
+    "reducere": 24,
+    "pretVechiRon": 447
   },
   {
     "id": "set-dungi-sinaia",
@@ -1668,7 +1818,12 @@
     },
     "stoc": 8,
     "bestseller": true,
-    "segment": null
+    "segment": null,
+    "rating": 4.9,
+    "nrRecenzii": 128,
+    "nou": false,
+    "reducere": 24,
+    "pretVechiRon": 447
   },
   {
     "id": "set-canepa-naturala",
@@ -1721,6 +1876,11 @@
     },
     "stoc": 8,
     "bestseller": false,
-    "segment": null
+    "segment": null,
+    "rating": 4.9,
+    "nrRecenzii": 128,
+    "nou": false,
+    "reducere": 24,
+    "pretVechiRon": 447
   }
 ]

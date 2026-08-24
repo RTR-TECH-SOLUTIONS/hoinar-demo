@@ -263,7 +263,7 @@ export default function Checkout({ t, urlMagazin, lang }: Props) {
         )}
       </div>
 
-      <aside className="lg:sticky lg:top-[calc(var(--header-h)+1.5rem)] lg:self-start">
+      <aside className="lg:sticky lg:top-[calc(var(--header-total)+1.5rem)] lg:self-start">
         <div className="rounded-[14px] border border-linie bg-nisip p-5">
           <h2 className="text-[1.15rem]">{t.sumar}</h2>
           <ul className="mt-4 divide-y divide-linie">

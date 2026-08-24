@@ -39,12 +39,27 @@ for (const [numeEcran, w, h] of ECRANE) {
 
   for (const [nume, cale] of PAGINI) {
     await page.goto(BAZA + cale, { waitUntil: 'networkidle' });
+    // Fortam incarcarea imaginilor lazy inainte de screenshot: altfel captura
+    // integrala prinde sectiuni goale si nu se poate judeca designul.
+    await page.evaluate(() => {
+      for (const im of document.querySelectorAll('img[loading="lazy"]')) im.loading = 'eager';
+    });
     // declanseaza lazy-loading
     await page.evaluate(async () => {
       const H = document.body.scrollHeight;
       for (let y = 0; y < H; y += 600) { window.scrollTo(0, y); await new Promise(r => setTimeout(r, 60)); }
       window.scrollTo(0, 0);
-      await new Promise(r => setTimeout(r, 400));
+      // asteptam sa se aseze imaginile lazy, altfel screenshot-ul integral
+      // prinde sectiuni goale si pare ca lipsesc poze
+      await new Promise(r => setTimeout(r, 900));
+      // cu termen limita: o imagine care nu se incarca niciodata nu are voie
+      // sa blocheze verificarea
+      await Promise.race([
+        Promise.all([...document.images]
+          .filter((im) => !im.complete)
+          .map((im) => new Promise((res) => { im.onload = im.onerror = res; }))),
+        new Promise((res) => setTimeout(res, 2500)),
+      ]);
     });
 
     const raport = await page.evaluate(() => {

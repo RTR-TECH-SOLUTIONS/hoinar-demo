@@ -31,6 +31,11 @@ const carduri = await Promise.all(
     tip: p.tip,
     colectie: p.colectie,
     pretRon: p.pretRon,
+    pretVechiRon: p.pretVechiRon,
+    reducere: p.reducere,
+    rating: p.rating,
+    nrRecenzii: p.nrRecenzii,
+    nou: p.nou,
     pretIntregRon: p.pretIntregRon,
     economieRon: p.economieRon,
     esteSet: p.esteSet,
@@ -46,10 +51,12 @@ const carduri = await Promise.all(
 const marimiToate = [...new Set(produse.flatMap((p) => p.marimi))];
 ---
 
-<div class="container-brand pt-10">
-  <h1 style="font-size: var(--pas-3xl)">{titlu}</h1>
-  {intro && <p class="mt-4 max-w-[58ch] leading-relaxed text-ciocolata/75">{intro}</p>}
-</div>
+{titlu && (
+  <div class="container-brand pt-10">
+    <h1 style="font-size: var(--pas-3xl)">{titlu}</h1>
+    {intro && <p class="mt-4 max-w-[58ch] leading-relaxed text-ciocolata/75">{intro}</p>}
+  </div>
+)}
 
 <div class="container-brand mt-10 pb-4">
   <Catalog
@@ -74,6 +81,9 @@ const marimiToate = [...new Set(produse.flatMap((p) => p.marimi))];
       nimic: t('filtre.nimic'),
       ultimele: t('filtre.ultimele'),
       economie: t('filtre.economie'),
+      doarReduceri: t('filtre.doarReduceri'),
+      set: t('filtre.set'),
+      nou: t('filtre.nou'),
     }}
   />
 </div>

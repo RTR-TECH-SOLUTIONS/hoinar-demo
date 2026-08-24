@@ -1,0 +1,60 @@
+---
+import type { Limba } from '../lib/pret';
+interface Props { lang: Limba }
+const { lang } = Astro.props;
+const ro = lang === 'ro';
+
+const mesaje = ro
+  ? [
+      { text: 'Reduceri până la −30% la colecția de toamnă', accent: true, href: '/reduceri' },
+      { text: 'Transport gratuit peste 250 de lei', accent: false, href: '/livrare-retur' },
+      { text: 'Livrare în 24-48 de ore · Retur în 14 zile', accent: false, href: '/livrare-retur' },
+      { text: 'Plata ramburs disponibilă', accent: false, href: '/livrare-retur' },
+    ]
+  : [
+      { text: 'Up to −30% off the autumn collection', accent: true, href: '/en/reduceri' },
+      { text: 'Free shipping over 250 lei', accent: false, href: '/en/livrare-retur' },
+      { text: 'Delivered in 24-48 hours · 14-day returns', accent: false, href: '/en/livrare-retur' },
+      { text: 'Cash on delivery available', accent: false, href: '/en/livrare-retur' },
+    ];
+---
+
+<div class="bg-ink text-crem">
+  <div class="container-brand flex h-[var(--bara-h)] items-center justify-between gap-4">
+    <a href="tel:+40721000000" class="hidden shrink-0 text-[0.75rem] text-crem/70 transition-colors hover:text-crem md:block">
+      0721 000 000
+    </a>
+
+    <div class="relative flex h-full min-w-0 flex-1 items-center justify-center overflow-hidden" data-promo>
+      {mesaje.map((m, i) => (
+        <a
+          href={m.href}
+          data-promo-mesaj
+          data-activ={i === 0 ? 'da' : 'nu'}
+          class="absolute inset-0 flex items-center justify-center gap-2 text-center text-[0.75rem] opacity-0 transition-opacity duration-500 data-[activ=da]:opacity-100"
+        >
+          {m.accent && (
+            <span class="rounded-[4px] bg-teracota px-1.5 py-0.5 text-[0.68rem] leading-none">
+              {ro ? 'Ofertă' : 'Sale'}
+            </span>
+          )}
+          <span class="truncate">{m.text}</span>
+        </a>
+      ))}
+    </div>
+
+    <slot />
+  </div>
+</div>
+
+<script>
+  const mesaje = document.querySelectorAll<HTMLElement>('[data-promo-mesaj]');
+  if (mesaje.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let i = 0;
+    setInterval(() => {
+      mesaje[i].dataset.activ = 'nu';
+      i = (i + 1) % mesaje.length;
+      mesaje[i].dataset.activ = 'da';
+    }, 4200);
+  }
+</script>
