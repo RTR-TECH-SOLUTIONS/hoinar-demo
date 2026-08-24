@@ -162,3 +162,75 @@ header { border-bottom: 1px solid var(--color-linie); }
   visibility: visible;
   opacity: 1;
 }
+
+/* ---------------------------------------------------------------
+   Mișcare
+   Totul de aici e oprit de regula globală prefers-reduced-motion
+   de mai sus, care taie orice animație și tranziție.
+--------------------------------------------------------------- */
+
+@keyframes apare {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes apare-lateral {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes iese {
+  to { opacity: 0; transform: translateX(24px) scale(0.97); }
+}
+
+@keyframes pop {
+  0%   { transform: scale(1); }
+  45%  { transform: scale(1.28); }
+  100% { transform: scale(1); }
+}
+
+@keyframes puls-blând {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50%      { transform: scale(1.06); opacity: 1; }
+}
+
+@keyframes licăr {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
+
+/* element care intră în scenă; întârzierea se dă prin --pas */
+@utility apare {
+  animation: apare 460ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  animation-delay: var(--pas, 0ms);
+}
+
+@utility apare-x {
+  animation: apare-lateral 420ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  animation-delay: var(--pas, 0ms);
+}
+
+@utility iese {
+  animation: iese 240ms ease-in forwards;
+}
+
+@utility pop {
+  animation: pop 320ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* dezvăluire la derulare: ascuns până când observatorul îl marchează */
+[data-apare] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 620ms cubic-bezier(0.22, 0.61, 0.36, 1),
+              transform 620ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition-delay: var(--pas, 0ms);
+}
+[data-apare][data-vizibil='da'] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-apare] { opacity: 1; transform: none; }
+}

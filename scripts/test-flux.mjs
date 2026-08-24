@@ -234,7 +234,12 @@ const inainteFiltru = await page.locator('main article').count();
 await page.locator('#panou-filtre').getByRole('button', { name: /Teracot/ }).click();
 await page.waitForTimeout(400);
 const dupaFiltru = await page.locator('main article').count();
-verifica('filtrul de culoare reduce lista', dupaFiltru < inainteFiltru && dupaFiltru === 9, `${inainteFiltru} -> ${dupaFiltru}`);
+// o culoare trebuie sa acopere exact un sfert din catalog (patru culori)
+verifica(
+  'filtrul de culoare reduce lista la o singura culoare',
+  dupaFiltru < inainteFiltru && dupaFiltru === inainteFiltru / 4,
+  `${inainteFiltru} -> ${dupaFiltru}`,
+);
 
 await page.locator('#panou-filtre').getByRole('button', { name: 'XL', exact: true }).click();
 await page.waitForTimeout(400);
@@ -355,6 +360,59 @@ const faraButon = await seVede();
 verifica('bara apare doar cand butonul principal nu se vede',
   !cuButonulPeEcran && faraButon, `buton vizibil: ${cuButonulPeEcran} · buton ascuns: ${faraButon}`);
 await page.setViewportSize({ width: 1440, height: 900 });
+
+// ---------- 20. animatii ----------
+await page.goto(`${BAZA}/`, { waitUntil: 'networkidle' });
+await page.waitForTimeout(1200);
+const numaraDezvaluite = () => page.evaluate(() => {
+  const t = [...document.querySelectorAll('[data-apare]')];
+  return { total: t.length, vizibile: t.filter((e) => e.dataset.vizibil === 'da').length };
+});
+// la incarcare nu e nimic dezvaluit: primul bloc animat e sub linia ecranului,
+// iar hero-ul nu are voie sa fie animat, trebuie sa apara instant
+const laStart = await numaraDezvaluite();
+await page.evaluate(() => window.scrollTo(0, 900));
+await page.waitForTimeout(900);
+const dupaPutin = await numaraDezvaluite();
+verifica(
+  'blocurile se dezvaluie pe masura ce derulezi',
+  laStart.total > 0 && dupaPutin.vizibile > laStart.vizibile,
+  `${laStart.vizibile} -> ${dupaPutin.vizibile} din ${laStart.total}`,
+);
+await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+await page.waitForTimeout(1400);
+const toate = await page.evaluate(() => {
+  const t = [...document.querySelectorAll('[data-apare]')];
+  return t.filter((e) => e.dataset.vizibil === 'da').length === t.length;
+});
+verifica('dupa derulare pana jos, toate sunt dezvaluite', toate);
+
+// stergerea din favorite trece printr-o animatie inainte sa dispara
+await page.goto(`${BAZA}/produs/zgarda-carou-bruma`, { waitUntil: 'networkidle' });
+await page.waitForTimeout(600);
+await page.getByRole('button', { name: /Salveaz/ }).click();
+await page.waitForTimeout(300);
+await page.goto(`${BAZA}/favorite`, { waitUntil: 'networkidle' });
+await page.waitForTimeout(900);
+await page.locator('main button', { hasText: /Șterge|Sterge/ }).first().click();
+await page.waitForTimeout(90);
+const iese = await page.locator('main article').first().evaluate((el) => el.className.includes('iese')).catch(() => false);
+await page.waitForTimeout(500);
+const disparut = (await page.locator('main article').count()) === 0;
+verifica('stergerea din favorite e animata, apoi dispare', iese && disparut, `animat: ${iese} · disparut: ${disparut}`);
+
+// pagina de cont: indicatorul de fila se muta
+await page.goto(`${BAZA}/cont`, { waitUntil: 'networkidle' });
+await page.waitForTimeout(700);
+const pozitieIndicator = () => page.locator('form').first().evaluate(() => {
+  const el = document.querySelector('span[aria-hidden="true"].absolute');
+  return el ? getComputedStyle(el).transform : 'nimic';
+});
+const pozInainte = await pozitieIndicator();
+await page.getByRole('button', { name: 'Cont nou' }).click();
+await page.waitForTimeout(500);
+const pozDupa = await pozitieIndicator();
+verifica('indicatorul de fila aluneca', pozInainte !== pozDupa, `${pozInainte} -> ${pozDupa}`);
 
 verifica('fara erori JavaScript', eroriConsola.length === 0, eroriConsola.slice(0, 3).join(' | '));
 

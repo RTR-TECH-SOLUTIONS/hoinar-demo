@@ -338,64 +338,6 @@
     "segment": null
   },
   {
-    "id": "halat-carou-bruma",
-    "nume": {
-      "ro": "Halat de uscare Carou Brumă",
-      "en": "Frost Check Drying Robe"
-    },
-    "tip": "halat",
-    "tipNume": {
-      "ro": "Halat de uscare",
-      "en": "Drying Robe"
-    },
-    "colectie": "carou-bruma",
-    "culoare": {
-      "ro": "Camel",
-      "en": "Camel"
-    },
-    "culoareHex": "#C08E5C",
-    "rating": 4.8,
-    "nrRecenzii": 121,
-    "nou": false,
-    "reducere": 0,
-    "pretRon": 279,
-    "marimi": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "imagini": [
-      "/media/produse/halat.jpg",
-      "/media/colectii/carou-bruma.jpg",
-      "/media/lifestyle/07.jpg"
-    ],
-    "descriere": {
-      "ro": "Halat din microfibră cu absorbție mare, cu glugă și chingă pe burtă. Usucă un câine de talie medie în aproximativ 15 minute, fără să-l freci cu prosopul. Bumbac țesut în carouri camel și ciocolată, 320 g/mp.",
-      "en": "High-absorbency microfibre robe with a hood and a belly strap. It dries a medium dog in about fifteen minutes, with no towel rubbing. Cotton woven in camel and chocolate check, 320 gsm."
-    },
-    "caracteristici": {
-      "ro": [
-        "Microfibră de 400 g/mp",
-        "Glugă și chingă pe burtă",
-        "Usucă în circa 15 minute",
-        "Se usucă singur pe umeraș",
-        "Se spală la 30 de grade, fără balsam"
-      ],
-      "en": [
-        "400 gsm microfibre",
-        "Hood and belly strap",
-        "Dries in about fifteen minutes",
-        "Drip-dries on a hanger",
-        "Machine wash at 30 degrees, no softener"
-      ]
-    },
-    "stoc": 11,
-    "bestseller": false,
-    "segment": null
-  },
-  {
     "id": "medalion-carou-bruma",
     "nume": {
       "ro": "Medalion gravat Carou Brumă",
@@ -412,9 +354,9 @@
       "en": "Camel"
     },
     "culoareHex": "#C08E5C",
-    "rating": 5.0,
-    "nrRecenzii": 276,
-    "nou": false,
+    "rating": 4.8,
+    "nrRecenzii": 121,
+    "nou": true,
     "reducere": 0,
     "pretRon": 79,
     "marimi": [
@@ -424,7 +366,7 @@
     "imagini": [
       "/media/produse/medalion.jpg",
       "/media/colectii/carou-bruma.jpg",
-      "/media/lifestyle/08.jpg"
+      "/media/lifestyle/07.jpg"
     ],
     "descriere": {
       "ro": "Medalion din alamă masivă, gravat cu laser pe ambele fețe. Numele pe față, două numere de telefon pe spate. Vine cu inel dublu, care nu se desface din zgardă. Bumbac țesut în carouri camel și ciocolată, 320 g/mp.",
@@ -446,7 +388,7 @@
         "Ships within 48 hours"
       ]
     },
-    "stoc": 25,
+    "stoc": 11,
     "bestseller": false,
     "segment": null
   },
@@ -467,8 +409,8 @@
       "en": "Chocolate"
     },
     "culoareHex": "#4A3728",
-    "rating": 4.7,
-    "nrRecenzii": 94,
+    "rating": 5.0,
+    "nrRecenzii": 276,
     "nou": false,
     "reducere": 25,
     "pretVechiRon": 189,
@@ -483,7 +425,7 @@
     "imagini": [
       "/media/produse/ham-buline-cacao.jpg",
       "/media/colectii/buline-cacao.jpg",
-      "/media/lifestyle/09.jpg"
+      "/media/lifestyle/08.jpg"
     ],
     "descriere": {
       "ro": "Ham cu intrare pe cap, cu două puncte de reglaj și cataramă de siguranță. Chinga interioară e căptușită cu neopren de 4 mm, ca să nu frece la subraț. Inelul D e dublu și cusut în X pe patru rânduri. Bumbac crem cu buline ciocolată imprimate cu pigment, 300 g/mp.",
@@ -505,7 +447,7 @@
         "Machine wash at 30 degrees"
       ]
     },
-    "stoc": 14,
+    "stoc": 25,
     "bestseller": true,
     "segment": null
   },
@@ -526,8 +468,8 @@
       "en": "Chocolate"
     },
     "culoareHex": "#4A3728",
-    "rating": 4.9,
-    "nrRecenzii": 183,
+    "rating": 4.7,
+    "nrRecenzii": 94,
     "nou": false,
     "reducere": 0,
     "pretRon": 249,
@@ -541,7 +483,7 @@
     "imagini": [
       "/media/produse/ham-explore-buline-cacao.jpg",
       "/media/colectii/buline-cacao.jpg",
-      "/media/lifestyle/10.jpg"
+      "/media/lifestyle/09.jpg"
     ],
     "descriere": {
       "ro": "Ham pentru câini de talie mare, cu mâner de control cusut pe spate și trei puncte de reglaj. Inel frontal pentru dresaj, inel dorsal pentru plimbare. Chinga a fost testată la tracțiune până la 187 kg. Bumbac crem cu buline ciocolată imprimate cu pigment, 300 g/mp.",
@@ -563,7 +505,7 @@
         "Reflective trim all round"
       ]
     },
-    "stoc": 9,
+    "stoc": 14,
     "bestseller": false,
     "segment": "talie-mare"
   },
@@ -584,8 +526,8 @@
       "en": "Chocolate"
     },
     "culoareHex": "#4A3728",
-    "rating": 4.5,
-    "nrRecenzii": 47,
+    "rating": 4.9,
+    "nrRecenzii": 183,
     "nou": false,
     "reducere": 0,
     "pretRon": 139,
@@ -596,7 +538,7 @@
     "imagini": [
       "/media/produse/lesa-buline-cacao.jpg",
       "/media/colectii/buline-cacao.jpg",
-      "/media/lifestyle/11.jpg"
+      "/media/lifestyle/10.jpg"
     ],
     "descriere": {
       "ro": "Lesă cu carabină din alamă masivă și mâner căptușit cu piele tăbăcită vegetal. Are un inel mobil pe chingă, pentru saci sau chei, ca să nu ții nimic în mână. Bumbac crem cu buline ciocolată imprimate cu pigment, 300 g/mp.",
@@ -618,7 +560,7 @@
         "Machine wash at 30 degrees"
       ]
     },
-    "stoc": 21,
+    "stoc": 9,
     "bestseller": false,
     "segment": null
   },
@@ -639,8 +581,8 @@
       "en": "Chocolate"
     },
     "culoareHex": "#4A3728",
-    "rating": 4.8,
-    "nrRecenzii": 231,
+    "rating": 4.5,
+    "nrRecenzii": 47,
     "nou": false,
     "reducere": 25,
     "pretVechiRon": 119,
@@ -653,7 +595,7 @@
     "imagini": [
       "/media/produse/zgarda-buline-cacao.jpg",
       "/media/colectii/buline-cacao.jpg",
-      "/media/lifestyle/01.jpg"
+      "/media/lifestyle/11.jpg"
     ],
     "descriere": {
       "ro": "Zgardă cu cataramă din alamă și inel D sudat, nu doar îndoit. Marginile sunt tivite dublu, ca să nu se destrame la spălare. Bumbac crem cu buline ciocolată imprimate cu pigment, 300 g/mp.",
@@ -675,7 +617,7 @@
         "Machine wash at 30 degrees"
       ]
     },
-    "stoc": 6,
+    "stoc": 21,
     "bestseller": false,
     "segment": null
   },
@@ -696,8 +638,8 @@
       "en": "Chocolate"
     },
     "culoareHex": "#4A3728",
-    "rating": 4.9,
-    "nrRecenzii": 214,
+    "rating": 4.8,
+    "nrRecenzii": 231,
     "nou": false,
     "reducere": 0,
     "pretRon": 239,
@@ -707,7 +649,7 @@
     "imagini": [
       "/media/produse/geanta-buline-cacao.jpg",
       "/media/colectii/buline-cacao.jpg",
-      "/media/lifestyle/02.jpg"
+      "/media/lifestyle/01.jpg"
     ],
     "descriere": {
       "ro": "Geantă crossbody cu buzunar căptușit pentru recompense, compartiment separat pentru saci și fermoar din alamă. Cureaua se reglează de la 90 la 140 cm, deci se poartă și pe umăr, și pe diagonală. Bumbac crem cu buline ciocolată imprimate cu pigment, 300 g/mp.",
@@ -729,7 +671,7 @@
         "Wipe-clean waterproof lining"
       ]
     },
-    "stoc": 17,
+    "stoc": 6,
     "bestseller": false,
     "segment": null
   },
@@ -750,8 +692,8 @@
       "en": "Chocolate"
     },
     "culoareHex": "#4A3728",
-    "rating": 4.7,
-    "nrRecenzii": 87,
+    "rating": 4.9,
+    "nrRecenzii": 214,
     "nou": false,
     "reducere": 0,
     "pretRon": 69,
@@ -763,7 +705,7 @@
     "imagini": [
       "/media/produse/bandana-buline-cacao.jpg",
       "/media/colectii/buline-cacao.jpg",
-      "/media/lifestyle/03.jpg"
+      "/media/lifestyle/02.jpg"
     ],
     "descriere": {
       "ro": "Bandană cu trecere pentru zgardă, deci nu se leagă la gât și nu alunecă. Bumbacul e prespălat și se calcă ușor. Bumbac crem cu buline ciocolată imprimate cu pigment, 300 g/mp.",
@@ -785,66 +727,7 @@
         "Machine wash at 30 degrees"
       ]
     },
-    "stoc": 3,
-    "bestseller": false,
-    "segment": null
-  },
-  {
-    "id": "halat-buline-cacao",
-    "nume": {
-      "ro": "Halat de uscare Buline Cacao",
-      "en": "Cocoa Dot Drying Robe"
-    },
-    "tip": "halat",
-    "tipNume": {
-      "ro": "Halat de uscare",
-      "en": "Drying Robe"
-    },
-    "colectie": "buline-cacao",
-    "culoare": {
-      "ro": "Ciocolată",
-      "en": "Chocolate"
-    },
-    "culoareHex": "#4A3728",
-    "rating": 5.0,
-    "nrRecenzii": 342,
-    "nou": false,
-    "reducere": 20,
-    "pretVechiRon": 279,
-    "pretRon": 223,
-    "marimi": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "imagini": [
-      "/media/produse/halat.jpg",
-      "/media/colectii/buline-cacao.jpg",
-      "/media/lifestyle/04.jpg"
-    ],
-    "descriere": {
-      "ro": "Halat din microfibră cu absorbție mare, cu glugă și chingă pe burtă. Usucă un câine de talie medie în aproximativ 15 minute, fără să-l freci cu prosopul. Bumbac crem cu buline ciocolată imprimate cu pigment, 300 g/mp.",
-      "en": "High-absorbency microfibre robe with a hood and a belly strap. It dries a medium dog in about fifteen minutes, with no towel rubbing. Cream cotton with pigment-printed chocolate dots, 300 gsm."
-    },
-    "caracteristici": {
-      "ro": [
-        "Microfibră de 400 g/mp",
-        "Glugă și chingă pe burtă",
-        "Usucă în circa 15 minute",
-        "Se usucă singur pe umeraș",
-        "Se spală la 30 de grade, fără balsam"
-      ],
-      "en": [
-        "400 gsm microfibre",
-        "Hood and belly strap",
-        "Dries in about fifteen minutes",
-        "Drip-dries on a hanger",
-        "Machine wash at 30 degrees, no softener"
-      ]
-    },
-    "stoc": 11,
+    "stoc": 17,
     "bestseller": false,
     "segment": null
   },
@@ -865,8 +748,8 @@
       "en": "Chocolate"
     },
     "culoareHex": "#4A3728",
-    "rating": 4.8,
-    "nrRecenzii": 156,
+    "rating": 4.7,
+    "nrRecenzii": 87,
     "nou": false,
     "reducere": 0,
     "pretRon": 79,
@@ -877,7 +760,7 @@
     "imagini": [
       "/media/produse/medalion.jpg",
       "/media/colectii/buline-cacao.jpg",
-      "/media/lifestyle/05.jpg"
+      "/media/lifestyle/03.jpg"
     ],
     "descriere": {
       "ro": "Medalion din alamă masivă, gravat cu laser pe ambele fețe. Numele pe față, două numere de telefon pe spate. Vine cu inel dublu, care nu se desface din zgardă. Bumbac crem cu buline ciocolată imprimate cu pigment, 300 g/mp.",
@@ -899,7 +782,7 @@
         "Ships within 48 hours"
       ]
     },
-    "stoc": 25,
+    "stoc": 3,
     "bestseller": false,
     "segment": null
   },
@@ -920,8 +803,8 @@
       "en": "Terracotta"
     },
     "culoareHex": "#A9563A",
-    "rating": 4.6,
-    "nrRecenzii": 63,
+    "rating": 5.0,
+    "nrRecenzii": 342,
     "nou": false,
     "reducere": 20,
     "pretVechiRon": 189,
@@ -936,7 +819,7 @@
     "imagini": [
       "/media/produse/ham-dungi-sinaia.jpg",
       "/media/colectii/dungi-sinaia.jpg",
-      "/media/lifestyle/06.jpg"
+      "/media/lifestyle/04.jpg"
     ],
     "descriere": {
       "ro": "Ham cu intrare pe cap, cu două puncte de reglaj și cataramă de siguranță. Chinga interioară e căptușită cu neopren de 4 mm, ca să nu frece la subraț. Inelul D e dublu și cusut în X pe patru rânduri. Bumbac cu dungi teracotă și crem, țesute nu imprimate, 340 g/mp.",
@@ -958,7 +841,7 @@
         "Machine wash at 30 degrees"
       ]
     },
-    "stoc": 14,
+    "stoc": 11,
     "bestseller": false,
     "segment": null
   },
@@ -979,8 +862,8 @@
       "en": "Terracotta"
     },
     "culoareHex": "#A9563A",
-    "rating": 4.9,
-    "nrRecenzii": 198,
+    "rating": 4.8,
+    "nrRecenzii": 156,
     "nou": false,
     "reducere": 0,
     "pretRon": 249,
@@ -994,7 +877,7 @@
     "imagini": [
       "/media/produse/ham-explore-dungi-sinaia.jpg",
       "/media/colectii/dungi-sinaia.jpg",
-      "/media/lifestyle/07.jpg"
+      "/media/lifestyle/05.jpg"
     ],
     "descriere": {
       "ro": "Ham pentru câini de talie mare, cu mâner de control cusut pe spate și trei puncte de reglaj. Inel frontal pentru dresaj, inel dorsal pentru plimbare. Chinga a fost testată la tracțiune până la 187 kg. Bumbac cu dungi teracotă și crem, țesute nu imprimate, 340 g/mp.",
@@ -1016,7 +899,7 @@
         "Reflective trim all round"
       ]
     },
-    "stoc": 9,
+    "stoc": 25,
     "bestseller": false,
     "segment": "talie-mare"
   },
@@ -1037,8 +920,8 @@
       "en": "Terracotta"
     },
     "culoareHex": "#A9563A",
-    "rating": 4.8,
-    "nrRecenzii": 121,
+    "rating": 4.6,
+    "nrRecenzii": 63,
     "nou": false,
     "reducere": 20,
     "pretVechiRon": 139,
@@ -1050,7 +933,7 @@
     "imagini": [
       "/media/produse/lesa-dungi-sinaia.jpg",
       "/media/colectii/dungi-sinaia.jpg",
-      "/media/lifestyle/08.jpg"
+      "/media/lifestyle/06.jpg"
     ],
     "descriere": {
       "ro": "Lesă cu carabină din alamă masivă și mâner căptușit cu piele tăbăcită vegetal. Are un inel mobil pe chingă, pentru saci sau chei, ca să nu ții nimic în mână. Bumbac cu dungi teracotă și crem, țesute nu imprimate, 340 g/mp.",
@@ -1072,7 +955,7 @@
         "Machine wash at 30 degrees"
       ]
     },
-    "stoc": 21,
+    "stoc": 14,
     "bestseller": false,
     "segment": null
   },
@@ -1093,8 +976,8 @@
       "en": "Terracotta"
     },
     "culoareHex": "#A9563A",
-    "rating": 5.0,
-    "nrRecenzii": 276,
+    "rating": 4.9,
+    "nrRecenzii": 198,
     "nou": true,
     "reducere": 0,
     "pretRon": 119,
@@ -1106,7 +989,7 @@
     "imagini": [
       "/media/produse/zgarda-dungi-sinaia.jpg",
       "/media/colectii/dungi-sinaia.jpg",
-      "/media/lifestyle/09.jpg"
+      "/media/lifestyle/07.jpg"
     ],
     "descriere": {
       "ro": "Zgardă cu cataramă din alamă și inel D sudat, nu doar îndoit. Marginile sunt tivite dublu, ca să nu se destrame la spălare. Bumbac cu dungi teracotă și crem, țesute nu imprimate, 340 g/mp.",
@@ -1128,7 +1011,7 @@
         "Machine wash at 30 degrees"
       ]
     },
-    "stoc": 6,
+    "stoc": 9,
     "bestseller": false,
     "segment": null
   },
@@ -1149,8 +1032,8 @@
       "en": "Terracotta"
     },
     "culoareHex": "#A9563A",
-    "rating": 4.7,
-    "nrRecenzii": 94,
+    "rating": 4.8,
+    "nrRecenzii": 121,
     "nou": false,
     "reducere": 20,
     "pretVechiRon": 239,
@@ -1161,7 +1044,7 @@
     "imagini": [
       "/media/produse/geanta-dungi-sinaia.jpg",
       "/media/colectii/dungi-sinaia.jpg",
-      "/media/lifestyle/10.jpg"
+      "/media/lifestyle/08.jpg"
     ],
     "descriere": {
       "ro": "Geantă crossbody cu buzunar căptușit pentru recompense, compartiment separat pentru saci și fermoar din alamă. Cureaua se reglează de la 90 la 140 cm, deci se poartă și pe umăr, și pe diagonală. Bumbac cu dungi teracotă și crem, țesute nu imprimate, 340 g/mp.",
@@ -1183,7 +1066,7 @@
         "Wipe-clean waterproof lining"
       ]
     },
-    "stoc": 17,
+    "stoc": 21,
     "bestseller": false,
     "segment": null
   },
@@ -1204,8 +1087,8 @@
       "en": "Terracotta"
     },
     "culoareHex": "#A9563A",
-    "rating": 4.9,
-    "nrRecenzii": 183,
+    "rating": 5.0,
+    "nrRecenzii": 276,
     "nou": false,
     "reducere": 25,
     "pretVechiRon": 69,
@@ -1218,7 +1101,7 @@
     "imagini": [
       "/media/produse/bandana-dungi-sinaia.jpg",
       "/media/colectii/dungi-sinaia.jpg",
-      "/media/lifestyle/11.jpg"
+      "/media/lifestyle/09.jpg"
     ],
     "descriere": {
       "ro": "Bandană cu trecere pentru zgardă, deci nu se leagă la gât și nu alunecă. Bumbacul e prespălat și se calcă ușor. Bumbac cu dungi teracotă și crem, țesute nu imprimate, 340 g/mp.",
@@ -1240,65 +1123,7 @@
         "Machine wash at 30 degrees"
       ]
     },
-    "stoc": 3,
-    "bestseller": false,
-    "segment": null
-  },
-  {
-    "id": "halat-dungi-sinaia",
-    "nume": {
-      "ro": "Halat de uscare Dungi Sinaia",
-      "en": "Sinaia Stripe Drying Robe"
-    },
-    "tip": "halat",
-    "tipNume": {
-      "ro": "Halat de uscare",
-      "en": "Drying Robe"
-    },
-    "colectie": "dungi-sinaia",
-    "culoare": {
-      "ro": "Teracotă",
-      "en": "Terracotta"
-    },
-    "culoareHex": "#A9563A",
-    "rating": 4.5,
-    "nrRecenzii": 47,
-    "nou": true,
-    "reducere": 0,
-    "pretRon": 279,
-    "marimi": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "imagini": [
-      "/media/produse/halat.jpg",
-      "/media/colectii/dungi-sinaia.jpg",
-      "/media/lifestyle/01.jpg"
-    ],
-    "descriere": {
-      "ro": "Halat din microfibră cu absorbție mare, cu glugă și chingă pe burtă. Usucă un câine de talie medie în aproximativ 15 minute, fără să-l freci cu prosopul. Bumbac cu dungi teracotă și crem, țesute nu imprimate, 340 g/mp.",
-      "en": "High-absorbency microfibre robe with a hood and a belly strap. It dries a medium dog in about fifteen minutes, with no towel rubbing. Cotton with terracotta and cream stripes, woven rather than printed, 340 gsm."
-    },
-    "caracteristici": {
-      "ro": [
-        "Microfibră de 400 g/mp",
-        "Glugă și chingă pe burtă",
-        "Usucă în circa 15 minute",
-        "Se usucă singur pe umeraș",
-        "Se spală la 30 de grade, fără balsam"
-      ],
-      "en": [
-        "400 gsm microfibre",
-        "Hood and belly strap",
-        "Dries in about fifteen minutes",
-        "Drip-dries on a hanger",
-        "Machine wash at 30 degrees, no softener"
-      ]
-    },
-    "stoc": 11,
+    "stoc": 6,
     "bestseller": false,
     "segment": null
   },
@@ -1319,8 +1144,8 @@
       "en": "Terracotta"
     },
     "culoareHex": "#A9563A",
-    "rating": 4.8,
-    "nrRecenzii": 231,
+    "rating": 4.7,
+    "nrRecenzii": 94,
     "nou": false,
     "reducere": 0,
     "pretRon": 79,
@@ -1331,7 +1156,7 @@
     "imagini": [
       "/media/produse/medalion.jpg",
       "/media/colectii/dungi-sinaia.jpg",
-      "/media/lifestyle/02.jpg"
+      "/media/lifestyle/10.jpg"
     ],
     "descriere": {
       "ro": "Medalion din alamă masivă, gravat cu laser pe ambele fețe. Numele pe față, două numere de telefon pe spate. Vine cu inel dublu, care nu se desface din zgardă. Bumbac cu dungi teracotă și crem, țesute nu imprimate, 340 g/mp.",
@@ -1353,7 +1178,7 @@
         "Ships within 48 hours"
       ]
     },
-    "stoc": 25,
+    "stoc": 17,
     "bestseller": false,
     "segment": null
   },
@@ -1375,7 +1200,7 @@
     },
     "culoareHex": "#C4B69A",
     "rating": 4.9,
-    "nrRecenzii": 214,
+    "nrRecenzii": 183,
     "nou": true,
     "reducere": 0,
     "pretRon": 189,
@@ -1389,7 +1214,7 @@
     "imagini": [
       "/media/produse/ham-canepa-naturala.jpg",
       "/media/colectii/canepa-naturala.jpg",
-      "/media/lifestyle/03.jpg"
+      "/media/lifestyle/11.jpg"
     ],
     "descriere": {
       "ro": "Ham cu intrare pe cap, cu două puncte de reglaj și cataramă de siguranță. Chinga interioară e căptușită cu neopren de 4 mm, ca să nu frece la subraț. Inelul D e dublu și cusut în X pe patru rânduri. Cânepă nevopsită cu bumbac, 380 g/mp, se înmoaie la fiecare spălare.",
@@ -1411,7 +1236,7 @@
         "Machine wash at 30 degrees"
       ]
     },
-    "stoc": 14,
+    "stoc": 3,
     "bestseller": false,
     "segment": null
   },
@@ -1432,8 +1257,8 @@
       "en": "Natural"
     },
     "culoareHex": "#C4B69A",
-    "rating": 4.7,
-    "nrRecenzii": 87,
+    "rating": 4.5,
+    "nrRecenzii": 47,
     "nou": false,
     "reducere": 30,
     "pretVechiRon": 249,
@@ -1448,7 +1273,7 @@
     "imagini": [
       "/media/produse/ham-explore-canepa-naturala.jpg",
       "/media/colectii/canepa-naturala.jpg",
-      "/media/lifestyle/04.jpg"
+      "/media/lifestyle/01.jpg"
     ],
     "descriere": {
       "ro": "Ham pentru câini de talie mare, cu mâner de control cusut pe spate și trei puncte de reglaj. Inel frontal pentru dresaj, inel dorsal pentru plimbare. Chinga a fost testată la tracțiune până la 187 kg. Cânepă nevopsită cu bumbac, 380 g/mp, se înmoaie la fiecare spălare.",
@@ -1470,7 +1295,7 @@
         "Reflective trim all round"
       ]
     },
-    "stoc": 9,
+    "stoc": 11,
     "bestseller": false,
     "segment": "talie-mare"
   },
@@ -1491,8 +1316,8 @@
       "en": "Natural"
     },
     "culoareHex": "#C4B69A",
-    "rating": 5.0,
-    "nrRecenzii": 342,
+    "rating": 4.8,
+    "nrRecenzii": 231,
     "nou": false,
     "reducere": 15,
     "pretVechiRon": 139,
@@ -1504,7 +1329,7 @@
     "imagini": [
       "/media/produse/lesa-canepa-naturala.jpg",
       "/media/colectii/canepa-naturala.jpg",
-      "/media/lifestyle/05.jpg"
+      "/media/lifestyle/02.jpg"
     ],
     "descriere": {
       "ro": "Lesă cu carabină din alamă masivă și mâner căptușit cu piele tăbăcită vegetal. Are un inel mobil pe chingă, pentru saci sau chei, ca să nu ții nimic în mână. Cânepă nevopsită cu bumbac, 380 g/mp, se înmoaie la fiecare spălare.",
@@ -1526,7 +1351,7 @@
         "Machine wash at 30 degrees"
       ]
     },
-    "stoc": 21,
+    "stoc": 25,
     "bestseller": false,
     "segment": null
   },
@@ -1547,11 +1372,12 @@
       "en": "Natural"
     },
     "culoareHex": "#C4B69A",
-    "rating": 4.8,
-    "nrRecenzii": 156,
+    "rating": 4.9,
+    "nrRecenzii": 214,
     "nou": false,
-    "reducere": 0,
-    "pretRon": 119,
+    "reducere": 20,
+    "pretVechiRon": 119,
+    "pretRon": 95,
     "marimi": [
       "S",
       "M",
@@ -1560,7 +1386,7 @@
     "imagini": [
       "/media/produse/zgarda-canepa-naturala.jpg",
       "/media/colectii/canepa-naturala.jpg",
-      "/media/lifestyle/06.jpg"
+      "/media/lifestyle/03.jpg"
     ],
     "descriere": {
       "ro": "Zgardă cu cataramă din alamă și inel D sudat, nu doar îndoit. Marginile sunt tivite dublu, ca să nu se destrame la spălare. Cânepă nevopsită cu bumbac, 380 g/mp, se înmoaie la fiecare spălare.",
@@ -1582,7 +1408,7 @@
         "Machine wash at 30 degrees"
       ]
     },
-    "stoc": 6,
+    "stoc": 14,
     "bestseller": false,
     "segment": null
   },
@@ -1603,8 +1429,8 @@
       "en": "Natural"
     },
     "culoareHex": "#C4B69A",
-    "rating": 4.6,
-    "nrRecenzii": 63,
+    "rating": 4.7,
+    "nrRecenzii": 87,
     "nou": false,
     "reducere": 30,
     "pretVechiRon": 239,
@@ -1615,7 +1441,7 @@
     "imagini": [
       "/media/produse/geanta-canepa-naturala.jpg",
       "/media/colectii/canepa-naturala.jpg",
-      "/media/lifestyle/07.jpg"
+      "/media/lifestyle/04.jpg"
     ],
     "descriere": {
       "ro": "Geantă crossbody cu buzunar căptușit pentru recompense, compartiment separat pentru saci și fermoar din alamă. Cureaua se reglează de la 90 la 140 cm, deci se poartă și pe umăr, și pe diagonală. Cânepă nevopsită cu bumbac, 380 g/mp, se înmoaie la fiecare spălare.",
@@ -1637,7 +1463,7 @@
         "Wipe-clean waterproof lining"
       ]
     },
-    "stoc": 17,
+    "stoc": 9,
     "bestseller": false,
     "segment": null
   },
@@ -1658,8 +1484,8 @@
       "en": "Natural"
     },
     "culoareHex": "#C4B69A",
-    "rating": 4.9,
-    "nrRecenzii": 198,
+    "rating": 5.0,
+    "nrRecenzii": 342,
     "nou": true,
     "reducere": 0,
     "pretRon": 69,
@@ -1671,7 +1497,7 @@
     "imagini": [
       "/media/produse/bandana-canepa-naturala.jpg",
       "/media/colectii/canepa-naturala.jpg",
-      "/media/lifestyle/08.jpg"
+      "/media/lifestyle/05.jpg"
     ],
     "descriere": {
       "ro": "Bandană cu trecere pentru zgardă, deci nu se leagă la gât și nu alunecă. Bumbacul e prespălat și se calcă ușor. Cânepă nevopsită cu bumbac, 380 g/mp, se înmoaie la fiecare spălare.",
@@ -1693,65 +1519,7 @@
         "Machine wash at 30 degrees"
       ]
     },
-    "stoc": 3,
-    "bestseller": false,
-    "segment": null
-  },
-  {
-    "id": "halat-canepa-naturala",
-    "nume": {
-      "ro": "Halat de uscare Cânepă Naturală",
-      "en": "Natural Hemp Drying Robe"
-    },
-    "tip": "halat",
-    "tipNume": {
-      "ro": "Halat de uscare",
-      "en": "Drying Robe"
-    },
-    "colectie": "canepa-naturala",
-    "culoare": {
-      "ro": "Natural",
-      "en": "Natural"
-    },
-    "culoareHex": "#C4B69A",
-    "rating": 4.8,
-    "nrRecenzii": 121,
-    "nou": false,
-    "reducere": 0,
-    "pretRon": 279,
-    "marimi": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "imagini": [
-      "/media/produse/halat.jpg",
-      "/media/colectii/canepa-naturala.jpg",
-      "/media/lifestyle/09.jpg"
-    ],
-    "descriere": {
-      "ro": "Halat din microfibră cu absorbție mare, cu glugă și chingă pe burtă. Usucă un câine de talie medie în aproximativ 15 minute, fără să-l freci cu prosopul. Cânepă nevopsită cu bumbac, 380 g/mp, se înmoaie la fiecare spălare.",
-      "en": "High-absorbency microfibre robe with a hood and a belly strap. It dries a medium dog in about fifteen minutes, with no towel rubbing. Undyed hemp with cotton, 380 gsm, softens with every wash."
-    },
-    "caracteristici": {
-      "ro": [
-        "Microfibră de 400 g/mp",
-        "Glugă și chingă pe burtă",
-        "Usucă în circa 15 minute",
-        "Se usucă singur pe umeraș",
-        "Se spală la 30 de grade, fără balsam"
-      ],
-      "en": [
-        "400 gsm microfibre",
-        "Hood and belly strap",
-        "Dries in about fifteen minutes",
-        "Drip-dries on a hanger",
-        "Machine wash at 30 degrees, no softener"
-      ]
-    },
-    "stoc": 11,
+    "stoc": 21,
     "bestseller": false,
     "segment": null
   },
@@ -1772,8 +1540,8 @@
       "en": "Natural"
     },
     "culoareHex": "#C4B69A",
-    "rating": 5.0,
-    "nrRecenzii": 276,
+    "rating": 4.8,
+    "nrRecenzii": 156,
     "nou": false,
     "reducere": 15,
     "pretVechiRon": 79,
@@ -1785,7 +1553,7 @@
     "imagini": [
       "/media/produse/medalion.jpg",
       "/media/colectii/canepa-naturala.jpg",
-      "/media/lifestyle/10.jpg"
+      "/media/lifestyle/06.jpg"
     ],
     "descriere": {
       "ro": "Medalion din alamă masivă, gravat cu laser pe ambele fețe. Numele pe față, două numere de telefon pe spate. Vine cu inel dublu, care nu se desface din zgardă. Cânepă nevopsită cu bumbac, 380 g/mp, se înmoaie la fiecare spălare.",
@@ -1807,7 +1575,7 @@
         "Ships within 48 hours"
       ]
     },
-    "stoc": 25,
+    "stoc": 6,
     "bestseller": false,
     "segment": null
   },

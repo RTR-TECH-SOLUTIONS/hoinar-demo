@@ -122,7 +122,7 @@ const ugc = ['/media/ugc/01.jpg', '/media/ugc/02.jpg', '/media/ugc/05.jpg', '/me
 
 <!-- 2b. CATEGORII, sub banda de încredere -->
 <section class="border-b border-linie bg-crem" aria-label={ro ? 'Categorii' : 'Categories'}>
-  <ul class="container-brand flex snap-x gap-7 overflow-x-auto py-9 [scrollbar-width:none] sm:justify-center sm:gap-10 lg:gap-14">
+  <ul data-apare class="container-brand flex snap-x gap-7 overflow-x-auto py-9 [scrollbar-width:none] sm:justify-center sm:gap-10 lg:gap-14">
     {tipuriPrincipale.map((tip) => (
       <li class="shrink-0 snap-start">
         <a href={u(`/categorie/${tip.slug}`)} class="group flex w-[7rem] flex-col items-center gap-3 text-center lg:w-[9rem]">
@@ -148,7 +148,7 @@ const ugc = ['/media/ugc/01.jpg', '/media/ugc/02.jpg', '/media/ugc/05.jpg', '/me
 <!-- 3. REDUCERI -->
 <section class="bg-nisip">
   <div class="container-brand py-[var(--sectiune-strans)]">
-    <div class="flex flex-wrap items-end justify-between gap-5">
+    <div data-apare class="flex flex-wrap items-end justify-between gap-5">
       <div>
         <div class="flex items-center gap-2.5">
           <span class="rounded-[5px] bg-teracota px-2 py-1 text-[0.72rem] leading-none text-crem">
@@ -168,7 +168,7 @@ const ugc = ['/media/ugc/01.jpg', '/media/ugc/02.jpg', '/media/ugc/05.jpg', '/me
       />
     </div>
 
-    <div class="mt-9 grid grid-cols-2 gap-x-4 gap-y-9 lg:grid-cols-4">
+    <div data-apare style="--pas: 90ms" class="mt-9 grid grid-cols-2 gap-x-4 gap-y-9 lg:grid-cols-4">
       {reduceri.map((p) => <CardProdus produs={p} lang={lang} />)}
     </div>
 
@@ -178,46 +178,13 @@ const ugc = ['/media/ugc/01.jpg', '/media/ugc/02.jpg', '/media/ugc/05.jpg', '/me
   </div>
 </section>
 
-<!-- 4. CATEGORII -->
-<section class="container-brand sectiune">
-  <div class="flex items-end justify-between gap-6">
-    <h2 style="font-size: var(--pas-2xl)">{ro ? 'Ce cauți' : 'What you need'}</h2>
-    <a href={u('/colectii')} class="shrink-0 text-[0.88rem] underline underline-offset-4 hover:text-teracota">{t('nav.toate')}</a>
-  </div>
-
-  <div class="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4">
-    {tipuri.map((tip, i) => (
-      <a
-        href={u(`/categorie/${tip.slug}`)}
-        class={`group relative block overflow-hidden rounded-[10px] bg-nisip ${i === 0 ? 'col-span-2 row-span-2 md:col-span-2 md:row-span-2' : ''}`}
-      >
-        <Image
-          src={getImagine(tip.imagine)}
-          alt=""
-          widths={i === 0 ? [500, 900] : [280, 460]}
-          sizes={i === 0 ? '(min-width: 768px) 46vw, 92vw' : '(min-width: 768px) 23vw, 46vw'}
-          loading="lazy"
-          class={`w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04] ${i === 0 ? 'aspect-square' : 'aspect-[4/5]'}`}
-        />
-        <span
-          class="pointer-events-none absolute inset-x-0 bottom-0 h-[46%]"
-          style="background: linear-gradient(to top, rgba(24,22,19,0.78) 0%, rgba(24,22,19,0.42) 38%, rgba(24,22,19,0.12) 70%, transparent 100%);"
-          aria-hidden="true"></span>
-        <span class={`absolute bottom-3 left-3.5 right-3 text-crem ${i === 0 ? 'text-[1.35rem] font-[family-name:var(--font-serif)]' : 'text-[0.9rem]'}`}>
-          {tip.nume}
-        </span>
-      </a>
-    ))}
-  </div>
-</section>
-
 <!-- 5. BESTSELLERS -->
-<section class="container-brand sectiune pt-0">
-  <div class="flex items-end justify-between gap-6">
+<section class="container-brand sectiune">
+  <div data-apare class="flex items-end justify-between gap-6">
     <h2 style="font-size: var(--pas-2xl)">{ro ? 'Cele mai vândute' : 'Bestsellers'}</h2>
     <a href={u('/colectii')} class="shrink-0 text-[0.88rem] underline underline-offset-4 hover:text-teracota">{t('nav.toate')}</a>
   </div>
-  <div class="mt-8 grid grid-cols-2 gap-x-4 gap-y-9 lg:grid-cols-4">
+  <div data-apare style="--pas: 90ms" class="mt-8 grid grid-cols-2 gap-x-4 gap-y-9 lg:grid-cols-4">
     {bestsellers.map((p) => <CardProdus produs={p} lang={lang} />)}
   </div>
 </section>
@@ -269,7 +236,7 @@ const ugc = ['/media/ugc/01.jpg', '/media/ugc/02.jpg', '/media/ugc/05.jpg', '/me
     class="h-[clamp(20rem,48svh,30rem)] w-full object-cover"
   />
   <span class="absolute inset-0" style="background: linear-gradient(to right, rgba(24,22,19,0.82) 0%, rgba(24,22,19,0.5) 42%, rgba(24,22,19,0.15) 75%);" aria-hidden="true"></span>
-  <div class="container-brand absolute inset-0 flex flex-col justify-center">
+  <div data-apare class="container-brand absolute inset-0 flex flex-col justify-center">
     <h2 class="max-w-[17ch] text-crem" style="font-size: var(--pas-2xl)">
       {ro ? 'Patru țesături. Aceleași opt piese.' : 'Four cloths. The same eight pieces.'}
     </h2>
@@ -287,7 +254,7 @@ const ugc = ['/media/ugc/01.jpg', '/media/ugc/02.jpg', '/media/ugc/05.jpg', '/me
 <!-- 7. COLECȚII -->
 <section class="container-brand sectiune">
   <h2 style="font-size: var(--pas-2xl)">{ro ? 'Colecțiile' : 'The collections'}</h2>
-  <div class="mt-8 grid gap-4 sm:grid-cols-2">
+  <div data-apare class="mt-8 grid gap-4 sm:grid-cols-2">
     {colectii.map((c) => (
       <a href={u(`/colectie/${c.slug}`)} class="group relative block overflow-hidden rounded-[14px] bg-nisip">
         <Image
@@ -312,7 +279,7 @@ const ugc = ['/media/ugc/01.jpg', '/media/ugc/02.jpg', '/media/ugc/05.jpg', '/me
 {noutati.length > 0 && (
   <section class="container-brand sectiune pt-0">
     <h2 style="font-size: var(--pas-2xl)">{ro ? 'Intrate în stoc' : 'Just landed'}</h2>
-    <div class="mt-8 grid grid-cols-2 gap-x-4 gap-y-9 lg:grid-cols-4">
+    <div data-apare class="mt-8 grid grid-cols-2 gap-x-4 gap-y-9 lg:grid-cols-4">
       {noutati.map((p) => <CardProdus produs={p} lang={lang} />)}
     </div>
   </section>
@@ -320,7 +287,7 @@ const ugc = ['/media/ugc/01.jpg', '/media/ugc/02.jpg', '/media/ugc/05.jpg', '/me
 
 <!-- 9. ATELIER -->
 <section class="bg-nisip">
-  <div class="container-brand sectiune grid items-center gap-10 md:grid-cols-[1.05fr_0.95fr] md:gap-14">
+  <div data-apare class="container-brand sectiune grid items-center gap-10 md:grid-cols-[1.05fr_0.95fr] md:gap-14">
     <div>
       <h2 style="font-size: var(--pas-2xl)">
         {ro ? 'Croite în București, testate la 187 kg' : 'Cut in Bucharest, pull-tested to 187 kg'}
@@ -368,7 +335,7 @@ const ugc = ['/media/ugc/01.jpg', '/media/ugc/02.jpg', '/media/ugc/05.jpg', '/me
     <h2 style="font-size: var(--pas-2xl)">{ro ? 'De la oamenii care le poartă' : 'From the people who wear them'}</h2>
     <p class="text-[0.85rem] text-ciocolata/60">#hoinarpelume</p>
   </div>
-  <div class="mt-7 grid grid-cols-2 gap-2 px-[clamp(1rem,0.5rem+2.5vw,3rem)] sm:grid-cols-5 sm:gap-3">
+  <div data-apare class="mt-7 grid grid-cols-2 gap-2 px-[clamp(1rem,0.5rem+2.5vw,3rem)] sm:grid-cols-5 sm:gap-3">
     {ugc.map((cale, i) => (
       <div class={`overflow-hidden rounded-[10px] bg-nisip ${i > 3 ? 'hidden sm:block' : ''}`}>
         <Image
@@ -383,7 +350,7 @@ const ugc = ['/media/ugc/01.jpg', '/media/ugc/02.jpg', '/media/ugc/05.jpg', '/me
     ))}
   </div>
 
-  <div class="container-brand mt-10 grid gap-4 md:grid-cols-3">
+  <div data-apare style="--pas: 120ms" class="container-brand mt-10 grid gap-4 md:grid-cols-3">
     {recenzii.slice(0, 3).map((r) => (
       <figure class="rounded-[10px] border border-linie p-5">
         <Stele n={r.stele} marime={13} />

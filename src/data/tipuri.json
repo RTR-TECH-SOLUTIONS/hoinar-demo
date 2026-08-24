@@ -54,21 +54,12 @@
     "ordine": 5
   },
   {
-    "id": "halat",
-    "nume": {
-      "ro": "Halat de uscare",
-      "en": "Drying Robe"
-    },
-    "imagine": "/media/produse/halat.jpg",
-    "ordine": 6
-  },
-  {
     "id": "medalion",
     "nume": {
       "ro": "Medalion gravat",
       "en": "Engraved Tag"
     },
     "imagine": "/media/produse/medalion.jpg",
-    "ordine": 7
+    "ordine": 6
   }
 ]

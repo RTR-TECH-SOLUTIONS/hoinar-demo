@@ -131,8 +131,8 @@ export async function getMeniu(lang: Limba): Promise<ItemMeniu[]> {
           titlu: ro ? 'Pentru plimbare' : 'For the walk',
           linkuri: [
             { eticheta: ro ? 'Bandane' : 'Bandanas', href: u('/categorie/bandana') },
-            { eticheta: ro ? 'Medalioane' : 'Tags', href: u('/categorie/medalion') },
-            { eticheta: ro ? 'Halate de uscare' : 'Drying robes', href: u('/categorie/halat') },
+            { eticheta: ro ? 'Medalioane gravate' : 'Engraved tags', href: u('/categorie/medalion') },
+            { eticheta: ro ? 'Seturi complete' : 'Full sets', href: u('/colectii?tip=set') },
           ],
         },
         {
@@ -149,14 +149,14 @@ export async function getMeniu(lang: Limba): Promise<ItemMeniu[]> {
       href: u('/categorie/bandana'),
       coloane: [
         { imagine: '/media/produse/bandana-buline-cacao.jpg', titlu: numeTip('bandana'), linkuri: peTesaturi('bandana') },
-        { imagine: '/media/produse/halat.jpg', titlu: numeTip('halat'), linkuri: peTesaturi('halat') },
+        { imagine: '/media/produse/medalion.jpg', titlu: numeTip('medalion'), linkuri: peTesaturi('medalion') },
         {
           imagine: '/media/ugc/04.jpg',
-          titlu: ro ? 'Pentru acasă' : 'For home',
+          titlu: ro ? 'Se potrivesc cu' : 'Goes with',
           linkuri: [
-            { eticheta: ro ? 'Halate de uscare' : 'Drying robes', href: u('/categorie/halat') },
-            { eticheta: ro ? 'Medalioane gravate' : 'Engraved tags', href: u('/categorie/medalion') },
-            { eticheta: ro ? 'Toate accesoriile' : 'All accessories', href: u('/colectii') },
+            { eticheta: ro ? 'Zgărzi' : 'Collars', href: u('/categorie/zgarda') },
+            { eticheta: ro ? 'Lese' : 'Leads', href: u('/categorie/lesa') },
+            { eticheta: ro ? 'Tot ce facem' : 'Everything we make', href: u('/colectii') },
           ],
         },
         {

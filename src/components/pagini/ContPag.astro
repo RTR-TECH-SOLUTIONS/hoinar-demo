@@ -6,7 +6,7 @@ import Cont from '../Cont.tsx';
 interface Props { lang: Limba }
 const { lang } = Astro.props;
 const t = traduceri(lang);
-const chei = ['intra','nou','email','parola','nume','uitat','intraButon','creeaza','termeni','demo','deCe','deCe1','deCe2','deCe3','deCe4'] as const;
+const chei = ['intra','nou','email','parola','nume','uitat','intraButon','creeaza','termeni','demo','gata','deCe','deCe1','deCe2','deCe3','deCe4'] as const;
 const tc: Record<string, string> = Object.fromEntries(chei.map((c) => [c, t(`cont.${c}` as any)]));
 ---
 <div class="container-brand py-12">

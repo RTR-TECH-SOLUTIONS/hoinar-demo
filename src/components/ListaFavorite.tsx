@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useStore } from '@nanostores/react';
 import { favorite, comutaFavorit, hidrateazaFavorite } from '../stores/favorite';
 import { moneda as monedaStore } from '../stores/cos';
@@ -17,29 +17,65 @@ interface Item {
 interface Props {
   toate: Item[];
   gol: string;
+  golText: string;
   inapoi: string;
   urlMagazin: string;
   sterge: string;
+  numarate: string;
 }
 
-export default function ListaFavorite({ toate, gol, inapoi, urlMagazin, sterge }: Props) {
+export default function ListaFavorite({ toate, gol, golText, inapoi, urlMagazin, sterge, numarate }: Props) {
   const [montat, setMontat] = useState(false);
+  const [iesind, setIesind] = useState<Set<string>>(new Set());
+  const ceasuri = useRef<number[]>([]);
+
   useEffect(() => {
     hidrateazaFavorite();
     setMontat(true);
+    return () => ceasuri.current.forEach((c) => window.clearTimeout(c));
   }, []);
+
   const slugs = useStore(favorite);
   const monedaVal = useStore(monedaStore);
   const moneda = montat ? monedaVal : 'RON';
   const lista = montat ? toate.filter((p) => slugs.includes(p.slug)) : [];
 
-  if (!montat) return <div className="min-h-[12rem]" />;
+  /** Scoatem din listă abia după ce s-a terminat animația de ieșire. */
+  function scoate(slug: string) {
+    setIesind((s) => new Set(s).add(slug));
+    ceasuri.current.push(
+      window.setTimeout(() => {
+        comutaFavorit(slug);
+        setIesind((s) => {
+          const c = new Set(s);
+          c.delete(slug);
+          return c;
+        });
+      }, 240),
+    );
+  }
+
+  if (!montat) return <div className="min-h-[18rem]" />;
 
   if (lista.length === 0) {
     return (
-      <div className="py-10">
-        <p className="text-ciocolata/70">{gol}</p>
-        <a href={urlMagazin} className="mt-6 inline-block rounded-[10px] bg-ink px-7 py-3.5 text-[0.92rem] text-crem transition-colors hover:bg-ciocolata">
+      <div className="apare py-16 text-center">
+        <svg
+          viewBox="0 0 20 18"
+          width="52"
+          height="52"
+          aria-hidden="true"
+          className="mx-auto fill-none stroke-camel [animation:puls-blând_2.6s_ease-in-out_infinite]"
+          strokeWidth="1.1"
+        >
+          <path d="M10 16.5S1.6 11.4 1.6 6.2A4.2 4.2 0 0 1 10 4.3a4.2 4.2 0 0 1 8.4 1.9c0 5.2-8.4 10.3-8.4 10.3Z" strokeLinejoin="round" />
+        </svg>
+        <p className="mt-5 text-[1.05rem]">{gol}</p>
+        <p className="mt-2 text-[0.9rem] text-ciocolata/65">{golText}</p>
+        <a
+          href={urlMagazin}
+          className="mt-7 inline-block rounded-[10px] bg-ink px-7 py-3.5 text-[0.92rem] text-crem transition-[background-color,transform] duration-200 hover:bg-ciocolata active:scale-[0.97]"
+        >
           {inapoi}
         </a>
       </div>
@@ -47,33 +83,53 @@ export default function ListaFavorite({ toate, gol, inapoi, urlMagazin, sterge }
   }
 
   return (
-    <div className="grid grid-cols-2 gap-x-4 gap-y-9 lg:grid-cols-4">
-      {lista.map((p) => (
-        <article key={p.slug} className="group">
-          <a href={p.url} className="block">
-            <div className="relative overflow-hidden rounded-[10px] bg-nisip">
-              <img src={p.img} alt={p.nume} loading="lazy" className="aspect-[3/4] w-full object-cover" />
-              {p.reducere > 0 && (
-                <span className="absolute left-2.5 top-2.5 rounded-[6px] bg-teracota px-2 py-1 text-[0.72rem] leading-none text-crem tabular-nums">
-                  −{p.reducere}%
-                </span>
-              )}
-            </div>
-            <h2 className="mt-3 text-[0.92rem] leading-snug">{p.nume}</h2>
-            <p className="mt-1 flex items-baseline gap-2 text-[0.92rem] tabular-nums">
-              <span className={p.pretVechiRon ? 'text-teracota' : ''}>{formatPret(p.pretRon, moneda)}</span>
-              {p.pretVechiRon && <span className="text-[0.82rem] text-ciocolata/45 line-through">{formatPret(p.pretVechiRon, moneda)}</span>}
-            </p>
-          </a>
-          <button
-            type="button"
-            onClick={() => comutaFavorit(p.slug)}
-            className="mt-1.5 text-[0.78rem] text-ciocolata/55 underline underline-offset-4 transition-colors hover:text-teracota"
+    <div>
+      <p className="apare mb-6 text-[0.87rem] text-ciocolata/60" role="status" aria-live="polite">
+        {numarate.replace('{n}', String(lista.length))}
+      </p>
+
+      <div className="grid grid-cols-2 gap-x-4 gap-y-10 lg:grid-cols-4">
+        {lista.map((p, i) => (
+          <article
+            key={p.slug}
+            className={`group ${iesind.has(p.slug) ? 'iese' : 'apare'}`}
+            style={{ '--pas': `${i * 60}ms` } as any}
           >
-            {sterge}
-          </button>
-        </article>
-      ))}
+            <a href={p.url} className="block">
+              <div className="relative overflow-hidden rounded-[10px] bg-nisip">
+                <img
+                  src={p.img}
+                  alt={p.nume}
+                  loading="lazy"
+                  className="aspect-[3/4] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+                />
+                {p.reducere > 0 && (
+                  <span className="absolute left-2.5 top-2.5 rounded-[6px] bg-teracota px-2 py-1 text-[0.72rem] leading-none text-crem tabular-nums">
+                    −{p.reducere}%
+                  </span>
+                )}
+              </div>
+              <h2 className="mt-3 text-[0.92rem] leading-snug">{p.nume}</h2>
+              <p className="mt-1 flex items-baseline gap-2 text-[0.92rem] tabular-nums">
+                <span className={p.pretVechiRon ? 'text-teracota' : ''}>{formatPret(p.pretRon, moneda)}</span>
+                {p.pretVechiRon && (
+                  <span className="text-[0.82rem] text-ciocolata/45 line-through">{formatPret(p.pretVechiRon, moneda)}</span>
+                )}
+              </p>
+            </a>
+            <button
+              type="button"
+              onClick={() => scoate(p.slug)}
+              className="mt-2 inline-flex items-center gap-1.5 text-[0.78rem] text-ciocolata/55 transition-colors duration-200 hover:text-teracota"
+            >
+              <svg viewBox="0 0 20 18" width="13" height="13" aria-hidden="true" className="fill-teracota stroke-teracota" strokeWidth="1.4">
+                <path d="M10 16.5S1.6 11.4 1.6 6.2A4.2 4.2 0 0 1 10 4.3a4.2 4.2 0 0 1 8.4 1.9c0 5.2-8.4 10.3-8.4 10.3Z" strokeLinejoin="round" />
+              </svg>
+              {sterge}
+            </button>
+          </article>
+        ))}
+      </div>
     </div>
   );
 }

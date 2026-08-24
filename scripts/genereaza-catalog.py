@@ -159,21 +159,6 @@ TIPURI = [
         },
     },
     {
-        "id": "halat",
-        "nume": {"ro": "Halat de uscare", "en": "Drying Robe"},
-        "pret": 279,
-        "marimi": ["XS", "S", "M", "L", "XL"],
-        "imagine": "/media/produse/halat.jpg",
-        "descriere": {
-            "ro": "Halat din microfibră cu absorbție mare, cu glugă și chingă pe burtă. Usucă un câine de talie medie în aproximativ 15 minute, fără să-l freci cu prosopul.",
-            "en": "High-absorbency microfibre robe with a hood and a belly strap. It dries a medium dog in about fifteen minutes, with no towel rubbing.",
-        },
-        "caracteristici": {
-            "ro": ["Microfibră de 400 g/mp", "Glugă și chingă pe burtă", "Usucă în circa 15 minute", "Se usucă singur pe umeraș", "Se spală la 30 de grade, fără balsam"],
-            "en": ["400 gsm microfibre", "Hood and belly strap", "Dries in about fifteen minutes", "Drip-dries on a hanger", "Machine wash at 30 degrees, no softener"],
-        },
-    },
-    {
         "id": "medalion",
         "nume": {"ro": "Medalion gravat", "en": "Engraved Tag"},
         "pret": 79,
@@ -211,12 +196,12 @@ REDUCERI = {
     ("geanta", "canepa-naturala"): 30,
     ("bandana", "carou-bruma"): 30,
     ("bandana", "dungi-sinaia"): 25,
-    ("halat", "buline-cacao"): 20,
     ("medalion", "canepa-naturala"): 15,
+    ("zgarda", "canepa-naturala"): 20,
 }
 
 NOUTATI = {("ham", "canepa-naturala"), ("bandana", "canepa-naturala"),
-           ("zgarda", "dungi-sinaia"), ("halat", "dungi-sinaia")}
+           ("zgarda", "dungi-sinaia"), ("medalion", "carou-bruma")}
 
 # rating si numar de recenzii, fixe ca sa nu se schimbe la fiecare build
 RATINGURI = [4.9, 4.7, 5.0, 4.8, 4.6, 4.9, 4.8, 5.0, 4.7, 4.9, 4.5, 4.8]

@@ -40,6 +40,9 @@ const tCos = {
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="alternate" hreflang="ro" href={new URL(comuta(pathname, 'ro'), Astro.site)} />
     <link rel="alternate" hreflang="en" href={new URL(comuta(pathname, 'en'), Astro.site)} />
+    <noscript>
+      <style>[data-apare] { opacity: 1 !important; transform: none !important; }</style>
+    </noscript>
   </head>
   <body>
     <a
@@ -57,5 +60,28 @@ const tCos = {
 
     <Footer lang={lang} pathname={pathname} />
     <CosDrawer client:idle t={tCos} urlCos={url(lang, '/cos')} />
+
+    <script>
+      // Dezvăluire la derulare. Elementele cu data-apare pornesc ascunse și
+      // sunt marcate când intră în ecran. Dacă utilizatorul a cerut mai puțină
+      // mișcare, le marcăm imediat, fără observator.
+      const tinte = document.querySelectorAll<HTMLElement>('[data-apare]');
+      const fara = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (fara || typeof IntersectionObserver === 'undefined') {
+        tinte.forEach((el) => (el.dataset.vizibil = 'da'));
+      } else {
+        const obs = new IntersectionObserver(
+          (intrari) => {
+            for (const i of intrari) {
+              if (!i.isIntersecting) continue;
+              (i.target as HTMLElement).dataset.vizibil = 'da';
+              obs.unobserve(i.target);
+            }
+          },
+          { rootMargin: '0px 0px -12% 0px', threshold: 0.05 },
+        );
+        tinte.forEach((el) => obs.observe(el));
+      }
+    </script>
   </body>
 </html>
