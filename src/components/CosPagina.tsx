@@ -12,9 +12,10 @@ interface Props {
   urlFinalizare: string;
   urlMagazin: string;
   imagineGol: string;
+  sugestii: Array<{ slug: string; nume: string; pretRon: number; pretVechiRon?: number; reducere: number; img: string; url: string }>;
 }
 
-export default function CosPagina({ t, urlFinalizare, urlMagazin, imagineGol }: Props) {
+export default function CosPagina({ t, urlFinalizare, urlMagazin, imagineGol, sugestii }: Props) {
   const montat = useMontat();
   const liniiStore = useStore(cos);
   const subtotalStore = useStore(subtotalRon);
@@ -71,7 +72,8 @@ export default function CosPagina({ t, urlFinalizare, urlMagazin, imagineGol }: 
 
   if (linii.length === 0) {
     return (
-      <div className="apare overflow-hidden rounded-[14px] border border-linie">
+      <div>
+        <div className="apare overflow-hidden rounded-[14px] border border-linie">
         <div className="grid items-stretch md:grid-cols-[1.1fr_1fr]">
           <img src={imagineGol} alt="" className="h-full min-h-[15rem] w-full object-cover md:min-h-[22rem]" />
           <div className="flex flex-col justify-center bg-nisip p-8 text-center md:p-10 md:text-left">
@@ -89,6 +91,35 @@ export default function CosPagina({ t, urlFinalizare, urlMagazin, imagineGol }: 
             </a>
           </div>
         </div>
+        </div>
+
+        {sugestii.length > 0 && (
+          <section className="mt-[var(--sectiune-strans)]">
+            <h2 className="apare text-[1.35rem]" style={{ '--pas': '120ms' } as any}>{t.sugestii}</h2>
+            <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-9 lg:grid-cols-4">
+              {sugestii.map((p, i) => (
+                <a key={p.slug} href={p.url} className="apare group block" style={{ '--pas': `${200 + i * 70}ms` } as any}>
+                  <div className="relative overflow-hidden rounded-[10px] bg-nisip">
+                    <img src={p.img} alt={p.nume} loading="lazy"
+                      className="aspect-[3/4] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]" />
+                    {p.reducere > 0 && (
+                      <span className="absolute left-2.5 top-2.5 rounded-[6px] bg-teracota px-2 py-1 text-[0.72rem] leading-none text-crem tabular-nums">
+                        −{p.reducere}%
+                      </span>
+                    )}
+                  </div>
+                  <h3 className="mt-3 text-[0.9rem] leading-snug">{p.nume}</h3>
+                  <p className="mt-1 flex items-baseline gap-2 text-[0.9rem] tabular-nums">
+                    <span className={p.pretVechiRon ? 'text-teracota' : ''}>{formatPret(p.pretRon, moneda)}</span>
+                    {p.pretVechiRon && (
+                      <span className="text-[0.8rem] text-ciocolata/45 line-through">{formatPret(p.pretVechiRon, moneda)}</span>
+                    )}
+                  </p>
+                </a>
+              ))}
+            </div>
+          </section>
+        )}
       </div>
     );
   }
@@ -104,7 +135,7 @@ export default function CosPagina({ t, urlFinalizare, urlMagazin, imagineGol }: 
             return (
               <li
                 key={k}
-                className={`flex gap-4 py-5 sm:gap-6 ${iesind.has(k) ? 'iese' : 'apare'}`}
+                className={`group flex gap-4 rounded-[10px] px-2 py-5 transition-colors duration-200 hover:bg-nisip/45 sm:gap-6 ${iesind.has(k) ? 'iese' : 'apare'}`}
                 style={{ '--pas': `${i * 70}ms` } as any}
               >
                 <a href={l.url} className="shrink-0 overflow-hidden rounded-[8px]">

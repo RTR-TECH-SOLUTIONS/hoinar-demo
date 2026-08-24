@@ -225,29 +225,64 @@ const ugc = ['/media/ugc/01.jpg', '/media/ugc/02.jpg', '/media/ugc/05.jpg', '/me
   </div>
 </section>
 
-<!-- 6. BANNER LAT -->
-<section class="relative isolate overflow-hidden">
-  <Image
-    src={getImagine('/media/banner/trio.jpg')}
-    alt=""
-    widths={[900, 1400, 2048]}
-    sizes="100vw"
-    loading="lazy"
-    class="h-[clamp(22rem,62svh,38rem)] w-full object-cover object-[center_42%]"
-  />
-  <span class="absolute inset-0" style="background: linear-gradient(to right, rgba(24,22,19,0.82) 0%, rgba(24,22,19,0.5) 42%, rgba(24,22,19,0.15) 75%);" aria-hidden="true"></span>
-  <div data-apare class="container-brand absolute inset-0 flex flex-col justify-center">
-    <h2 class="max-w-[17ch] text-crem" style="font-size: var(--pas-2xl)">
-      {ro ? 'Patru țesături. Aceleași opt piese.' : 'Four cloths. The same eight pieces.'}
-    </h2>
-    <p class="mt-3 max-w-[44ch] text-[0.95rem] leading-relaxed text-crem">
-      {ro
-        ? 'Alegi o țesătură și completezi setul când vrei. Le ținem în stoc tot anul, deci prinzi aceeași nuanță și peste șase luni.'
-        : 'Pick a cloth and complete the set whenever you like. We keep them in stock all year, so you get the same shade six months later.'}
-    </p>
-    <a href={u('/colectii')} class="mt-6 w-fit rounded-[10px] bg-crem px-7 py-3.5 text-[0.92rem] text-ink transition-colors hover:bg-nisip">
-      {ro ? 'Alege țesătura' : 'Pick your cloth'}
-    </a>
+<!-- 6. TREI ȚESĂTURI, fotografia se vede întreagă
+     A fost bandă lată cu text peste, dar orice bandă mai îngustă decât
+     raportul fotografiei taie capetele câinilor. Aici imaginea își păstrează
+     proporția, deci nu se decupează nimic. -->
+<section class="bg-nisip">
+  <div class="container-brand sectiune grid items-center gap-10 lg:grid-cols-[1.25fr_1fr] lg:gap-16">
+    <div data-apare class="overflow-hidden rounded-[14px] bg-crem">
+      <Image
+        src={getImagine('/media/banner/trio.jpg')}
+        alt={ro
+          ? 'Trei câini, fiecare cu ham dintr-o altă țesătură'
+          : 'Three dogs, each in a harness from a different cloth'}
+        widths={[700, 1100, 2016]}
+        sizes="(min-width: 1024px) 58vw, 92vw"
+        loading="lazy"
+        class="w-full"
+      />
+    </div>
+
+    <div data-apare style="--pas: 120ms">
+      <h2 style="font-size: var(--pas-2xl)">
+        {ro ? 'Patru țesături. Aceleași șapte piese.' : 'Four cloths. The same seven pieces.'}
+      </h2>
+      <p class="mt-4 max-w-[46ch] leading-relaxed text-ciocolata/80">
+        {ro
+          ? 'Alegi o țesătură și completezi setul când vrei. Le ținem în stoc tot anul, deci prinzi aceeași nuanță și peste șase luni.'
+          : 'Pick a cloth and complete the set whenever you like. We keep them in stock all year, so you get the same shade six months later.'}
+      </p>
+
+      <ul class="mt-7 grid grid-cols-2 gap-3">
+        {colectii.map((c, i) => (
+          <li>
+            <a
+              href={u(`/colectie/${c.slug}`)}
+              class="apare-x flex items-center gap-3 rounded-[10px] border border-linie bg-crem px-3.5 py-3 transition-colors duration-200 hover:border-camel"
+              style={`--pas: ${180 + i * 80}ms`}
+            >
+              <span
+                aria-hidden="true"
+                class="inline-block h-[1.35rem] w-[1.35rem] shrink-0 rounded-full ring-1 ring-linie"
+                style={`background: ${c.culoareHex}`}
+              ></span>
+              <span class="min-w-0">
+                <span class="block truncate text-[0.9rem]">{c.nume}</span>
+                <span class="block text-[0.76rem] text-ciocolata/55">{c.culoare}</span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <a
+        href={u('/colectii')}
+        class="mt-7 inline-block rounded-[10px] bg-ink px-7 py-3.5 text-[0.92rem] text-crem transition-[background-color,transform] duration-200 hover:bg-ciocolata active:scale-[0.98]"
+      >
+        {ro ? 'Alege țesătura' : 'Pick your cloth'}
+      </a>
+    </div>
   </div>
 </section>
 

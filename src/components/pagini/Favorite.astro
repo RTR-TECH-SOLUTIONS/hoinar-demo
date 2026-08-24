@@ -1,7 +1,7 @@
 ---
 import { getImage } from 'astro:assets';
 import { getImagine } from '../../lib/imagini';
-import { getProduse } from '../../lib/catalog';
+import { getProduse, getBestsellers } from '../../lib/catalog';
 import { traduceri, url } from '../../lib/i18n';
 import type { Limba } from '../../lib/pret';
 import ListaFavorite from '../ListaFavorite.tsx';
@@ -10,37 +10,51 @@ interface Props { lang: Limba }
 const { lang } = Astro.props;
 const t = traduceri(lang);
 const u = (c: string) => url(lang, c);
-const produse = await getProduse(lang, {});
 
 async function src(cale: string, w: number) {
   return (await getImage({ src: getImagine(cale), width: w, format: 'webp' })).src;
 }
 
-const toate = await Promise.all(
-  produse.map(async (p) => ({
+async function laItem(p: any) {
+  return {
     slug: p.slug,
     nume: p.nume,
+    tipNume: p.tipNume,
     pretRon: p.pretRon,
     pretVechiRon: p.pretVechiRon,
     reducere: p.reducere,
+    marimi: p.marimi,
     img: await src(p.imagini[0], 620),
+    imgCos: await src(p.imagini[0], 200),
     url: u(`/produs/${p.slug}`),
-  })),
-);
+  };
+}
+
+const toate = await Promise.all((await getProduse(lang, {})).map(laItem));
+const sugestii = await Promise.all((await getBestsellers(lang, 4)).map(laItem));
+
+const tc = {
+  gol: t('favorite.gol'),
+  golText: t('favorite.golText'),
+  numarate: t('favorite.numarate'),
+  sugestii: t('favorite.sugestii'),
+  toateInCos: t('favorite.toateInCos'),
+  economie: t('favorite.economie'),
+  sterge: t('actiune.sterge'),
+  adauga: t('favorite.cumpara'),
+  adaugat: t('favorite.cumparat'),
+  marime: t('produs.marime'),
+};
 ---
 <div class="container-brand py-12">
-  <h1 style="font-size: var(--pas-3xl)">{t('favorite.titlu')}</h1>
-  <div class="mt-9">
+  <h1 style="font-size: var(--pas-2xl)">{t('favorite.titlu')}</h1>
+  <div class="mt-8">
     <ListaFavorite
       client:load
       toate={toate}
-      gol={t('favorite.gol')}
-      golText={t('favorite.golText')}
-      numarate={t('favorite.numarate')}
-      inapoi={t('check.inapoiMagazin')}
-      urlMagazin={u('/colectii')}
-      sterge={t('actiune.sterge')}
+      sugestii={sugestii}
       imagineGol={await src('/media/pui/fav-gol.jpg', 900)}
+      t={tc}
     />
   </div>
 </div>

@@ -80,6 +80,51 @@ const intrebari = [
       alt={produs.nume}
       eticheta={lang === 'ro' ? 'Alte imagini' : 'More images'}
     />
+    <!-- Acordeoanele stau sub fotografie, nu în coloana din dreapta:
+         acolo rămânea un gol mare sub imagine. -->
+    <div class="mt-8 border-t border-linie">
+      <details class="group border-b border-linie" open>
+        <summary class="flex cursor-pointer list-none items-center justify-between py-4 text-[0.95rem] marker:content-none">
+          {t('produs.descriere')}
+          <span aria-hidden="true" class="text-[1.1rem] leading-none text-ciocolata/50 transition-transform duration-200 group-open:rotate-45">+</span>
+        </summary>
+        <p class="max-w-[54ch] pb-5 text-[0.9rem] leading-relaxed text-ciocolata/80">{produs.descriere}</p>
+      </details>
+
+      {acordeoane.map((a) => (
+        <details class="group border-b border-linie">
+          <summary class="flex cursor-pointer list-none items-center justify-between py-4 text-[0.95rem] marker:content-none">
+            {a.titlu}
+            <span aria-hidden="true" class="text-[1.1rem] leading-none text-ciocolata/50 transition-transform duration-200 group-open:rotate-45">+</span>
+          </summary>
+          <div class="pb-5 text-[0.9rem] leading-relaxed text-ciocolata/80">
+            {a.continut
+              ? <ul class="space-y-2">{a.continut.map((c) => (
+                  <li class="flex gap-2.5">
+                    <span aria-hidden="true" class="mt-[0.6em] h-[3px] w-[10px] shrink-0 bg-camel"></span>
+                    <span>{c}</span>
+                  </li>
+                ))}</ul>
+              : <p class="max-w-[54ch]">{a.text}</p>}
+          </div>
+        </details>
+      ))}
+
+      <details class="group border-b border-linie">
+        <summary class="flex cursor-pointer list-none items-center justify-between py-4 text-[0.95rem] marker:content-none">
+          {t('produs.intrebari')}
+          <span aria-hidden="true" class="text-[1.1rem] leading-none text-ciocolata/50 transition-transform duration-200 group-open:rotate-45">+</span>
+        </summary>
+        <div class="space-y-4 pb-5">
+          {intrebari.map(([q, a]) => (
+            <div>
+              <p class="text-[0.9rem]">{q}</p>
+              <p class="mt-1 max-w-[54ch] text-[0.88rem] leading-relaxed text-ciocolata/75">{a}</p>
+            </div>
+          ))}
+        </div>
+      </details>
+    </div>
   </div>
 
   <!-- INFORMAȚII -->
@@ -165,49 +210,6 @@ const intrebari = [
       </a>
     </div>
 
-    <div class="mt-8 border-t border-linie">
-      <details class="group border-b border-linie" open>
-        <summary class="flex cursor-pointer list-none items-center justify-between py-4 text-[0.95rem] marker:content-none">
-          {t('produs.descriere')}
-          <span aria-hidden="true" class="text-[1.1rem] leading-none text-ciocolata/50 transition-transform duration-200 group-open:rotate-45">+</span>
-        </summary>
-        <p class="max-w-[54ch] pb-5 text-[0.9rem] leading-relaxed text-ciocolata/80">{produs.descriere}</p>
-      </details>
-
-      {acordeoane.map((a) => (
-        <details class="group border-b border-linie">
-          <summary class="flex cursor-pointer list-none items-center justify-between py-4 text-[0.95rem] marker:content-none">
-            {a.titlu}
-            <span aria-hidden="true" class="text-[1.1rem] leading-none text-ciocolata/50 transition-transform duration-200 group-open:rotate-45">+</span>
-          </summary>
-          <div class="pb-5 text-[0.9rem] leading-relaxed text-ciocolata/80">
-            {a.continut
-              ? <ul class="space-y-2">{a.continut.map((c) => (
-                  <li class="flex gap-2.5">
-                    <span aria-hidden="true" class="mt-[0.6em] h-[3px] w-[10px] shrink-0 bg-camel"></span>
-                    <span>{c}</span>
-                  </li>
-                ))}</ul>
-              : <p class="max-w-[54ch]">{a.text}</p>}
-          </div>
-        </details>
-      ))}
-
-      <details class="group border-b border-linie">
-        <summary class="flex cursor-pointer list-none items-center justify-between py-4 text-[0.95rem] marker:content-none">
-          {t('produs.intrebari')}
-          <span aria-hidden="true" class="text-[1.1rem] leading-none text-ciocolata/50 transition-transform duration-200 group-open:rotate-45">+</span>
-        </summary>
-        <div class="space-y-4 pb-5">
-          {intrebari.map(([q, a]) => (
-            <div>
-              <p class="text-[0.9rem]">{q}</p>
-              <p class="mt-1 max-w-[54ch] text-[0.88rem] leading-relaxed text-ciocolata/75">{a}</p>
-            </div>
-          ))}
-        </div>
-      </details>
-    </div>
   </div>
 </article>
 

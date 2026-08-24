@@ -12,6 +12,20 @@ const ro = lang === 'ro';
 const chei = ['intra','nou','email','parola','nume','uitat','intraButon','creeaza','termeni','demo','gata'] as const;
 const tc: Record<string, string> = Object.fromEntries(chei.map((c) => [c, t(`cont.${c}` as any)]));
 const avantaje = [t('cont.deCe1'), t('cont.deCe2'), t('cont.deCe3'), t('cont.deCe4')];
+
+const garantii = ro
+  ? [
+      ['Livrare în 24-48 h', 'Sameday easybox, FAN sau Cargus'],
+      ['Retur în 14 zile', 'Primul schimb de mărime e gratuit'],
+      ['Plata ramburs', 'Sau cu cardul, online'],
+      ['Datele tale rămân ale tale', 'Nu le vindem și nu le dăm nimănui'],
+    ]
+  : [
+      ['Delivered in 24-48 h', 'Sameday locker, FAN or Cargus'],
+      ['14-day returns', 'First size exchange is free'],
+      ['Cash on delivery', 'Or pay by card, online'],
+      ['Your data stays yours', 'We do not sell it or pass it on'],
+    ];
 ---
 
 <div class="container-brand py-10 lg:py-14">
@@ -60,4 +74,31 @@ const avantaje = [t('cont.deCe1'), t('cont.deCe2'), t('cont.deCe3'), t('cont.deC
       </div>
     </div>
   </div>
+
+  <!-- garanții, sub formular -->
+  <ul class="mt-[var(--sectiune-strans)] grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+    {garantii.map(([titlu, text], i) => (
+      <li
+        data-apare
+        style={`--pas: ${i * 90}ms`}
+        class="rounded-[12px] border border-linie bg-nisip p-5 transition-colors duration-200 hover:border-camel"
+      >
+        <span aria-hidden="true" class="block h-[3px] w-[18px] bg-teracota"></span>
+        <p class="mt-3 text-[0.95rem]">{titlu}</p>
+        <p class="mt-1 text-[0.85rem] leading-snug text-ciocolata/65">{text}</p>
+      </li>
+    ))}
+  </ul>
+
+  <!-- o vorbă de la un client, ca pagina să nu fie doar formular -->
+  <figure data-apare class="mt-[var(--sectiune-strans)] rounded-[14px] border border-linie px-6 py-10 text-center sm:px-12">
+    <blockquote class="mx-auto max-w-[52ch] font-[family-name:var(--font-serif)] text-[1.35rem] leading-snug sm:text-[1.6rem]">
+      {ro
+        ? '„Am comandat marți seara, joi dimineața era la easybox. A doua oară n-a mai trebuit să scriu nimic, adresa era deja acolo."'
+        : '“Ordered Tuesday evening, it was in the locker by Thursday morning. The second time I typed nothing, the address was already there.”'}
+    </blockquote>
+    <figcaption class="mt-5 text-[0.85rem] text-ciocolata/60">
+      {ro ? 'Ioana T., Timișoara' : 'Ioana T., Timisoara'}
+    </figcaption>
+  </figure>
 </div>

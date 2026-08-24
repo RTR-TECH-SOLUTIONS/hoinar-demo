@@ -165,8 +165,8 @@ verifica(
   'pagina de favorite arata produsul salvat',
   (await page.locator('main a[href*="lesa-dungi-sinaia"]').count()) > 0,
 );
-await page.locator('main button', { hasText: /Șterge|Sterge/ }).first().click();
-await page.waitForTimeout(300);
+await page.getByRole('button', { name: /Șterge|Sterge/ }).first().click();
+await page.waitForTimeout(500);
 verifica('se poate scoate din favorite', (await page.locator('main a[href*="lesa-dungi-sinaia"]').count()) === 0);
 
 // ---------- 11. mega-meniu ----------
@@ -394,11 +394,13 @@ await page.getByRole('button', { name: /Salveaz/ }).click();
 await page.waitForTimeout(300);
 await page.goto(`${BAZA}/favorite`, { waitUntil: 'networkidle' });
 await page.waitForTimeout(900);
-await page.locator('main button', { hasText: /Șterge|Sterge/ }).first().click();
+// dupa golire apar sugestiile, care sunt tot <article>; verificam produsul anume
+const tinta = 'zgarda-carou-bruma';
+await page.getByRole('button', { name: /Șterge|Sterge/ }).first().click();
 await page.waitForTimeout(90);
 const iese = await page.locator('main article').first().evaluate((el) => el.className.includes('iese')).catch(() => false);
-await page.waitForTimeout(500);
-const disparut = (await page.locator('main article').count()) === 0;
+await page.waitForTimeout(600);
+const disparut = (await page.locator(`main a[href*="${tinta}"]`).count()) === 0;
 verifica('stergerea din favorite e animata, apoi dispare', iese && disparut, `animat: ${iese} · disparut: ${disparut}`);
 
 // pagina de cont: indicatorul de fila se muta
@@ -411,6 +413,60 @@ await page.getByRole('button', { name: 'Cont nou' }).click();
 await page.waitForTimeout(500);
 const pozDupa = await pozitieIndicator();
 verifica('indicatorul de fila aluneca', pozInainte !== pozDupa, `${pozInainte} -> ${pozDupa}`);
+
+// ---------- 21. favorite: cumparare directa si sugestii ----------
+await page.evaluate(() => { localStorage.removeItem('hoinar-favorite'); localStorage.removeItem('hoinar-cos'); });
+await page.goto(`${BAZA}/favorite`, { waitUntil: 'networkidle' });
+await page.waitForTimeout(800);
+verifica('favoritele goale propun produse', (await page.locator('main a[href*="/produs/"]').count()) >= 4);
+
+await page.goto(`${BAZA}/produs/ham-carou-bruma`, { waitUntil: 'networkidle' });
+await page.waitForTimeout(500);
+await page.getByRole('button', { name: /Salveaz/ }).click();
+await page.waitForTimeout(300);
+await page.goto(`${BAZA}/favorite`, { waitUntil: 'networkidle' });
+await page.waitForTimeout(800);
+verifica('favoritele arata totalul salvat', /produse salvate/.test(await page.locator('main').innerText()));
+await page.locator('main select').first().selectOption('L');
+await page.getByRole('button', { name: /^Adaugă$/ }).first().click();
+await page.waitForTimeout(600);
+const dinFavorite = await page.evaluate(() => JSON.parse(localStorage.getItem('hoinar-cos') || '[]'));
+verifica('se poate adauga in cos direct din favorite',
+  dinFavorite.length === 1 && dinFavorite[0].marime === 'L', JSON.stringify(dinFavorite[0] ?? null));
+
+// ---------- 22. cos gol propune produse ----------
+await page.evaluate(() => localStorage.removeItem('hoinar-cos'));
+await page.goto(`${BAZA}/cos`, { waitUntil: 'networkidle' });
+await page.waitForTimeout(800);
+verifica('cosul gol propune produse', (await page.locator('main a[href*="/produs/"]').count()) >= 4);
+
+// ---------- 23. descrierea sta sub fotografie ----------
+await page.goto(`${BAZA}/produs/ham-buline-cacao`, { waitUntil: 'networkidle' });
+await page.waitForTimeout(700);
+const asezare = await page.evaluate(() => {
+  const poza = document.querySelector('[data-principala]');
+  const desc = [...document.querySelectorAll('details summary')].find((s) => /Descriere|Description/.test(s.textContent || ''));
+  const buton = [...document.querySelectorAll('button')].find((b) => /Adaugă în coș|Add to cart/.test(b.textContent || ''));
+  if (!poza || !desc || !buton) return null;
+  const p = poza.getBoundingClientRect(), d = desc.getBoundingClientRect(), bt = buton.getBoundingClientRect();
+  return { descSubPoza: d.top > p.bottom - 5, descInStanga: d.left < bt.left };
+});
+verifica('descrierea e sub fotografie, nu langa buton',
+  !!asezare && asezare.descSubPoza && asezare.descInStanga, JSON.stringify(asezare));
+
+// ---------- 24. bannerul cu trei caini nu se mai taie ----------
+await page.goto(`${BAZA}/`, { waitUntil: 'networkidle' });
+await page.evaluate(async () => { const H=document.body.scrollHeight; for(let y=0;y<H;y+=400){window.scrollTo(0,y); await new Promise(r=>setTimeout(r,80));} });
+await page.waitForTimeout(1200);
+const trio = await page.evaluate(() => {
+  const im = [...document.querySelectorAll('img')].find((x) => x.currentSrc.includes('trio'));
+  if (!im) return null;
+  const r = im.getBoundingClientRect();
+  // fara decupare: raportul afisat trebuie sa fie cel al sursei
+  return { afisat: +(r.width / r.height).toFixed(2), sursa: +(im.naturalWidth / im.naturalHeight).toFixed(2) };
+});
+verifica('fotografia cu trei caini nu e decupata',
+  !!trio && Math.abs(trio.afisat - trio.sursa) < 0.03, JSON.stringify(trio));
 
 verifica('fara erori JavaScript', eroriConsola.length === 0, eroriConsola.slice(0, 3).join(' | '));
 

@@ -3,11 +3,27 @@ import { traduceri, url } from '../../lib/i18n';
 import type { Limba } from '../../lib/pret';
 import { getImage } from 'astro:assets';
 import { getImagine } from '../../lib/imagini';
+import { getBestsellers } from '../../lib/catalog';
 import CosPagina from '../CosPagina.tsx';
 
 interface Props { lang: Limba }
 const { lang } = Astro.props;
 const t = traduceri(lang);
+async function src(cale: string, w: number) {
+  return (await getImage({ src: getImagine(cale), width: w, format: 'webp' })).src;
+}
+const sugestii = await Promise.all(
+  (await getBestsellers(lang, 4)).map(async (p) => ({
+    slug: p.slug,
+    nume: p.nume,
+    pretRon: p.pretRon,
+    pretVechiRon: p.pretVechiRon,
+    reducere: p.reducere,
+    img: await src(p.imagini[0], 620),
+    url: url(lang, `/produs/${p.slug}`),
+  })),
+);
+
 const tc = {
   gol: t('cos.gol'), golText: t('check.golText'), inapoiMagazin: t('check.inapoiMagazin'),
   marime: t('produs.marime'), sterge: t('actiune.sterge'), continua: t('actiune.continua'),
@@ -15,6 +31,7 @@ const tc = {
   gratuit: t('cos.gratuit'), laFinal: t('cos.laFinal'), total: t('produs.total'),
   lipsa: t('cos.lipsa'), atins: t('cos.atins'), cumpara: t('actiune.cumpara'),
   avantaj1: t('cos.avantaj1'), avantaj2: t('cos.avantaj2'), avantaj3: t('cos.avantaj3'),
+  sugestii: t('favorite.sugestii'),
 };
 ---
 <div class="container-brand py-12">
@@ -25,7 +42,8 @@ const tc = {
       t={tc}
       urlFinalizare={url(lang, '/finalizare')}
       urlMagazin={url(lang, '/colectii')}
-      imagineGol={(await getImage({ src: getImagine('/media/pui/cos-gol.jpg'), width: 900, format: 'webp' })).src}
+      imagineGol={await src('/media/pui/cos-gol.jpg', 900)}
+      sugestii={sugestii}
     />
   </div>
 </div>
