@@ -28,10 +28,15 @@
 }
 
 :root {
-  --header-h: 4.25rem;
-  --nav-h: 0rem;              /* rândul de categorii apare doar pe desktop */
-  --header-total: calc(var(--header-h) + var(--nav-h));
-  --bara-h: 2.25rem;
+  /* Header pe tiparul referinței: rând mare cu wordmark centrat, apoi rând
+     de categorii. Se strânge la derulare ca să nu mănânce ecranul. */
+  --rand-logo: 4.25rem;
+  --rand-nav: 0rem;           /* rândul de categorii apare doar pe desktop */
+  --wordmark: 1.45rem;
+  /* Offset-ul pentru elementele sticky: calculat pe înălțimea STRÂNSĂ,
+     pentru că header-ul e strâns ori de câte ori pagina e derulată. */
+  --header-total: calc(4.25rem + var(--rand-nav));
+  --bara-h: 2.75rem;
 
   /* scală tipografică fluidă */
   --pas-xs: clamp(0.75rem, 0.72rem + 0.15vw, 0.8125rem);
@@ -53,10 +58,28 @@
 
 @media (min-width: 1024px) {
   :root {
-    --header-h: 4.75rem;
-    --nav-h: 2.75rem;
+    --rand-logo: 8.5rem;      /* 136px; referința are 124px */
+    --rand-nav: 3rem;
+    --wordmark: 2.95rem;
   }
 }
+
+/* starea strânsă, după derulare */
+header[data-strans='da'] {
+  --rand-logo: 4.25rem;
+  --wordmark: 1.55rem;
+}
+header[data-strans='da'] [data-sub] {
+  height: 0;
+  margin-top: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+header[data-sub],
+header [data-sub] {
+  transition: opacity 180ms ease-out, height 200ms ease-out, margin 200ms ease-out;
+}
+header { border-bottom: 1px solid var(--color-linie); }
 
 /* IMPORTANT: totul aici intră în @layer base.
    Tailwind 4 pune utilitarele în layer-ul `utilities`, iar CSS-ul fără layer
@@ -123,4 +146,22 @@
 
 @utility sectiune {
   padding-block: var(--sectiune);
+}
+
+/* Mega-meniul de colecții.
+   E copil direct al barei de navigație, ca să ocupe toată lățimea și să nu
+   iasă din ecran atunci când declanșatorul stă spre marginea dreaptă.
+   Legătura cu linkul se face prin :has(), nu prin group-hover, tocmai
+   pentru că panoul NU e descendentul linkului. */
+.mega {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 200ms ease-out, visibility 200ms;
+}
+nav:has([data-mega]:hover) .mega,
+nav:has([data-mega]:focus-visible) .mega,
+nav:has(.mega:hover) .mega,
+nav:has(.mega:focus-within) .mega {
+  visibility: visible;
+  opacity: 1;
 }

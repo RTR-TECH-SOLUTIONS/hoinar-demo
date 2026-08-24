@@ -1,0 +1,43 @@
+---
+import { getImage } from 'astro:assets';
+import { getImagine } from '../../lib/imagini';
+import { getProduse } from '../../lib/catalog';
+import { traduceri, url } from '../../lib/i18n';
+import type { Limba } from '../../lib/pret';
+import ListaFavorite from '../ListaFavorite.tsx';
+
+interface Props { lang: Limba }
+const { lang } = Astro.props;
+const t = traduceri(lang);
+const u = (c: string) => url(lang, c);
+const produse = await getProduse(lang, {});
+
+async function src(cale: string, w: number) {
+  return (await getImage({ src: getImagine(cale), width: w, format: 'webp' })).src;
+}
+
+const toate = await Promise.all(
+  produse.map(async (p) => ({
+    slug: p.slug,
+    nume: p.nume,
+    pretRon: p.pretRon,
+    pretVechiRon: p.pretVechiRon,
+    reducere: p.reducere,
+    img: await src(p.imagini[0], 620),
+    url: u(`/produs/${p.slug}`),
+  })),
+);
+---
+<div class="container-brand py-12">
+  <h1 style="font-size: var(--pas-3xl)">{t('favorite.titlu')}</h1>
+  <div class="mt-9">
+    <ListaFavorite
+      client:load
+      toate={toate}
+      gol={t('favorite.gol')}
+      inapoi={t('check.inapoiMagazin')}
+      urlMagazin={u('/colectii')}
+      sterge={t('actiune.sterge')}
+    />
+  </div>
+</div>

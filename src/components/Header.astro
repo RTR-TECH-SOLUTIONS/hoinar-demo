@@ -1,13 +1,12 @@
 ---
-import { getImage } from 'astro:assets';
-import { Image } from 'astro:assets';
+import { getImage, Image } from 'astro:assets';
 import { getImagine } from '../lib/imagini';
 import { getColectii, getTipuri, getProduse, getReduceri } from '../lib/catalog';
 import { traduceri, url, comuta } from '../lib/i18n';
-import { formatPret } from '../lib/pret';
 import type { Limba } from '../lib/pret';
 import CosButon from './CosButon.tsx';
 import SelectorMoneda from './SelectorMoneda.tsx';
+import FavoriteButon from './FavoriteButon.tsx';
 import Cautare from './Cautare.tsx';
 import BaraPromo from './BaraPromo.astro';
 
@@ -40,32 +39,47 @@ const indexCautare = await Promise.all(
   })),
 );
 
+/** Rândul de categorii, în tiparul referinței: puține, late, majuscule. */
 const categorii = [
-  { eticheta: t('nav.hamuri'), href: u('/categorie/ham') },
-  { eticheta: t('nav.lese'), href: u('/categorie/lesa') },
-  { eticheta: t('nav.genti'), href: u('/categorie/geanta') },
-  { eticheta: t('nav.accesorii'), href: u('/categorie/bandana') },
+  { eticheta: ro ? 'Hamuri' : 'Harnesses', href: u('/categorie/ham') },
+  { eticheta: ro ? 'Lese & Zgărzi' : 'Leads & Collars', href: u('/categorie/lesa') },
+  { eticheta: ro ? 'Genți de plimbare' : 'Walking Bags', href: u('/categorie/geanta') },
+  { eticheta: ro ? 'Accesorii' : 'Accessories', href: u('/categorie/bandana') },
+  { eticheta: ro ? 'Halate de uscare' : 'Drying Robes', href: u('/categorie/halat') },
+  { eticheta: ro ? 'Medalioane' : 'Tags', href: u('/categorie/medalion') },
 ];
 
 const promoMega = reduceri[0];
+const social = [
+  ['Instagram', 'https://instagram.com'],
+  ['Facebook', 'https://facebook.com'],
+  ['TikTok', 'https://tiktok.com'],
+];
 ---
 
-<BaraPromo lang={lang}>
-  <div class="flex shrink-0 items-center gap-3 text-[0.75rem]">
-    <a
-      href={comuta(pathname, ro ? 'en' : 'ro')}
-      class="text-crem/70 underline underline-offset-4 transition-colors hover:text-crem"
-      hreflang={ro ? 'en' : 'ro'}
-    >{ro ? 'EN' : 'RO'}</a>
-    <span aria-hidden="true" class="text-crem/25">/</span>
-    <SelectorMoneda client:idle eticheta={t('footer.moneda')} />
+<!-- 1. bară utilitară -->
+<div class="hidden border-b border-linie/60 bg-crem lg:block">
+  <div class="container-brand flex h-10 items-center justify-between text-[0.75rem] text-ciocolata/70">
+    <a href="tel:+40721000000" class="transition-colors hover:text-teracota">0721 000 000</a>
+    <div class="flex items-center gap-4">
+      {social.map(([nume, href]) => (
+        <a href={href} rel="noopener noreferrer" target="_blank" class="transition-colors hover:text-teracota">{nume}</a>
+      ))}
+      <span aria-hidden="true" class="text-linie">|</span>
+      <a
+        href={comuta(pathname, ro ? 'en' : 'ro')}
+        class="underline underline-offset-4 transition-colors hover:text-teracota"
+        hreflang={ro ? 'en' : 'ro'}
+      >{ro ? 'English' : 'Română'}</a>
+      <SelectorMoneda client:idle eticheta={t('footer.moneda')} />
+    </div>
   </div>
-</BaraPromo>
+</div>
 
-<header class="sticky top-0 z-50 border-b border-linie bg-crem/97 backdrop-blur-sm">
-  <!-- rândul de brand -->
-  <div class="container-brand grid h-[var(--header-h)] grid-cols-[auto_1fr_auto] items-center gap-4 lg:gap-8">
-    <div class="flex items-center gap-3">
+<header class="sticky top-0 z-50 bg-crem/97 backdrop-blur-sm" data-header data-strans="nu">
+  <!-- 2. rândul mare, cu wordmark centrat -->
+  <div class="container-brand grid h-[var(--rand-logo)] grid-cols-[1fr_auto_1fr] items-center gap-4 transition-[height] duration-200 ease-out">
+    <div class="flex items-center gap-4 justify-self-start">
       <button
         type="button"
         class="text-[0.85rem] lg:hidden"
@@ -73,14 +87,47 @@ const promoMega = reduceri[0];
         aria-expanded="false"
         aria-controls="meniu-mobil"
       >{t('actiune.meniu')}</button>
-      <a href={u('/')} aria-label="HOINAR" class="shrink-0">
-        <span class="font-[family-name:var(--font-serif)] text-[1.45rem] leading-none tracking-[0.14em] md:text-[1.75rem]">
-          HOINAR
-        </span>
-      </a>
+
+      <button
+        type="button"
+        class="hidden items-center gap-2 text-[0.82rem] tracking-[0.1em] transition-colors hover:text-teracota lg:inline-flex"
+        data-cauta-comuta
+        aria-expanded="false"
+        aria-controls="panou-cautare"
+      >
+        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" class="fill-none stroke-current" stroke-width="1.5">
+          <circle cx="7" cy="7" r="5" />
+          <path d="M11 11l4 4" stroke-linecap="round" />
+        </svg>
+        {ro ? 'CAUTĂ' : 'SEARCH'}
+      </button>
     </div>
 
-    <div class="hidden justify-self-center lg:block lg:w-full lg:max-w-[26rem]">
+    <a href={u('/')} class="justify-self-center text-center" aria-label="HOINAR">
+      <span class="block font-[family-name:var(--font-serif)] leading-[0.95] tracking-[0.2em] text-ciocolata" style="font-size: var(--wordmark)">
+        HOINAR
+      </span>
+      <span class="mt-1.5 block text-[0.62rem] tracking-[0.42em] text-ciocolata/55 md:text-[0.68rem]" data-sub>
+        {t('header.sub')}
+      </span>
+    </a>
+
+    <div class="flex items-center gap-5 justify-self-end text-[0.85rem]">
+      <FavoriteButon client:idle eticheta={t('actiune.favorite')} href={u('/favorite')} />
+      <a href={u('/contact')} class="hidden items-center gap-2 transition-colors hover:text-teracota sm:inline-flex">
+        <svg viewBox="0 0 18 18" width="18" height="18" aria-hidden="true" class="fill-none stroke-current" stroke-width="1.4">
+          <circle cx="9" cy="6" r="3.2" />
+          <path d="M2.8 16c0-3.4 2.8-5.2 6.2-5.2s6.2 1.8 6.2 5.2" stroke-linecap="round" />
+        </svg>
+        <span class="hidden xl:inline">{t('actiune.cont')}</span>
+      </a>
+      <CosButon client:load eticheta={t('actiune.cos')} />
+    </div>
+  </div>
+
+  <!-- panou de căutare, se deschide din iconiță -->
+  <div id="panou-cautare" hidden class="border-t border-linie/60 bg-crem">
+    <div class="container-brand py-4">
       <Cautare
         client:idle
         index={indexCautare}
@@ -91,99 +138,63 @@ const promoMega = reduceri[0];
         urlToate={u('/colectii')}
       />
     </div>
-
-    <div class="flex items-center justify-end gap-4 text-[0.88rem] sm:gap-5">
-      <a href={u('/ghid-marimi')} class="hidden transition-colors hover:text-teracota xl:inline">
-        {t('produs.ghid')}
-      </a>
-      <a href={u('/contact')} class="hidden transition-colors hover:text-teracota sm:inline">
-        {t('actiune.cont')}
-      </a>
-      <CosButon client:load eticheta={t('actiune.cos')} />
-    </div>
   </div>
 
-  <!-- rândul de categorii -->
-  <nav class="hidden border-t border-linie/70 lg:block" aria-label={t('actiune.meniu')}>
-    <div class="container-brand flex h-11 items-center gap-7 text-[0.87rem]">
+  <!-- 3. rândul de categorii -->
+  <nav class="relative hidden border-t border-linie/60 lg:block" aria-label={t('actiune.meniu')}>
+    <div class="container-brand flex h-[var(--rand-nav)] items-center justify-center gap-8 text-[0.76rem] tracking-[0.13em]">
       {categorii.map((c) => (
-        <a href={c.href} class="transition-colors hover:text-teracota">{c.eticheta}</a>
+        <a href={c.href} class="whitespace-nowrap uppercase transition-colors hover:text-teracota">{c.eticheta}</a>
       ))}
 
-      <div class="group relative h-full">
-        <a
-          href={u('/colectii')}
-          class="inline-flex h-full items-center gap-1.5 transition-colors hover:text-teracota"
-          aria-haspopup="true"
-        >
-          {t('nav.colectii')}
-          <span aria-hidden="true" class="text-[0.6rem] opacity-55">▾</span>
-        </a>
-        <div class="invisible absolute left-1/2 top-full z-10 w-[min(64rem,92vw)] -translate-x-1/2 border border-linie bg-crem p-6 opacity-0 shadow-[0_20px_44px_-24px_rgba(24,22,19,0.45)] transition-[opacity,transform] duration-200 ease-out group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
-          <div class="grid grid-cols-[repeat(4,1fr)_1.15fr] gap-5">
-            {colectii.map((c) => (
-              <a href={u(`/colectie/${c.slug}`)} class="group/t block">
-                <div class="overflow-hidden rounded-[10px] bg-nisip">
-                  <Image
-                    src={getImagine(c.imagine)}
-                    alt=""
-                    widths={[220, 440]}
-                    sizes="220px"
-                    class="aspect-[4/3] w-full object-cover transition-transform duration-300 ease-out group-hover/t:scale-[1.04]"
-                  />
-                </div>
-                <p class="mt-2.5 text-[0.88rem]">{c.nume}</p>
-                <p class="mt-0.5 text-[0.76rem] leading-snug text-ciocolata/60">{c.tesatura}</p>
-              </a>
-            ))}
+      <a
+        href={u('/colectii')}
+        data-mega
+        class="inline-flex items-center gap-1.5 whitespace-nowrap uppercase transition-colors hover:text-teracota"
+        aria-haspopup="true"
+      >
+        {t('nav.colectii')}
+        <span aria-hidden="true" class="text-[0.55rem] opacity-55">▾</span>
+      </a>
 
-            {promoMega && (
-              <a href={u('/reduceri')} class="group/p relative block overflow-hidden rounded-[10px] bg-ciocolata">
-                <Image
-                  src={getImagine(promoMega.imagini[0])}
-                  alt=""
-                  widths={[260, 520]}
-                  sizes="260px"
-                  class="aspect-[3/4] w-full object-cover opacity-75 transition-transform duration-300 ease-out group-hover/p:scale-[1.04]"
-                />
-                <span class="absolute inset-0 flex flex-col justify-end p-4">
-                  <span class="w-fit rounded-[5px] bg-teracota px-2 py-1 text-[0.7rem] leading-none text-crem">
-                    −{promoMega.reducere}%
-                  </span>
-                  <span class="mt-2 font-[family-name:var(--font-serif)] text-[1.15rem] leading-tight text-crem">
-                    {ro ? 'Colecția de toamnă' : 'Autumn collection'}
-                  </span>
-                  <span class="mt-0.5 text-[0.78rem] text-crem/80">
-                    {ro ? 'Reduceri până la −30%' : 'Up to −30% off'}
-                  </span>
-                </span>
-              </a>
-            )}
-          </div>
-        </div>
-      </div>
-
-      <a href={u('/colectii')} class="transition-colors hover:text-teracota">{t('nav.toate')}</a>
-
-      <a href={u('/reduceri')} class="ml-auto inline-flex items-center gap-2 font-medium text-teracota transition-opacity hover:opacity-75">
-        <span class="inline-block h-1.5 w-1.5 rounded-full bg-teracota" aria-hidden="true"></span>
+      <a href={u('/reduceri')} class="whitespace-nowrap uppercase text-teracota transition-opacity hover:opacity-75">
         {t('nav.reduceri')}
       </a>
+    </div>
+
+    <div class="mega absolute left-0 right-0 top-full z-10 border-y border-linie bg-crem shadow-[0_20px_44px_-24px_rgba(24,22,19,0.45)]">
+      <div class="container-brand grid grid-cols-[repeat(4,1fr)_1.15fr] gap-5 py-6 tracking-normal">
+        {colectii.map((c) => (
+          <a href={u(`/colectie/${c.slug}`)} class="group/t block">
+            <div class="overflow-hidden rounded-[10px] bg-nisip">
+              <Image src={getImagine(c.imagine)} alt="" widths={[240, 480]} sizes="240px"
+                class="aspect-[4/3] w-full object-cover transition-transform duration-300 ease-out group-hover/t:scale-[1.04]" />
+            </div>
+            <p class="mt-2.5 text-[0.88rem] normal-case">{c.nume}</p>
+            <p class="mt-0.5 text-[0.76rem] leading-snug normal-case text-ciocolata/60">{c.tesatura}</p>
+          </a>
+        ))}
+        {promoMega && (
+          <a href={u('/reduceri')} class="group/p relative block overflow-hidden rounded-[10px] bg-ciocolata">
+            <Image src={getImagine(promoMega.imagini[0])} alt="" widths={[280, 560]} sizes="280px"
+              class="aspect-[4/3] w-full object-cover opacity-75 transition-transform duration-300 ease-out group-hover/p:scale-[1.04]" />
+            <span class="absolute inset-0 flex flex-col justify-end p-4 normal-case">
+              <span class="w-fit rounded-[5px] bg-teracota px-2 py-1 text-[0.7rem] leading-none text-crem">−{promoMega.reducere}%</span>
+              <span class="mt-2 font-[family-name:var(--font-serif)] text-[1.1rem] leading-tight text-crem">
+                {ro ? 'Colecția de toamnă' : 'Autumn collection'}
+              </span>
+            </span>
+          </a>
+        )}
+      </div>
     </div>
   </nav>
 
   <!-- meniu mobil -->
   <div id="meniu-mobil" hidden class="border-t border-linie bg-crem lg:hidden">
     <div class="container-brand py-3">
-      <Cautare
-        client:idle
-        index={indexCautare}
-        placeholder={t('cauta.placeholder')}
-        eticheta={t('actiune.cauta')}
-        nimic={t('cauta.nimic')}
-        toate={t('cauta.toate')}
-        urlToate={u('/colectii')}
-      />
+      <Cautare client:idle index={indexCautare} placeholder={t('cauta.placeholder')} eticheta={t('actiune.cauta')}
+        nimic={t('cauta.nimic')} toate={t('cauta.toate')} urlToate={u('/colectii')} />
     </div>
     <nav class="container-brand flex flex-col pb-3" aria-label={t('actiune.meniu')}>
       <a href={u('/reduceri')} class="flex items-center gap-2 border-b border-linie/60 py-3 text-[0.95rem] font-medium text-teracota">
@@ -196,11 +207,15 @@ const promoMega = reduceri[0];
       {colectii.map((c) => (
         <a href={u(`/colectie/${c.slug}`)} class="border-b border-linie/60 py-3 text-[0.95rem] text-ciocolata/80">{c.nume}</a>
       ))}
+      <a href={u('/favorite')} class="border-b border-linie/60 py-3 text-[0.95rem]">{t('actiune.favorite')}</a>
       <a href={u('/ghid-marimi')} class="border-b border-linie/60 py-3 text-[0.95rem]">{t('produs.ghid')}</a>
       <a href={u('/poveste')} class="py-3 text-[0.95rem]">{t('nav.poveste')}</a>
     </nav>
   </div>
 </header>
+
+<!-- 4. banda de promoții, sub header, ca la referință -->
+<BaraPromo lang={lang} />
 
 <script>
   const buton = document.querySelector<HTMLButtonElement>('[data-meniu-mobil]');
@@ -210,4 +225,25 @@ const promoMega = reduceri[0];
     buton.setAttribute('aria-expanded', String(!deschis));
     if (panou) panou.hidden = deschis;
   });
+
+  const cauta = document.querySelector<HTMLButtonElement>('[data-cauta-comuta]');
+  const panouCauta = document.getElementById('panou-cautare');
+  cauta?.addEventListener('click', () => {
+    const deschis = cauta.getAttribute('aria-expanded') === 'true';
+    cauta.setAttribute('aria-expanded', String(!deschis));
+    if (panouCauta) {
+      panouCauta.hidden = deschis;
+      if (!deschis) panouCauta.querySelector('input')?.focus();
+    }
+  });
+
+  // Header-ul e înalt la început și se strânge la derulare, ca să nu mănânce ecranul.
+  const header = document.querySelector<HTMLElement>('[data-header]');
+  if (header) {
+    const laDerulare = () => {
+      header.dataset.strans = window.scrollY > 80 ? 'da' : 'nu';
+    };
+    laDerulare();
+    window.addEventListener('scroll', laDerulare, { passive: true });
+  }
 </script>

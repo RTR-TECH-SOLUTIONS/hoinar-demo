@@ -129,7 +129,7 @@ verifica('coșul afiseaza euro dupa comutare', /€/.test(textDrawer), textDrawe
 
 // ---------- 8. comutarea de limba pastreaza pagina ----------
 await page.goto(`${BAZA}/produs/ham-carou-bruma`, { waitUntil: 'networkidle' });
-await page.getByRole('link', { name: 'EN', exact: true }).first().click();
+await page.getByRole('link', { name: /^(EN|English)$/ }).first().click();
 await page.waitForLoadState('networkidle');
 verifica(
   'EN duce la acelasi produs',
@@ -140,6 +140,10 @@ verifica(
 // ---------- 9. cautarea ----------
 await page.goto(`${BAZA}/`, { waitUntil: 'networkidle' });
 await page.waitForTimeout(700);
+// cautarea sta in spatele iconitei, ca la referinta
+await page.locator('[data-cauta-comuta]').click();
+await page.waitForTimeout(400);
+verifica('iconita deschide panoul de cautare', await page.getByPlaceholder(/Caut/).first().isVisible());
 await page.getByPlaceholder(/Caut/).first().fill('bandana carou');
 await page.waitForTimeout(400);
 const sugestii = page.locator('#cauta').locator('xpath=../..').locator('a[href*="/produs/"]');
@@ -152,6 +156,23 @@ if (nrSugestii > 0) {
 await page.getByPlaceholder(/Caut/).first().fill('xyzq');
 await page.waitForTimeout(300);
 verifica('cautarea spune cand nu gaseste nimic', (await page.getByText(/Nimic gasit|Nimic găsit/).count()) > 0);
+
+// ---------- 10. favorite ----------
+await page.evaluate(() => localStorage.removeItem('hoinar-favorite'));
+await page.goto(`${BAZA}/produs/lesa-dungi-sinaia`, { waitUntil: 'networkidle' });
+await page.waitForTimeout(600);
+await page.getByRole('button', { name: /Salveaz/ }).click();
+await page.waitForTimeout(300);
+verifica('inima salveaza produsul', (await page.getByRole('button', { name: /Salvat la favorite/ }).count()) > 0);
+await page.goto(`${BAZA}/favorite`, { waitUntil: 'networkidle' });
+await page.waitForTimeout(600);
+verifica(
+  'pagina de favorite arata produsul salvat',
+  (await page.locator('main a[href*="lesa-dungi-sinaia"]').count()) > 0,
+);
+await page.locator('main button', { hasText: /Șterge|Sterge/ }).first().click();
+await page.waitForTimeout(300);
+verifica('se poate scoate din favorite', (await page.locator('main a[href*="lesa-dungi-sinaia"]').count()) === 0);
 
 verifica('fara erori JavaScript', eroriConsola.length === 0, eroriConsola.slice(0, 3).join(' | '));
 
