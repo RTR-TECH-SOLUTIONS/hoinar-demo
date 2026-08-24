@@ -18,6 +18,8 @@ const PAGINI = [
   ['contact', '/contact'],
   ['favorite', '/favorite'],
   ['reduceri', '/reduceri'],
+  ['cont', '/cont'],
+  ['finalizare', '/finalizare'],
   ['en-acasa', '/en/'],
   ['en-produs', '/en/produs/ham-carou-bruma'],
 ];

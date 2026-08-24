@@ -67,7 +67,7 @@ verifica(
 );
 
 // ---------- 5. checkout ----------
-await page.goto(`${BAZA}/cos`, { waitUntil: 'networkidle' });
+await page.goto(`${BAZA}/finalizare`, { waitUntil: 'networkidle' });
 await page.waitForTimeout(400);
 const campuri = {
   'Nume și prenume': 'Mario Rotaru',
@@ -137,10 +137,8 @@ verifica(
 // ---------- 9. cautarea ----------
 await page.goto(`${BAZA}/`, { waitUntil: 'networkidle' });
 await page.waitForTimeout(700);
-// cautarea sta in spatele iconitei, ca la referinta
-await page.locator('[data-cauta-comuta]').click();
-await page.waitForTimeout(400);
-verifica('iconita deschide panoul de cautare', await page.getByPlaceholder(/Caut/).first().isVisible());
+// pe desktop bara de cautare e vizibila in centru; pe mobil sta sub iconita
+verifica('cautarea e vizibila pe desktop', await page.getByPlaceholder(/Caut/).first().isVisible());
 await page.getByPlaceholder(/Caut/).first().fill('bandana carou');
 await page.waitForTimeout(400);
 const sugestii = page.locator('#cauta').locator('xpath=../..').locator('a[href*="/produs/"]');
@@ -271,6 +269,92 @@ const totalDupa = Number(await setSec.locator('[data-total-ron]').getAttribute('
 verifica('adaugarea unei piese schimba totalul', totalDupa !== totalInainte, `${totalInainte} -> ${totalDupa}`);
 verifica('apare progresul spre pragul urmator',
   /Mai adaug/.test(await setSec.innerText()) || /−10%/.test(await setSec.innerText()));
+
+// ---------- 16. dropdownul ramane deschis cand intri in el ----------
+await page.goto(`${BAZA}/`, { waitUntil: 'networkidle' });
+await page.waitForTimeout(900);
+await page.hover('[data-mega="hamuri"]');
+await page.waitForTimeout(400);
+const panouH = page.locator('[data-panou="hamuri"]');
+verifica('panoul se deschide la hover', await panouH.isVisible());
+// mutam cursorul pe un link DIN panou: inainte se inchidea aici
+const linkInPanou = panouH.locator('a').nth(3);
+await linkInPanou.hover();
+await page.waitForTimeout(500);
+verifica('panoul ramane deschis cand treci pe un link din el', await panouH.isVisible());
+const caleLink = await linkInPanou.getAttribute('href');
+await linkInPanou.click();
+await page.waitForLoadState('networkidle');
+verifica('linkul din panou chiar navigheaza', page.url().includes(String(caleLink)), page.url());
+
+// ---------- 17. pagina de cos ----------
+await page.goto(`${BAZA}/produs/lesa-carou-bruma`, { waitUntil: 'networkidle' });
+await page.waitForTimeout(600);
+await page.getByRole('button', { name: '180 cm', exact: true }).click();
+await page.getByRole('button', { name: 'Adaugă în coș' }).first().click();
+await page.waitForTimeout(500);
+await page.goto(`${BAZA}/cos`, { waitUntil: 'networkidle' });
+await page.waitForTimeout(700);
+verifica('pagina de cos arata produsul', (await page.locator('main a[href*="lesa-carou-bruma"]').count()) > 0);
+await page.getByRole('button', { name: '+', exact: true }).first().click();
+await page.waitForTimeout(400);
+const dupaPlus = await page.evaluate(() => JSON.parse(localStorage.getItem('hoinar-cos') || '[]')[0]?.cantitate);
+verifica('butonul plus creste cantitatea', dupaPlus === 2, `cantitate ${dupaPlus}`);
+await page.getByRole('link', { name: /Finalizează comanda/ }).click();
+await page.waitForLoadState('networkidle');
+verifica('din cos se ajunge la finalizare', page.url().includes('/finalizare'), page.url());
+
+// ---------- 18. pagina de cont ----------
+await page.goto(`${BAZA}/cont`, { waitUntil: 'networkidle' });
+await page.waitForTimeout(500);
+verifica('contul are doua file', (await page.getByRole('button', { name: /Autentificare|Cont nou/ }).count()) === 2);
+await page.getByRole('button', { name: 'Cont nou' }).click();
+await page.waitForTimeout(300);
+verifica('fila de inregistrare cere numele', (await page.getByLabel('Nume și prenume').count()) > 0);
+verifica('pagina spune ca e demonstratie', /Demonstrație/.test(await page.locator('main').innerText()));
+
+// ---------- 19. meniul pe telefon ----------
+await page.setViewportSize({ width: 390, height: 844 });
+await page.goto(`${BAZA}/`, { waitUntil: 'networkidle' });
+await page.waitForTimeout(700);
+const butonMeniu = page.locator('[data-meniu-mobil]');
+verifica('butonul de meniu se vede pe telefon', await butonMeniu.isVisible());
+const meniuMobil = page.locator('#meniu-mobil');
+verifica('meniul e inchis la inceput', await meniuMobil.isHidden());
+await butonMeniu.click();
+await page.waitForTimeout(400);
+const cutie = await meniuMobil.evaluate((el) => {
+  const r = el.getBoundingClientRect();
+  return { x: Math.round(r.left), w: Math.round(r.width), h: Math.round(r.height), vw: innerWidth, vh: innerHeight };
+});
+// panoul trebuie sa acopere tot ecranul; daca ar sta intr-un strabun cu
+// backdrop-filter, `fixed` s-ar raporta la acela si cutia ar fi mica
+verifica('meniul acopera tot ecranul', cutie.w === cutie.vw && cutie.h > cutie.vh * 0.7, JSON.stringify(cutie));
+await page.locator('#meniu-mobil summary', { hasText: 'Hamuri' }).click();
+await page.waitForTimeout(350);
+verifica('categoria se desface si arata sublinkuri',
+  (await page.locator('#meniu-mobil a[href*="/categorie/ham"]').count()) > 1);
+await page.locator('#meniu-mobil a[href$="/reduceri"]').first().click();
+await page.waitForLoadState('networkidle');
+verifica('linkul din meniul mobil navigheaza si inchide meniul',
+  page.url().includes('/reduceri') && (await page.locator('#meniu-mobil').isHidden()), page.url());
+
+// bara fixa de adaugare, pe pagina de produs
+await page.goto(`${BAZA}/produs/ham-carou-bruma`, { waitUntil: 'networkidle' });
+await page.waitForTimeout(700);
+const baraJos = page.locator('div.fixed.bottom-0', { hasText: 'Adaugă în coș' }).last();
+const seVede = () => baraJos.evaluate((el) => el.getBoundingClientRect().top < window.innerHeight - 10);
+// cand butonul principal e pe ecran, bara nu are ce cauta acolo
+await page.getByRole('button', { name: 'Adaugă în coș' }).first().scrollIntoViewIfNeeded();
+await page.waitForTimeout(700);
+const cuButonulPeEcran = await seVede();
+// cand butonul a iesit din ecran, bara trebuie sa apara
+await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight * 0.6));
+await page.waitForTimeout(700);
+const faraButon = await seVede();
+verifica('bara apare doar cand butonul principal nu se vede',
+  !cuButonulPeEcran && faraButon, `buton vizibil: ${cuButonulPeEcran} · buton ascuns: ${faraButon}`);
+await page.setViewportSize({ width: 1440, height: 900 });
 
 verifica('fara erori JavaScript', eroriConsola.length === 0, eroriConsola.slice(0, 3).join(' | '));
 

@@ -70,44 +70,61 @@ const social = [
 </div>
 
 <header class="sticky top-0 z-50 bg-crem/97 backdrop-blur-sm" data-header data-strans="nu">
-  <!-- 2. rândul mare, cu wordmark centrat -->
-  <div class="container-brand grid h-[var(--rand-logo)] grid-cols-[1fr_auto_1fr] items-center gap-4 transition-[height] duration-200 ease-out">
-    <div class="flex items-center gap-4 justify-self-start">
+  <!-- 2. rândul principal: logo stânga, căutare centru, acțiuni dreapta -->
+  <div class="container-brand grid h-[var(--rand-logo)] grid-cols-[auto_1fr_auto] items-center gap-4 transition-[height] duration-200 ease-out lg:gap-10">
+    <div class="flex items-center gap-3">
       <button
         type="button"
-        class="text-[0.85rem] lg:hidden"
+        class="-ml-1 grid h-10 w-10 place-items-center rounded-[8px] transition-colors hover:bg-nisip lg:hidden"
         data-meniu-mobil
         aria-expanded="false"
         aria-controls="meniu-mobil"
-      >{t('actiune.meniu')}</button>
+        aria-label={t('actiune.meniu')}
+      >
+        <svg viewBox="0 0 20 20" width="21" height="21" aria-hidden="true" class="fill-none stroke-current" stroke-width="1.6" data-icon-meniu>
+          <path d="M3 6h14M3 10h14M3 14h14" stroke-linecap="round" />
+        </svg>
+      </button>
 
+      <a href={u('/')} aria-label="HOINAR" class="shrink-0">
+        <span class="block font-[family-name:var(--font-serif)] leading-[0.95] tracking-[0.18em] text-ciocolata" style="font-size: var(--wordmark)">
+          HOINAR
+        </span>
+        <span class="mt-1 block text-[0.58rem] tracking-[0.38em] text-ciocolata/55 md:text-[0.64rem]" data-sub>
+          {t('header.sub')}
+        </span>
+      </a>
+    </div>
+
+    <div class="hidden justify-self-center lg:block lg:w-full lg:max-w-[30rem]">
+      <Cautare
+        client:idle
+        index={indexCautare}
+        placeholder={t('cauta.placeholder')}
+        eticheta={t('actiune.cauta')}
+        nimic={t('cauta.nimic')}
+        toate={t('cauta.toate')}
+        urlToate={u('/colectii')}
+      />
+    </div>
+
+    <div class="flex items-center gap-4 justify-self-end text-[0.85rem] sm:gap-5">
       <button
         type="button"
-        class="hidden items-center gap-2 text-[0.82rem] tracking-[0.1em] transition-colors hover:text-teracota lg:inline-flex"
+        class="grid h-10 w-10 place-items-center rounded-[8px] transition-colors hover:bg-nisip lg:hidden"
         data-cauta-comuta
         aria-expanded="false"
         aria-controls="panou-cautare"
+        aria-label={t('actiune.cauta')}
       >
-        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" class="fill-none stroke-current" stroke-width="1.5">
+        <svg viewBox="0 0 16 16" width="17" height="17" aria-hidden="true" class="fill-none stroke-current" stroke-width="1.5">
           <circle cx="7" cy="7" r="5" />
           <path d="M11 11l4 4" stroke-linecap="round" />
         </svg>
-        {ro ? 'CAUTĂ' : 'SEARCH'}
       </button>
-    </div>
 
-    <a href={u('/')} class="justify-self-center text-center" aria-label="HOINAR">
-      <span class="block font-[family-name:var(--font-serif)] leading-[0.95] tracking-[0.2em] text-ciocolata" style="font-size: var(--wordmark)">
-        HOINAR
-      </span>
-      <span class="mt-1.5 block text-[0.62rem] tracking-[0.42em] text-ciocolata/55 md:text-[0.68rem]" data-sub>
-        {t('header.sub')}
-      </span>
-    </a>
-
-    <div class="flex items-center gap-5 justify-self-end text-[0.85rem]">
       <FavoriteButon client:idle eticheta={t('actiune.favorite')} href={u('/favorite')} />
-      <a href={u('/contact')} class="hidden items-center gap-2 transition-colors hover:text-teracota sm:inline-flex">
+      <a href={u('/cont')} class="hidden items-center gap-2 transition-colors hover:text-teracota sm:inline-flex">
         <svg viewBox="0 0 18 18" width="18" height="18" aria-hidden="true" class="fill-none stroke-current" stroke-width="1.4">
           <circle cx="9" cy="6" r="3.2" />
           <path d="M2.8 16c0-3.4 2.8-5.2 6.2-5.2s6.2 1.8 6.2 5.2" stroke-linecap="round" />
@@ -135,7 +152,7 @@ const social = [
 
   <!-- 3. rândul de categorii, cu panouri pe toată lățimea -->
   <nav class="relative hidden border-t border-linie/60 lg:block" data-nav aria-label={t('actiune.meniu')}>
-    <div class="container-brand flex h-[var(--rand-nav)] items-center justify-center gap-8 text-[0.76rem] tracking-[0.13em]">
+    <div data-rand-nav class="container-brand flex h-[var(--rand-nav)] items-center justify-center gap-8 text-[0.76rem] tracking-[0.13em]">
       {meniu.map((m) => (
         <a
           href={m.href}
@@ -183,9 +200,17 @@ const social = [
     ))}
   </nav>
 
-  <!-- meniu mobil -->
-  <div id="meniu-mobil" hidden class="border-t border-linie bg-crem lg:hidden">
-    <div class="container-brand py-3">
+</header>
+
+
+<!-- meniu mobil: în afara <header>, altfel `fixed` se raportează la header,
+     pentru că backdrop-blur creează bloc de referință pentru poziționare -->
+  <div
+    id="meniu-mobil"
+    hidden
+    class="fixed inset-x-0 bottom-0 top-[var(--rand-logo)] z-40 overflow-y-auto overscroll-contain border-t border-linie bg-crem lg:hidden"
+  >
+    <div class="container-brand py-4">
       <Cautare client:idle index={indexCautare} placeholder={t('cauta.placeholder')} eticheta={t('actiune.cauta')}
         nimic={t('cauta.nimic')} toate={t('cauta.toate')} urlToate={u('/colectii')} />
     </div>
@@ -196,7 +221,7 @@ const social = [
       </a>
       {meniu.filter((m) => m.coloane).map((m) => (
         <details class="group border-b border-linie/60">
-          <summary class="flex cursor-pointer list-none items-center justify-between py-3 text-[0.95rem] marker:content-none">
+          <summary class="flex cursor-pointer list-none items-center justify-between py-3.5 text-[0.95rem] marker:content-none">
             {m.eticheta}
             <span aria-hidden="true" class="text-[1.05rem] leading-none text-ciocolata/45 transition-transform duration-200 group-open:rotate-45">+</span>
           </summary>
@@ -214,12 +239,23 @@ const social = [
           </div>
         </details>
       ))}
-      <a href={u('/favorite')} class="block border-b border-linie/60 py-3 text-[0.95rem]">{t('actiune.favorite')}</a>
-      <a href={u('/ghid-marimi')} class="block border-b border-linie/60 py-3 text-[0.95rem]">{t('produs.ghid')}</a>
-      <a href={u('/poveste')} class="block py-3 text-[0.95rem]">{t('nav.poveste')}</a>
+      <a href={u('/favorite')} class="block border-b border-linie/60 py-3.5 text-[0.95rem]">{t('actiune.favorite')}</a>
+      <a href={u('/cos')} class="block border-b border-linie/60 py-3.5 text-[0.95rem]">{t('cos.titlu')}</a>
+      <a href={u('/cont')} class="block border-b border-linie/60 py-3.5 text-[0.95rem]">{t('actiune.cont')}</a>
+      <a href={u('/ghid-marimi')} class="block border-b border-linie/60 py-3.5 text-[0.95rem]">{t('produs.ghid')}</a>
+      <a href={u('/poveste')} class="block border-b border-linie/60 py-3.5 text-[0.95rem]">{t('nav.poveste')}</a>
+      <a href={u('/livrare-retur')} class="block border-b border-linie/60 py-3.5 text-[0.95rem]">{t('produs.livrare')}</a>
+      <a href={u('/contact')} class="block py-3.5 text-[0.95rem]">Contact</a>
+
+      <div class="mt-6 flex items-center gap-4 border-t border-linie pt-5 text-[0.85rem] text-ciocolata/70">
+        <a href="tel:+40721000000" class="hover:text-teracota">0721 000 000</a>
+        <span aria-hidden="true" class="text-linie">|</span>
+        <a href={comuta(pathname, ro ? 'en' : 'ro')} class="underline underline-offset-4 hover:text-teracota">
+          {ro ? 'English' : 'Română'}
+        </a>
+      </div>
     </nav>
   </div>
-</header>
 
 <!-- 4. banda de promoții, sub header, ca la referință -->
 <BaraPromo lang={lang} />
@@ -231,7 +267,21 @@ const social = [
     const deschis = buton.getAttribute('aria-expanded') === 'true';
     buton.setAttribute('aria-expanded', String(!deschis));
     if (panou) panou.hidden = deschis;
+    const icon = buton.querySelector<SVGPathElement>('[data-icon-meniu] path');
+    if (icon) icon.setAttribute('d', deschis ? 'M3 6h14M3 10h14M3 14h14' : 'M5 5l10 10M15 5L5 15');
+    document.body.style.overflow = deschis ? '' : 'hidden';
   });
+
+  const inchideMeniu = () => {
+    if (!buton || !panou || panou.hidden) return;
+    buton.setAttribute('aria-expanded', 'false');
+    panou.hidden = true;
+    const icon = buton.querySelector<SVGPathElement>('[data-icon-meniu] path');
+    if (icon) icon.setAttribute('d', 'M3 6h14M3 10h14M3 14h14');
+    document.body.style.overflow = '';
+  };
+  panou?.querySelectorAll('a').forEach((a) => a.addEventListener('click', inchideMeniu));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') inchideMeniu(); });
 
   const cauta = document.querySelector<HTMLButtonElement>('[data-cauta-comuta]');
   const panouCauta = document.getElementById('panou-cautare');
@@ -244,25 +294,44 @@ const social = [
     }
   });
 
-  // Mega-meniu: fiecare link cu data-mega deschide panoul cu acelasi slug.
+  // Mega-meniu.
+  // Panourile sunt copii ai barei de navigație, deci mutarea cursorului de pe
+  // link în panou nu iese din `nav`. Închiderea se face doar la ieșirea din
+  // toată bara, cu o mică întârziere, ca mișcarea în diagonală să nu o taie.
+  // Linkurile DIN panou nu au voie să închidă: ele nu sunt în rândul de sus.
   const nav = document.querySelector<HTMLElement>('[data-nav]');
-  if (nav) {
+  const randNav = nav?.querySelector<HTMLElement>('[data-rand-nav]');
+  if (nav && randNav) {
     const panouri = new Map<string, HTMLElement>();
     for (const el of nav.querySelectorAll<HTMLElement>('[data-panou]')) {
       panouri.set(el.dataset.panou!, el);
     }
+    let ceas: number | undefined;
     const arata = (slug: string | null) => {
+      window.clearTimeout(ceas);
       for (const [s, el] of panouri) el.dataset.deschis = s === slug ? 'da' : 'nu';
     };
-    for (const link of nav.querySelectorAll<HTMLElement>('[data-mega]')) {
+    const inchideCuIntarziere = () => {
+      window.clearTimeout(ceas);
+      ceas = window.setTimeout(() => arata(null), 140);
+    };
+
+    for (const link of randNav.querySelectorAll<HTMLElement>('[data-mega]')) {
       const slug = link.dataset.mega!;
       link.addEventListener('mouseenter', () => arata(slug));
       link.addEventListener('focus', () => arata(slug));
     }
-    for (const link of nav.querySelectorAll<HTMLElement>('a:not([data-mega])')) {
+    // doar linkurile din rândul de sus închid, nu si cele din panou
+    for (const link of randNav.querySelectorAll<HTMLElement>('a:not([data-mega])')) {
       link.addEventListener('mouseenter', () => arata(null));
+      link.addEventListener('focus', () => arata(null));
     }
-    nav.addEventListener('mouseleave', () => arata(null));
+
+    nav.addEventListener('mouseleave', inchideCuIntarziere);
+    nav.addEventListener('mouseenter', () => window.clearTimeout(ceas));
+    nav.addEventListener('focusout', (e) => {
+      if (!nav.contains(e.relatedTarget as Node)) arata(null);
+    });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') arata(null); });
     arata(null);
   }

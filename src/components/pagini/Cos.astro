@@ -22,7 +22,7 @@ tc.total = t('produs.total');
 tc.sterge = t('actiune.sterge');
 ---
 <div class="container-brand py-10">
-  <h1 style="font-size: var(--pas-2xl)">{t('cos.titlu')}</h1>
+  <h1 style="font-size: var(--pas-2xl)">{lang === 'ro' ? 'Finalizare comandă' : 'Checkout'}</h1>
   <div class="mt-9">
     <Checkout client:load t={tc} urlMagazin={url(lang, '/colectii')} lang={lang} />
   </div>

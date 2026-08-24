@@ -1,0 +1,17 @@
+---
+import { traduceri } from '../../lib/i18n';
+import type { Limba } from '../../lib/pret';
+import Cont from '../Cont.tsx';
+
+interface Props { lang: Limba }
+const { lang } = Astro.props;
+const t = traduceri(lang);
+const chei = ['intra','nou','email','parola','nume','uitat','intraButon','creeaza','termeni','demo','deCe','deCe1','deCe2','deCe3','deCe4'] as const;
+const tc: Record<string, string> = Object.fromEntries(chei.map((c) => [c, t(`cont.${c}` as any)]));
+---
+<div class="container-brand py-12">
+  <h1 class="text-center" style="font-size: var(--pas-2xl)">{t('cont.titlu')}</h1>
+  <div class="mt-9">
+    <Cont client:load t={tc} />
+  </div>
+</div>

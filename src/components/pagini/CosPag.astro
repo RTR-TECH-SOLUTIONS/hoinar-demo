@@ -1,0 +1,23 @@
+---
+import { traduceri, url } from '../../lib/i18n';
+import type { Limba } from '../../lib/pret';
+import CosPagina from '../CosPagina.tsx';
+
+interface Props { lang: Limba }
+const { lang } = Astro.props;
+const t = traduceri(lang);
+const tc = {
+  gol: t('cos.gol'), golText: t('check.golText'), inapoiMagazin: t('check.inapoiMagazin'),
+  marime: t('produs.marime'), sterge: t('actiune.sterge'), continua: t('actiune.continua'),
+  sumar: t('cos.sumar'), subtotal: t('cos.subtotal'), transport: t('cos.transport'),
+  gratuit: t('cos.gratuit'), laFinal: t('cos.laFinal'), total: t('produs.total'),
+  lipsa: t('cos.lipsa'), atins: t('cos.atins'), cumpara: t('actiune.cumpara'),
+  avantaj1: t('cos.avantaj1'), avantaj2: t('cos.avantaj2'), avantaj3: t('cos.avantaj3'),
+};
+---
+<div class="container-brand py-12">
+  <h1 style="font-size: var(--pas-2xl)">{t('cos.titlu')}</h1>
+  <div class="mt-9">
+    <CosPagina client:load t={tc} urlFinalizare={url(lang, '/finalizare')} urlMagazin={url(lang, '/colectii')} />
+  </div>
+</div>
