@@ -65,38 +65,53 @@ export default function ConstructorSet({ piese, presel, t }: Props) {
   }
 
   return (
-    <div className="grid gap-9 lg:grid-cols-[minmax(0,1fr)_19rem] lg:gap-12">
-      <ul className="grid grid-cols-2 gap-3.5 sm:grid-cols-3">
+    <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_20rem] lg:gap-12">
+      {/* rânduri compacte: se citesc dintr-o privire, spre deosebire de cardurile mari */}
+      <ul className="divide-y divide-linie border-y border-linie">
         {piese.map((p) => {
           const bifat = alese.has(p.slug);
           return (
             <li key={p.slug}>
               <div
-                className={`flex h-full flex-col overflow-hidden rounded-[10px] border bg-crem transition-colors ${
-                  bifat ? 'border-ciocolata' : 'border-linie'
+                className={`flex items-center gap-3.5 py-3 transition-colors duration-200 sm:gap-4 ${
+                  bifat ? '' : 'opacity-70 hover:opacity-100'
                 }`}
               >
-                <a href={p.url} className="relative block overflow-hidden bg-nisip">
+                <button
+                  type="button"
+                  onClick={() => comuta(p.slug)}
+                  aria-pressed={bifat}
+                  aria-label={`${bifat ? t.adaugat : t.adauga1}: ${p.tipNume}`}
+                  className={`grid h-7 w-7 shrink-0 place-items-center rounded-full border transition-[background-color,border-color,transform] duration-200 active:scale-90 ${
+                    bifat ? 'border-ink bg-ink text-crem' : 'border-ciocolata/30 text-ciocolata/50 hover:border-ciocolata'
+                  }`}
+                >
+                  {bifat ? (
+                    <svg viewBox="0 0 16 16" width="11" height="11" aria-hidden="true" className="pop fill-none stroke-current" strokeWidth="2.2">
+                      <path d="M3.5 8.5l3 3 6-7" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  ) : (
+                    <svg viewBox="0 0 16 16" width="11" height="11" aria-hidden="true" className="fill-none stroke-current" strokeWidth="2">
+                      <path d="M8 3v10M3 8h10" strokeLinecap="round" />
+                    </svg>
+                  )}
+                </button>
+
+                <a href={p.url} className="shrink-0 overflow-hidden rounded-[8px] bg-crem">
                   <img
                     src={p.imagine}
-                    alt={p.tipNume}
+                    alt=""
+                    width={56}
+                    height={70}
                     loading="lazy"
-                    className="aspect-[4/5] w-full object-cover transition-transform duration-300 ease-out hover:scale-[1.04]"
+                    className="h-[4.4rem] w-14 object-cover transition-transform duration-500 ease-out hover:scale-[1.07]"
                   />
-                  {bifat && (
-                    <span
-                      aria-hidden="true"
-                      className="absolute right-2 top-2 grid h-6 w-6 place-items-center rounded-full bg-ink text-crem"
-                    >
-                      <svg viewBox="0 0 16 16" width="11" height="11" className="fill-none stroke-current" strokeWidth="2">
-                        <path d="M3.5 8.5l3 3 6-7" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </span>
-                  )}
                 </a>
 
-                <div className="flex flex-1 flex-col p-3">
-                  <p className="text-[0.87rem] leading-snug">{p.tipNume}</p>
+                <div className="min-w-0 flex-1">
+                  <a href={p.url} className="block truncate text-[0.92rem] transition-colors hover:text-teracota">
+                    {p.tipNume}
+                  </a>
                   <p className="mt-0.5 flex items-baseline gap-1.5 text-[0.85rem] tabular-nums text-ciocolata/70">
                     {formatPret(p.pretRon, moneda)}
                     {p.pretVechiRon && (
@@ -105,35 +120,22 @@ export default function ConstructorSet({ piese, presel, t }: Props) {
                       </span>
                     )}
                   </p>
+                </div>
 
-                  {p.marimi.length > 1 && (
-                    <select
-                      value={marimi[p.slug]}
-                      onChange={(e) => setMarimi({ ...marimi, [p.slug]: e.currentTarget.value })}
-                      aria-label={`${t.marime} ${p.tipNume}`}
-                      className={`mt-2.5 w-full rounded-[7px] border border-linie bg-crem px-2 py-1.5 text-[0.8rem] outline-none focus:border-teracota ${
-                        bifat ? '' : 'text-ciocolata/45'
-                      }`}
-                    >
-                      {p.marimi.map((m) => (
-                        <option key={m} value={m}>{m}</option>
-                      ))}
-                    </select>
-                  )}
-
-                  <button
-                    type="button"
-                    onClick={() => comuta(p.slug)}
-                    aria-pressed={bifat}
-                    className={`mt-2.5 w-full rounded-[8px] border px-3 py-2 text-[0.83rem] transition-colors ${
-                      bifat
-                        ? 'border-ink bg-ink text-crem hover:bg-ciocolata'
-                        : 'border-ciocolata/25 hover:border-ciocolata'
+                {p.marimi.length > 1 && (
+                  <select
+                    value={marimi[p.slug]}
+                    onChange={(e) => setMarimi({ ...marimi, [p.slug]: e.currentTarget.value })}
+                    aria-label={`${t.marime} ${p.tipNume}`}
+                    className={`shrink-0 rounded-[8px] border bg-crem px-2.5 py-1.5 text-[0.82rem] outline-none transition-colors focus:border-teracota ${
+                      bifat ? 'border-linie' : 'border-linie text-ciocolata/45'
                     }`}
                   >
-                    {bifat ? t.adaugat : t.adauga1}
-                  </button>
-                </div>
+                    {p.marimi.map((m) => (
+                      <option key={m} value={m}>{m}</option>
+                    ))}
+                  </select>
+                )}
               </div>
             </li>
           );
@@ -142,25 +144,47 @@ export default function ConstructorSet({ piese, presel, t }: Props) {
 
       <aside className="lg:sticky lg:top-[calc(var(--header-total)+1.5rem)] lg:self-start">
         <div className="rounded-[12px] border border-linie bg-crem p-5">
-          <p className="text-[0.8rem] uppercase tracking-[0.12em] text-ciocolata/55">{t.sumar}</p>
+          <p className="text-[0.72rem] uppercase tracking-[0.12em] text-ciocolata/55">{t.sumar}</p>
 
-          <ul className="mt-3 space-y-1.5 border-b border-linie pb-4">
+          {/* previzualizarea setului: piesele alese, una peste alta */}
+          <div className="mt-4 flex min-h-[3.4rem] items-center">
             {selectate.length === 0 ? (
-              <li className="text-[0.85rem] text-ciocolata/50">{t.niciuna}</li>
+              <p className="text-[0.85rem] text-ciocolata/50">{t.niciuna}</p>
             ) : (
-              selectate.map((p) => (
-                <li key={p.slug} className="flex items-baseline justify-between gap-3 text-[0.85rem]">
-                  <span className="min-w-0 truncate text-ciocolata/75">
-                    {p.tipNume}
-                    <span className="ml-1.5 text-ciocolata/45">{marimi[p.slug]}</span>
-                  </span>
-                  <span className="shrink-0 tabular-nums text-ciocolata/70">{formatPret(p.pretRon, moneda)}</span>
-                </li>
-              ))
+              <ul className="flex">
+                {selectate.slice(0, 4).map((p, i) => (
+                  <li key={p.slug} className="apare" style={{ marginLeft: i === 0 ? 0 : '-0.7rem', zIndex: 10 - i, '--pas': `${i * 60}ms` } as any}>
+                    <img
+                      src={p.imagine}
+                      alt=""
+                      width={44}
+                      height={54}
+                      className="h-[3.4rem] w-11 rounded-[7px] border-2 border-crem object-cover shadow-[0_2px_8px_-3px_rgba(24,22,19,0.4)]"
+                    />
+                  </li>
+                ))}
+                {selectate.length > 4 && (
+                  <li className="ml-[-0.7rem] grid h-[3.4rem] w-11 place-items-center rounded-[7px] border-2 border-crem bg-nisip text-[0.8rem] tabular-nums">
+                    +{selectate.length - 4}
+                  </li>
+                )}
+              </ul>
             )}
+          </div>
+
+          <ul className="mt-4 space-y-1.5 border-t border-linie pt-4">
+            {selectate.map((p) => (
+              <li key={p.slug} className="flex items-baseline justify-between gap-3 text-[0.85rem]">
+                <span className="min-w-0 truncate text-ciocolata/75">
+                  {p.tipNume}
+                  {p.marimi.length > 1 && <span className="ml-1.5 text-ciocolata/45">{marimi[p.slug]}</span>}
+                </span>
+                <span className="shrink-0 tabular-nums text-ciocolata/70">{formatPret(p.pretRon, moneda)}</span>
+              </li>
+            ))}
           </ul>
 
-          <p className="mt-4 flex items-baseline justify-between gap-3">
+          <p className="mt-4 flex items-baseline justify-between gap-3 border-t border-linie pt-4">
             <span className="text-[0.87rem]">{t.total}</span>
             <span className="flex items-baseline gap-2">
               {economie > 0 && (
@@ -174,21 +198,17 @@ export default function ConstructorSet({ piese, presel, t }: Props) {
             </span>
           </p>
 
-          <p
-            className={`mt-2.5 text-[0.83rem] leading-snug ${economie > 0 ? 'text-teracota' : 'text-ciocolata/55'}`}
-            role="status"
-            aria-live="polite"
-          >
-            {economie > 0
-              ? `${t.economie} ${formatPret(economie, moneda)} (${Math.round(rata * 100)}%)`
-              : t.indiciu}
-          </p>
+          {economie > 0 && (
+            <p className="mt-2 text-[0.83rem] text-teracota" role="status" aria-live="polite">
+              {t.economie} {formatPret(economie, moneda)} ({Math.round(rata * 100)}%)
+            </p>
+          )}
 
           {procUrmator !== null && urmator && (
             <div className="mt-4">
-              <div className="h-[3px] w-full overflow-hidden rounded-full bg-nisip">
+              <div className="h-[4px] w-full overflow-hidden rounded-full bg-nisip">
                 <div
-                  className="h-full rounded-full bg-camel transition-[width] duration-300 ease-out"
+                  className="h-full rounded-full bg-camel transition-[width] duration-500 ease-out"
                   style={{ width: `${Math.min(100, (selectate.length / urmator) * 100)}%` }}
                 />
               </div>
@@ -202,7 +222,7 @@ export default function ConstructorSet({ piese, presel, t }: Props) {
             type="button"
             onClick={adaugaTot}
             disabled={selectate.length === 0}
-            className="mt-5 w-full rounded-[10px] bg-ink px-6 py-3.5 text-[0.93rem] text-crem transition-colors hover:bg-ciocolata disabled:cursor-not-allowed disabled:bg-linie disabled:text-ciocolata/50"
+            className="mt-5 w-full rounded-[10px] bg-ink px-6 py-3.5 text-[0.93rem] text-crem transition-[background-color,transform] duration-200 hover:bg-ciocolata active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-linie disabled:text-ciocolata/50"
           >
             {t.adauga}
           </button>

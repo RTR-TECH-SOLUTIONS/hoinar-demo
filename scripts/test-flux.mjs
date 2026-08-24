@@ -45,7 +45,7 @@ await page.waitForTimeout(300);
 const set = page.locator('section', { hasText: 'Fă-ți setul' }).last();
 // adaugam doua piese care NU sunt deja in set, ca sa ajungem la 3
 {
-  const butoane = set.getByRole('button', { name: /^Adaugă$/ });
+  const butoane = set.getByRole('button', { name: /^Adaugă:/ });
   for (let i = 0; i < 2; i++) {
     await butoane.first().click();
     await page.waitForTimeout(250);
@@ -265,15 +265,17 @@ await page.goto(`${BAZA}/produs/ham-canepa-naturala`, { waitUntil: 'networkidle'
 await page.evaluate(() => window.scrollTo(0, 1200));
 await page.waitForTimeout(900);
 const setSec = page.locator('section', { hasText: 'Fă-ți setul' }).last();
-const carduriSet = await setSec.locator('li img').count();
-verifica('setul are carduri cu poza', carduriSet >= 5, `${carduriSet} carduri`);
+const randuriSet = await setSec.locator('li img').count();
+verifica('setul are un rand cu poza per piesa', randuriSet >= 5, `${randuriSet} randuri`);
 const totalInainte = Number(await setSec.locator('[data-total-ron]').getAttribute('data-total-ron'));
-await setSec.getByRole('button', { name: /^Adaugă$/ }).first().click();
+await setSec.getByRole('button', { name: /^Adaugă:/ }).first().click();
 await page.waitForTimeout(400);
 const totalDupa = Number(await setSec.locator('[data-total-ron]').getAttribute('data-total-ron'));
 verifica('adaugarea unei piese schimba totalul', totalDupa !== totalInainte, `${totalInainte} -> ${totalDupa}`);
 verifica('apare progresul spre pragul urmator',
   /Mai adaug/.test(await setSec.innerText()) || /−10%/.test(await setSec.innerText()));
+const previzualizare = await setSec.locator('aside li img').count();
+verifica('fisa arata piesele alese ca imagini', previzualizare >= 2, `${previzualizare} imagini in previzualizare`);
 
 // ---------- 16. dropdownul ramane deschis cand intri in el ----------
 await page.goto(`${BAZA}/`, { waitUntil: 'networkidle' });
