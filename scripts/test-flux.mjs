@@ -289,10 +289,20 @@ const linkInPanou = panouH.locator('a').nth(3);
 await linkInPanou.hover();
 await page.waitForTimeout(500);
 verifica('panoul ramane deschis cand treci pe un link din el', await panouH.isVisible());
-const caleLink = await linkInPanou.getAttribute('href');
+const caleLink = new URL(await linkInPanou.getAttribute('href'), BAZA);
 await linkInPanou.click();
 await page.waitForLoadState('networkidle');
-verifica('linkul din panou chiar navigheaza', page.url().includes(String(caleLink)), page.url());
+await page.waitForTimeout(600);
+// gazda poate adauga un slash inainte de `?`; ce conteaza e sa ajunga in
+// pagina corecta si filtrul din URL sa fie aplicat
+const ajuns = new URL(page.url());
+verifica(
+  'linkul din panou navigheaza si aplica filtrul',
+  ajuns.pathname.replace(/\/$/, '') === caleLink.pathname.replace(/\/$/, '') &&
+    ajuns.search === caleLink.search &&
+    (await page.locator('main article').count()) > 0,
+  page.url(),
+);
 
 // ---------- 17. pagina de cos ----------
 await page.goto(`${BAZA}/produs/lesa-carou-bruma`, { waitUntil: 'networkidle' });

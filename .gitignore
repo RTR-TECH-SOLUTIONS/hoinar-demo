@@ -25,3 +25,4 @@ pnpm-debug.log*
 
 # verificare vizuala automata
 .verificare/
+.verificare-live/
